@@ -15,8 +15,12 @@ return new class extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
+            $table->integer('branch_id');
             $table->string('name');
-            $table->text('value');
+            $table->string('address');
+            $table->string('side_bar_colour');
+            $table->string('number');
+            $table->string('side_nav_type');
             $table->timestamps();
         });
     }
