@@ -185,7 +185,13 @@
       <div class="text-center">
         <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2" @if($type=="Add") wire:click="save" @else wire:click="update" @endif @if($disableButton) disabled @endif>{{$type}} Invoice</button>
       </div>
-    
+      
+      @if($type == "Update")
+      <div class="text-center">
+        <a type="button" class="btn bg-gradient-primary w-100 my-4 mb-2" href="{{route('download.invoice',['invoiceId' => $invoiceId])}}">Download Receipt</a>
+      </div>
+    @endif
+    <!-- Modal -->
 </div>
 
 @section('js')

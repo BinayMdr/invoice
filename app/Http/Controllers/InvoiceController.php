@@ -25,8 +25,6 @@ class InvoiceController extends Controller
             'name' => 'required'
         ]);
 
-
-
         return redirect()->route('branch')->with('success','Invoice created');
     }
 
@@ -50,5 +48,10 @@ class InvoiceController extends Controller
         $invoice->delete();
 
         return redirect()->route('invoice')->with('success',"Invoice deleted");
+    }
+
+    public function download($invoiceId)
+    {
+        return view('pdf.invoicefile',['invoiceId' => $invoiceId]);
     }
 }

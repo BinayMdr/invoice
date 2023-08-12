@@ -24,7 +24,7 @@ class InvoiceComponent extends Component
         if($this->search != "" || $this->invoiceStatus != "" || $this->startDate != "" || $this->endDate != "") 
         {   
             $invoices = new Invoice();
-            if(Auth::user()->type != "admin") $invoices = $invoices->where('branch_id',Auth::user()->branch_id);
+            if(Auth::user()->type != "admin") $invoices = $invoices->where('branch_id',Auth::user()->branch);
             if($this->search != "") $invoices = $invoices->where('invoice_number', 'like', '%' . $this->search . '%');
             if($this->invoiceStatus != "") $invoices = $invoices->where('status',$this->invoiceStatus);
             if($this->startDate != "") $invoices = $invoices->whereDate('created_at','>=',$this->startDate);
@@ -33,7 +33,7 @@ class InvoiceComponent extends Component
             $invoices = $invoices->orderBy('created_at','desc')->paginate($this->limit);
         }
         else {
-            if(Auth::user()->type != "admin") $invoices = Invoice::where('branch_id',Auth::user()->branch_id)->orderBy('created_at','desc')->paginate($this->limit);
+            if(Auth::user()->type != "admin") $invoices = Invoice::where('branch_id',Auth::user()->branch)->orderBy('created_at','desc')->paginate($this->limit);
             else $invoices = Invoice::orderBy('created_at','desc')->paginate($this->limit);
         }
         return view('livewire.invoice-component',[

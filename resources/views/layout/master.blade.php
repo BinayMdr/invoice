@@ -8,9 +8,13 @@
   <link rel="icon" type="image/png" href="{{asset('assets/img/favicon.png')}}">
   <title>
     @php
-    $user = \Auth::user();
-      if($user->type == "admin")  $branch = \App\Models\Branch::where('is_enabled','1')->where('main_branch','1')->first();
-      else $branch = \App\Models\Branch::find($user->branch);
+      $user = \Auth::user();
+      $branch = null;
+      if(!is_null($user))
+      {
+        if($user->type == "admin")  $branch = \App\Models\Branch::where('is_enabled','1')->where('main_branch','1')->first();
+        else $branch = \App\Models\Branch::find($user->branch);
+      }
       
       if(is_null($branch)) $branch = \App\Models\Branch::where('is_enabled','1')->first();
 
