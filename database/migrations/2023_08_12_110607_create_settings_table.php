@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('side_bar_colour');
             $table->string('number');
             $table->string('side_nav_type');
+            $table->boolean('main_branch');
             $table->timestamps();
         });
     }

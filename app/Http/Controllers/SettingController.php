@@ -14,12 +14,23 @@ class SettingController extends Controller
 
     public function update(Request $request)
     {
-        foreach($request->except(['_token','_method','backgroundColour']) as $value => $data)
+        if(is_null(Setting::where('branch_id',$request->branch_id)->first()))
         {
-            Setting::where('name',$value)->first()->update([
-                'value' => $data
-            ]);
+            $data = $request->except(['_token','sideBarColour','sideNavType']);
+            $data['side_bar_colour'] = $request['sideBarColour'];
+            $data['side_nav_type'] = $request['sideNavType'];
+            Setting::create($data);
+        }        
+        else
+        {
+            $setting = Setting::where('branch_id',$request->branch_id)->first();
+            $data = $request->except(['_token','sideBarColour','sideNavType']);
+            $data['side_bar_colour'] = $request['sideBarColour'];
+            $data['side_nav_type'] = $request['sideNavType'];
+            $setting->update($data);
         }
+
+        session()->put('branchId',$request->branch_id);
 
         return redirect()->back()->with('success','Settings updated');
     }

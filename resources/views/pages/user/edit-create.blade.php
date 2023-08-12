@@ -59,7 +59,7 @@
                     <div class="input-group input-group-outline my-3 is-filled" aria-autocomplete="off">
                       <label class="form-label">Branch</label>
                       <select class="form-select form-control" aria-label="Default select example" name="branch">
-                        @foreach(\App\Models\Branch::all() as $branch)
+                        @foreach(\App\Models\Branch::where('is_enabled','1')->get() as $branch)
                           <option value="{{$branch->id}}" @if( !is_null($user) && $user->branch == $branch->id ) selected @endif>{{$branch?->name}}</option>
                         @endforeach
                       </select>

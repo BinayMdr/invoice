@@ -7,7 +7,16 @@
   <link rel="apple-touch-icon" sizes="76x76" href="{{asset('assets/img/apple-icon.png')}}">
   <link rel="icon" type="image/png" href="{{asset('assets/img/favicon.png')}}">
   <title>
-    {{\App\Models\Setting::where('name','name')->first()->value}}
+    @php
+    $user = \Auth::user();
+      if($user->type == "admin")  $branch = \App\Models\Branch::where('is_enabled','1')->where('main_branch','1')->first();
+      else $branch = \App\Models\Branch::find($user->branch);
+      
+      if(is_null($branch)) $branch = \App\Models\Branch::where('is_enabled','1')->first();
+
+      $settings = \App\Models\Setting::where('branch_id',$branch->id)->first();
+    @endphp
+    {{$settings->name}}
   </title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <!--     Fonts and icons     -->
@@ -37,8 +46,8 @@
     @endif
 
     @php
-      $sideBarColourValue = \App\Models\Setting::where('name','sideBarColour')->first()->value;
-      $sidenavTypeValue = \App\Models\Setting::where('name','sidenavTYpe')->first()->value;
+      $sideBarColourValue = $settings->side_bar_colour;
+      $sidenavTypeValue = $settings->side_nav_type;
     @endphp
   <!--   Core JS Files   -->
   <script src="{{asset('assets/js/core/popper.min.js')}}"></script>

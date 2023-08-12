@@ -55,6 +55,11 @@
                       <br>
                       <input class="form-check-input" type="checkbox" id="status" name="status" @if(!is_null($branch) && $branch->is_enabled) checked @endif>
                     </div>
+                    <label class="form-check-label m-0" for="status">Main branch</label>
+                    <div class="form-check form-switch d-flex align-items-center mb-3">
+                      <br>
+                      <input class="form-check-input" type="checkbox" id="main_branch" name="main_branch" @if(!is_null($branch) && $branch->main_branch) checked @endif>
+                    </div>
                     <div class="text-center">
                       <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">@if(!is_null($branch)) Update @else Add @endif Branch</button>
                     </div>
