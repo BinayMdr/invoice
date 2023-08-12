@@ -57,7 +57,7 @@ class InvoiceCreateUpdateComponent extends Component
                 $item_array = [
                     'id' => $product->product_id,
                     'name' => Product::find($product->product_id)->name,
-                    'quantity' => $product->name,
+                    'quantity' => $product->quantity,
                     "price" => $product->price,
                     "total" => $product->price
                 ];
@@ -65,7 +65,6 @@ class InvoiceCreateUpdateComponent extends Component
                 array_push($this->productLists,$item_array);
             }
             
-         
         }
         $this->productNameList = Product::orderby('name','ASC')->get();
     }
