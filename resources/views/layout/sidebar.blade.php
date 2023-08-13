@@ -80,11 +80,19 @@
         </li>
         @if(\Auth::user()->type == "admin")
           <li class="nav-item">
-            <a class="nav-link text-white @if(str_contains(url()->current(),'setting')) active @endif" href="{{route('setting')}}">
+            <a class="nav-link text-white @if(\Request::route()->getName() == "setting") active @endif" href="{{route('setting')}}">
               <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="material-icons opacity-10">settings</i>
               </div>
               <span class="nav-link-text ms-1">Setting</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white @if(\Request::route()->getName() == "global-setting") active @endif" href="{{route('global-setting')}}">
+              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="material-icons opacity-10">settings</i>
+              </div>
+              <span class="nav-link-text ms-1">Global Setting</span>
             </a>
           </li>
         @endif

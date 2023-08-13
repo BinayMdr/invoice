@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\GlobalSettingController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentController;
@@ -71,15 +72,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::put('/invoice/update/{invoice}',[InvoiceController::class,'update'])->name('update.invoice');
     Route::get('/invoice/delete/{invoice}',[InvoiceController::class,'delete'])->name('delete.invoice');
     Route::get('print-invoice/{invoiceId}',[InvoiceController::class,'download'])->name('download.invoice');
-});
-// Route::get('/a',function(){
-//         User::create([
-//             'name' => 'Super Admin',
-//             'email' => 'super@admin.com',
-//             'password' => \Hash::make('password'),
-//             'type' => 'admin',
-//             'is_enabled' => true
-//         ]);
-// });
 
-Route::view('/test','pdf.invoicefile');
+    Route::get('/global-setting',[GlobalSettingController::class,'index'])->name('global-setting');
+    Route::put('/globa-setting/update',[GlobalSettingController::class,'update'])->name('update.global-setting');
+});

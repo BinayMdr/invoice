@@ -11,6 +11,7 @@
 				$invoice = \App\Models\Invoice::find($invoiceId);
 				$setting = \App\Models\Setting::where('branch_id',$invoice->branch_id)->first();
 				$customer = \App\Models\Customer::find($invoice->customer_id);
+				$pan = \App\Models\GlobalSetting::where('name','pan')->first();
 			@endphp
 			<div>
 				<h1>Invoice</h1>
@@ -19,7 +20,7 @@
 					<h1>{{$setting->name}}</h1>
 					<h2>{{$setting->address}}</h2>
 					<h2>{{$setting->number}}</h2>
-					<h2>PAN: {{$setting->number}}</h2>
+					<h2>PAN: {{$pan->value}}</h2>
 			</div>
 		<article style="margin-top:50px">
 			<address contenteditable>
