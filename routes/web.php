@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\GlobalSettingController;
+use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentController;
@@ -75,4 +76,10 @@ Route::group(['middleware'=>'auth'],function(){
 
     Route::get('/global-setting',[GlobalSettingController::class,'index'])->name('global-setting');
     Route::put('/globa-setting/update',[GlobalSettingController::class,'update'])->name('update.global-setting');
+
+    Route::get('/inventory',[InventoryController::class,'index'])->name('inventory');
+    Route::get('/inventory/create',[InventoryController::class,'create'])->name('create.inventory');
+    Route::post('/inventory',[InventoryController::class,'store'])->name('store.inventory');
+    Route::get('/inventory/edit/{inventory}',[InventoryController::class,'edit'])->name('edit.inventory');
+    Route::put('/inventory/update/{inventory}',[InventoryController::class,'update'])->name('update.inventory');
 });

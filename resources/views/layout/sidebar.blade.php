@@ -47,9 +47,17 @@
         <li class="nav-item">
           <a class="nav-link text-white @if(str_contains(url()->current(),'product')) active @endif" href="{{route('product')}}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">inventory_2</i>
+              <i class="material-icons opacity-10">lunch_dining</i>
             </div>
             <span class="nav-link-text ms-1">Product</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white @if(str_contains(url()->current(),'inventory')) active @endif" href="{{route('inventory')}}">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">inventory_2</i>
+            </div>
+            <span class="nav-link-text ms-1">Inventory</span>
           </a>
         </li>
         <li class="nav-item">
@@ -90,7 +98,7 @@
           <li class="nav-item">
             <a class="nav-link text-white @if(\Request::route()->getName() == "global-setting") active @endif" href="{{route('global-setting')}}">
               <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">settings</i>
+                <i class="material-icons opacity-10">settings_suggest</i>
               </div>
               <span class="nav-link-text ms-1">Global Setting</span>
             </a>
