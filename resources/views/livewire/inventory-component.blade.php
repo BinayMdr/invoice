@@ -1,18 +1,22 @@
 <div class="container-fluid pb-4">
     <div class="row">
       <div class="col-12">
-        <div class="input-group d-flex  justify-content-end">
-          <a type="button" class="btn btn-info mx-2" href="{{route('create.inventory')}}">
-            <i class="material-icons opacity-10">add</i>
-          </a>
-          @php
-            $user = \Auth::user();
-            $showButton = true;
-            $branch = \App\Models\Branch::where('is_enabled','1')->where('is_enabled','1')->first();
-            if($user->type == "admin") $showButton = false;
-            else if($user->branch == $branch->id) $showButton = false;
-          @endphp
+        @php
+        $user = \Auth::user();
+        $showButton = true;
+        $branch = \App\Models\Branch::where('is_enabled','1')->where('is_enabled','1')->first();
+        if($user->type == "admin") $showButton = false;
+        else if($user->branch == $branch->id) $showButton = false;
+      @endphp
 
+
+        <div class="input-group d-flex  justify-content-end">
+          @if(!$showButton)
+            <a type="button" class="btn btn-info mx-2" href="{{route('create.inventory')}}">
+              <i class="material-icons opacity-10">add</i>
+            </a>
+          @endif
+         
           @if($showButton)
             <a type="button" class="btn btn-info mx-2" href="{{route('create.inventory')}}">
                 Make Request
@@ -34,7 +38,9 @@
                   <tr>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Item Name</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Total Count</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Action</th>
+                    @if(!$showButton)
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Action</th>
+                    @endif
                   </tr>
                 </thead>
                 <tbody>
@@ -46,11 +52,13 @@
                     <td>
                       <p class="text-xs font-weight-bold mb-0 px-3">{{$inventory->total}}</p>
                     </td>
-                    <td class="align-middle">
-                      <a href="{{route('edit.inventory',['inventory' => $inventory])}}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                        Edit
-                      </a>
-                    </td>
+                    @if(!$showButton)
+                      <td class="align-middle">
+                        <a href="{{route('edit.inventory',['inventory' => $inventory])}}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                          Edit
+                        </a>
+                      </td>
+                    @endif
                   </tr>
                   @endforeach
                 </tbody>
