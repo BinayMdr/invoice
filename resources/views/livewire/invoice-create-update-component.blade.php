@@ -127,7 +127,7 @@
               </td>
               <td class="align-middle w-20">
                 <div class="input-group input-group-outline my-3 is-filled">
-                  <input type="number" class="form-control" name="discount" autocomplete="off" wire:model.debounce.500ms="discountPercent" @if($type == "Update") readonly @endif >
+                  <input type="number" class="form-control" name="discount" autocomplete="off" wire:model.debounce.500ms="discountPercent" >
                 </div>
                 </td>
             </tr>

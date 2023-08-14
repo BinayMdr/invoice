@@ -39,11 +39,11 @@
                       </button>
                     </div>
                   @endif
-                  <form role="form" class="text-start" method="POST" @if(is_null($invoice)) action="{{route('store.invoice')}}" @else action="{{route('update.invoice',['invoice'=>$invoice->id])}}" @endif>
+                  {{-- <form role="form" class="text-start">
                     @csrf
                     @if(!is_null($invoice))
                       @method('PUT')
-                    @endif
+                    @endif --}}
                     @livewire('invoice-create-update-component',['type' => is_null($invoice) ? 'Add':'Update','invoice_id' => $invoice?->id])
                     {{-- <div class="input-group input-group-outline my-3 @if(!is_null($branch)) is-filled @endif">
                       <label class="form-label">Branch Name</label>
@@ -58,7 +58,7 @@
                       <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">@if(!is_null($invoice)) Update @else Add @endif Invoice</button>
                     </div> --}}
                     
-                  </form>
+                  {{-- </form> --}}
 
             </div>
           </div>

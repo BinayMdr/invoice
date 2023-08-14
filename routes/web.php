@@ -68,10 +68,7 @@ Route::group(['middleware'=>'auth'],function(){
 
     Route::get('/invoice',[InvoiceController::class,'index'])->name('invoice');
     Route::get('/invoice/create',[InvoiceController::class,'create'])->name('create.invoice');
-    Route::post('/invoice',[InvoiceController::class,'store'])->name('store.invoice');
     Route::get('/invoice/edit/{invoice}',[InvoiceController::class,'edit'])->name('edit.invoice');
-    Route::put('/invoice/update/{invoice}',[InvoiceController::class,'update'])->name('update.invoice');
-    Route::get('/invoice/delete/{invoice}',[InvoiceController::class,'delete'])->name('delete.invoice');
     Route::get('print-invoice/{invoiceId}',[InvoiceController::class,'download'])->name('download.invoice');
 
     Route::get('/global-setting',[GlobalSettingController::class,'index'])->name('global-setting');

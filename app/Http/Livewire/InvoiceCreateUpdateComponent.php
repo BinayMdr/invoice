@@ -74,7 +74,7 @@ class InvoiceCreateUpdateComponent extends Component
 
         $this->updateAmount();
 
-        $this->changedAmount = $this->receivedAmount - $this->total;
+        $this->changedAmount = intval($this->receivedAmount) - $this->total;
 
         return view('livewire.invoice-create-update-component');
     }
@@ -253,7 +253,7 @@ class InvoiceCreateUpdateComponent extends Component
         $invoice->received_amount = $this->receivedAmount;
         $invoice->changed_amount = $this->changedAmount;
         $invoice->prepared_by_id = Auth::user()->name;
-        $invoice->branch_id = Auth::user()->branch_id;
+        $invoice->branch_id = Auth::user()->branch;
         $invoice->status = $this->changedAmount >= 0 ? "Paid" : "Pending";
         $invoice->payment_method_id = !is_null($this->paymentMethod) || $this->paymentMethod != "" ? 
                                 PaymentMethod::where('name',$this->paymentMethod)->first()->id : null; 
