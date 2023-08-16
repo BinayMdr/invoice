@@ -3,11 +3,12 @@
       <div class="col-12">
         <div class="input-group input-group-outline my-3 is-filled row">
           <div class="col-4">
-            <label>Invoice Status</label>
-            <select class="form-control" id="invoiceStatus" wire:click="updateInvoiceStatus($event.target.value)">
-                <option value="" @if($invoiceStatus == "") selected @endif>Select Invoice Status</option>
-                <option value="Pending" @if($invoiceStatus == "Pending") selected @endif>Pending</option>
-                <option value="Paid" @if($invoiceStatus == "Paid") selected @endif >Paid</option>
+            <label>Inventory Request Status</label>
+            <select class="form-control" id="inventoryRequestStatus" wire:click="updateInventoryRequestStatus($event.target.value)">
+                <option value="" @if($inventoryRequestStatus == "") selected @endif>Select Inventory Request Status</option>
+                <option value="Pending" @if($inventoryRequestStatus == "Pending") selected @endif>Pending</option>
+                <option value="Completed" @if($inventoryRequestStatus == "Completed") selected @endif>Completed</option>
+                <option value="Rejected" @if($inventoryRequestStatus == "Rejected") selected @endif>Rejected</option>
             </select>
           </div>
           <div class="col-3">
@@ -23,7 +24,7 @@
           </div>
           </div>
         <div class="input-group d-flex  justify-content-end">
-          <a type="button" class="btn btn-info mx-2" href="{{route('create.invoice')}}">
+          <a type="button" class="btn btn-info mx-2" href="{{route('create.inventory-request')}}">
             <i class="material-icons opacity-10">add</i>
           </a>
           <div class="form-outline">
@@ -39,34 +40,30 @@
               <table class="table align-items-center mb-0">
                 <thead>
                   <tr>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Invoice No.</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Customer Name</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Branch</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Created By</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Created At</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Prepared By</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach($invoices as $invoice)
+                  @foreach($inventoryRequests as $inventoryRequest)
                   <tr>
                     <td>
-                      <p class="text-xs font-weight-bold mb-0 px-3">{{$invoice->invoice_number}}</p>
+                      <p class="text-xs font-weight-bold mb-0 px-3">{{\App\Models\Branch::find($inventoryRequest->branch_id)->name}}</p>
                     </td>
                     <td>
-                      <p class="text-xs font-weight-bold mb-0">{{\App\Models\Customer::find($invoice->customer_id)->name}}</p>
+                      <p class="text-xs font-weight-bold mb-0 px-3">{{\App\Models\User::find($inventoryRequest->user_id)->name}}</p>
                     </td>
                     <td>
-                      <p class="text-xs font-weight-bold mb-0">{{ \Carbon\Carbon::parse($invoice->created_at)->tz('Asia/Kathmandu') }}</p>
+                      <p class="text-xs font-weight-bold mb-0">{{ \Carbon\Carbon::parse($inventoryRequest->created_at)->tz('Asia/Kathmandu') }}</p>
                     </td>
                     <td>
-                      <p class="text-xs font-weight-bold mb-0">{{$invoice->prepared_by_id}}</p>
-                    </td>
-                    <td>
-                      <p class="text-xs font-weight-bold mb-0">{{$invoice->status}}</p>
+                      <p class="text-xs font-weight-bold mb-0">{{$inventoryRequest->status}}</p>
                     </td>
                     <td class="align-middle">
-                      <a href="{{route('edit.invoice',['invoice' => $invoice])}}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                      <a href="{{route('edit.inventory-request',['inventoryRequest' => $inventoryRequest])}}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                         Edit
                       </a>
                       {{-- @if(Auth::user()->type == "admin")
@@ -93,7 +90,7 @@
         <option value="100" @if($limit == "100") selected @endif>100</option>
       </select>
     </div>
-    {{ $invoices->links('vendor.livewire.simple-bootstrap') }}
+    {{ $inventoryRequests->links('vendor.livewire.simple-bootstrap') }}
   </div>
 
 @section('js')
@@ -102,8 +99,8 @@
 
 @section('js')
     <script>
-        $('select#invoiceStatus').on('change', function (e) {
-          Livewire.emit('updateInvoiceStatus',$('select#invoiceStatus :selected').val())
+        $('select#inventoryRequestStatus').on('change', function (e) {
+          Livewire.emit('updateInventoryRequestStatus',$('select#inventoryRequestStatus :selected').val())
         });
     </script>
 @endsection

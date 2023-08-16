@@ -7,9 +7,9 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Inventory</li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Inventory Request</li>
           </ol>
-          <h6 class="font-weight-bolder mb-0">@if(!is_null($inventory)) Update @else Add @endif Inventory</h6>
+          <h6 class="font-weight-bolder mb-0">@if(!is_null($inventoryRequest)) Update @else Add @endif Inventory Request</h6>
         </nav>
       
       </div>
@@ -18,11 +18,9 @@
     <div class="container-fluid px-2 px-md-4">
       <div class="card card-body mx-3">
         <div class="row">
-          <div class="row">
-            <div class="col-6">
               <div class="card card-plain h-100">
                 <div class="card-header pb-0 p-3">
-                  <h6 class="mb-0">@if(!is_null($inventory)) Update @else Add @endif Inventory</h6>
+                  <h6 class="mb-0">@if(!is_null($inventoryRequest)) Update @else Add @endif Inventory Request</h6>
                 </div>
                 <div class="card-body">
                   @if(\Session::has('error'))
@@ -41,26 +39,27 @@
                       </button>
                     </div>
                   @endif
-                  <form role="form" class="text-start" method="POST" @if(is_null($inventory)) action="{{route('store.inventory')}}" @else action="{{route('update.inventory',['inventory'=>$inventory->id])}}" @endif>
+                  {{-- <form role="form" class="text-start">
                     @csrf
-                    @if(!is_null($inventory))
+                    @if(!is_null($invoice))
                       @method('PUT')
-                    @endif
-                    <div class="input-group input-group-outline my-3 @if(!is_null($inventory)) is-filled @endif">
-                      <label class="form-label">Item Name</label>
-                      <input type="text" class="form-control" name="name" required value="{{ $inventory->name ?? ""}}" autocomplete="off">
+                    @endif --}}
+                    @livewire('inventory-request-create-update-component',['type' => is_null($inventoryRequest) ? 'Add':'Update','inventory_request_id' => $inventoryRequest?->id])
+                    {{-- <div class="input-group input-group-outline my-3 @if(!is_null($branch)) is-filled @endif">
+                      <label class="form-label">Branch Name</label>
+                      <input type="text" class="form-control" name="name" required value="{{ $branch->name ?? ""}}" autocomplete="off">
                     </div>
-                    <div class="input-group input-group-outline my-3 @if(!is_null($inventory)) is-filled @endif">
-                      <label class="form-label">Total Count</label>
-                      <input type="number" class="form-control" name="total" required value="{{ $inventory->total ?? ""}}" autocomplete="off">
-                    </div>
+                    <label class="form-check-label m-0" for="status">Status</label>
+                    <div class="form-check form-switch d-flex align-items-center mb-3">
+                      <br>
+                      <input class="form-check-input" type="checkbox" id="status" name="status" @if(!is_null($branch) && $branch->is_enabled) checked @endif>
+                    </div> --}}
+                    {{-- <div class="text-center">
+                      <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">@if(!is_null($invoice)) Update @else Add @endif Invoice</button>
+                    </div> --}}
                     
-                    <div class="text-center">
-                      <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">@if(!is_null($inventory)) Update @else Add @endif Inventory</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
+                  {{-- </form> --}}
+
             </div>
           </div>
         </div>

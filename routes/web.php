@@ -5,6 +5,7 @@ use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\GlobalSettingController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\InventoryRequestController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentController;
@@ -79,4 +80,8 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('/inventory',[InventoryController::class,'store'])->name('store.inventory');
     Route::get('/inventory/edit/{inventory}',[InventoryController::class,'edit'])->name('edit.inventory');
     Route::put('/inventory/update/{inventory}',[InventoryController::class,'update'])->name('update.inventory');
+
+    Route::get('/inventory-request',[InventoryRequestController::class,'index'])->name('inventory-request');
+    Route::get('/inventory-request/create',[InventoryRequestController::class,'create'])->name('create.inventory-request');
+    Route::get('/inventory-request/edit/{inventoryRequest}',[InventoryRequestController::class,'edit'])->name('edit.inventory-request');
 });

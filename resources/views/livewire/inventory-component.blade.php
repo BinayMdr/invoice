@@ -4,13 +4,19 @@
         @php
         $user = \Auth::user();
         $showButton = true;
-        $branch = \App\Models\Branch::where('is_enabled','1')->where('is_enabled','1')->first();
+        $branch = \App\Models\Branch::where('is_enabled','1')->where('main_branch','1')->first();
         if($user->type == "admin") $showButton = false;
         else if($user->branch == $branch->id) $showButton = false;
       @endphp
 
 
         <div class="input-group d-flex  justify-content-end">
+          @if($user->branch != $branch->id)
+            <a type="button" class="btn btn-info mx-2" href="{{route('inventory-request')}}">
+              View Request
+            </a>
+          @endif
+
           @if(!$showButton)
             <a type="button" class="btn btn-info mx-2" href="{{route('create.inventory')}}">
               <i class="material-icons opacity-10">add</i>
@@ -18,7 +24,7 @@
           @endif
          
           @if($showButton)
-            <a type="button" class="btn btn-info mx-2" href="{{route('create.inventory')}}">
+            <a type="button" class="btn btn-info mx-2" href="{{route('create.inventory-request')}}">
                 Make Request
             </a>
           @endif
