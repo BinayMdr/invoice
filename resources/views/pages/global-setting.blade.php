@@ -44,10 +44,7 @@
                         <label class="form-label" style="width:95%">PAN</label>
                         <input type="text" class="form-control" name="pan" required autocomplete="off" value="{{ \App\Models\GlobalSetting::where('name','pan')->first()->value ?? ""}}">
                       </div>
-                      <div class="input-group input-group-outline my-3 is-filled" style="width:50%">
-                        <label class="form-label" style="width:95%">Inventory Request Time</label>
-                        <input type="time" class="form-control" name="inventory_request_time" required autocomplete="off" value="{{\App\Models\GlobalSetting::where('name','inventory_request_time')->first()->value ?? ""}}">
-                      </div>
+          
                     </div>
                     <div class="text-center">
                       <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Update Global Setting</button>
