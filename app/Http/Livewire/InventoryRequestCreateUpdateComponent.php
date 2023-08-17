@@ -29,9 +29,9 @@ class InventoryRequestCreateUpdateComponent extends Component
             foreach(InventoryRequestItem::where('inventory_request_id',$inventory_request_id)->get() as $product)
             {
                 $item_array = [
-                    'id' => $product->product_id,
+                    'id' => $product->inventory_id,
                     'name' => Inventory::find($product->inventory_id)->name,
-                    'quantity' => $product->total,
+                    'quantity' => $product->quantity,
                     'max_quantity' => $product->total
                 ];
     

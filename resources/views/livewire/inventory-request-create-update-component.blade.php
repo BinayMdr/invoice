@@ -11,16 +11,19 @@
           </thead>
           <tbody>
             @foreach($productLists as $count => $product)
-            {{-- {{dd($product)}} --}}
             <tr>
               <td>
                 <p class="text-xs font-weight-bold mb-0 px-3">{{$product['name']}}</p>
               </td>
               <td>
                   <p class="text-xs font-weight-bold mb-0">
-                    <button type="button"  wire:click="updateQuantity({{$count}},'substract',{{$product['max_quantity']}})">-</button>
+                    @if($type == "Add")
+                      <button type="button"  wire:click="updateQuantity({{$count}},'substract',{{$product['max_quantity']}})">-</button>
+                    @endif
                     {{$product['quantity']}}
-                    <button type="button"   wire:click="updateQuantity({{$count}},'add',{{$product['max_quantity']}})">+</button>
+                    @if($type == "Add")
+                      <button type="button"   wire:click="updateQuantity({{$count}},'add',{{$product['max_quantity']}})">+</button>
+                    @endif
                   </p>
               </td>
               <td class="align-middle">
@@ -72,7 +75,12 @@
           </div>
         </div>
       @endif
-      @if($userType == "admin")
+      @if($userType == "admin" && $type == "Update")
+        <div class="text-center">
+          <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2" @if($type=="Add") wire:click="save" @else wire:click="update" @endif>{{$type}} Inventory Request</button>
+        </div>
+      @endif
+      @if($type == "Add")
         <div class="text-center">
           <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2" @if($type=="Add") wire:click="save" @else wire:click="update" @endif>{{$type}} Inventory Request</button>
         </div>

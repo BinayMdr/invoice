@@ -53,6 +53,7 @@
       $sideBarColourValue = $settings->side_bar_colour;
       $sidenavTypeValue = $settings->side_nav_type;
     @endphp
+
   <!--   Core JS Files   -->
   <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
   <script src="{{asset('assets/js/core/bootstrap.min.js')}}"></script>
@@ -76,15 +77,16 @@
   @livewireScripts
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   @yield('js')
   <script>
+ 
       var sideBarColourValue = "{{$sideBarColourValue}}";
       $(`#sidebarColour-${sideBarColourValue}`).click();
 
       var sidenavTypeValue = "{{$sidenavTypeValue}}";
       $(`#sidenav-${sidenavTypeValue}`).click();
-
-      
   </script>
 </body>
 
