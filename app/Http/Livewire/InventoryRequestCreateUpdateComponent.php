@@ -132,9 +132,27 @@ class InventoryRequestCreateUpdateComponent extends Component
     public function update()
     {
         $inventoryRequest = InventoryRequest::find($this->inventoryRequestId);
+
+        if($this->inventoryRequestStatus == "Completed")
+        {
+            foreach(InventoryRequestItem::where('inventory_request_id',$this->inventoryRequestId)->get() as $product)
+            {
+                $inventory = Inventory::find($product->inventory_id);
+                if($product->quantity > $inventory->total) return redirect()->route('inventory-request')->with('error','Requested Item is higher than the quantity present in inventory');
+            }
+        }
+
         $inventoryRequest->update([
             'status' => $this->inventoryRequestStatus
         ]);
+
+        foreach(InventoryRequestItem::where('inventory_request_id',$this->inventoryRequestId)->get() as $product)
+        {
+            $inventory = Inventory::find($product->inventory_id);
+            $inventory->update([
+                "total" => $inventory->total - $product->quantity
+            ]); 
+        }
 
         return redirect()->route('inventory-request')->with('success','Inventory Request Updated');
     }
