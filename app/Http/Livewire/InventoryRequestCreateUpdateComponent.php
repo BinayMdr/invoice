@@ -146,12 +146,15 @@ class InventoryRequestCreateUpdateComponent extends Component
             'status' => $this->inventoryRequestStatus
         ]);
 
-        foreach(InventoryRequestItem::where('inventory_request_id',$this->inventoryRequestId)->get() as $product)
+        if($this->inventoryRequestStatus == "Completed")
         {
-            $inventory = Inventory::find($product->inventory_id);
-            $inventory->update([
-                "total" => $inventory->total - $product->quantity
-            ]); 
+            foreach(InventoryRequestItem::where('inventory_request_id',$this->inventoryRequestId)->get() as $product)
+            {
+                $inventory = Inventory::find($product->inventory_id);
+                $inventory->update([
+                    "total" => $inventory->total - $product->quantity
+                ]); 
+            }
         }
 
         return redirect()->route('inventory-request')->with('success','Inventory Request Updated');
