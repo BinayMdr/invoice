@@ -54,6 +54,21 @@
       $sidenavTypeValue = $settings->side_nav_type;
     @endphp
 
+    @php
+    $enableNotification = false;
+      if(!is_null($user))
+      {
+        if($user->type != "admin")
+        {
+          $branch = \App\Models\Branch::where('is_enabled','1')->where('main_branch','1')->first();
+          if($user->branch != $branch->id) $enableNotification = true;
+        }
+      }
+
+      $notificationTime = \App\Models\GlobalSetting::where('name','inventory_request_time')->first()->value;
+
+      $notificationTime = $notificationTime . ":00";
+    @endphp
   <!--   Core JS Files   -->
   <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
   <script src="{{asset('assets/js/core/bootstrap.min.js')}}"></script>
@@ -87,6 +102,28 @@
 
       var sidenavTypeValue = "{{$sidenavTypeValue}}";
       $(`#sidenav-${sidenavTypeValue}`).click();
+  </script>
+  <script>
+      if("{{$enableNotification}}")
+      {
+        setInterval(function () {
+            var today = new Date();
+            var time = String(today.getHours()).padStart(2,'0') + ":" + String(today.getMinutes()).padStart(2,'0') + ":" + String(today.getSeconds()).padStart(2,'0');
+
+            if(time == "{{$notificationTime}}")
+            {
+              Swal.fire({
+              title: 'Do you want to make inventory request?',
+              showCancelButton: true,
+              confirmButtonText: 'Yes'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    window.location.href = "{{route('create.inventory-request')}}"
+                  }
+                })
+            }
+          }, 1000);
+      }
   </script>
 </body>
 
