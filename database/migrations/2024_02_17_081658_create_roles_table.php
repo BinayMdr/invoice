@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('inventory_requests', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->integer('branch_id');
-            $table->integer('user_id');
-            $table->string('status');
+            $table->string('name');
+            $table->string('parent_role_id')->nullable();
+            $table->integer('order');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inventory_requests');
+        Schema::dropIfExists('roles');
     }
 };

@@ -23,9 +23,9 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required',
-            'branch' => 'required',
             'password' => 'required',
-            'confirm_password' => 'required'
+            'confirm_password' => 'required',
+            'group_id' => 'required'
         ]);
 
         if( User::where('email',$request->email)->get()->count() > 0) return redirect()->back()->with('error','Email already exist');
@@ -33,10 +33,9 @@ class UserController extends Controller
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'branch' => $request->branch,
             'password' => \Hash::make($request->password),
-            'is_enabled' => $request->has('status') ? true : false,
-            'type' => 'user'
+            'group_id' => $request->group_id,
+            'is_enabled' => $request->has('status') ? true : false
         ]);
 
         return redirect()->route('user')->with('success','User created');
@@ -49,27 +48,24 @@ class UserController extends Controller
 
     public function update(Request $request,User $user)
     {
-        // dd($request->all());
         $request->validate([
-            'branch' => 'required'
+            'group_id' => 'required'
         ]);
+
+        $data = [
+            'is_enabled' => $request->has('status') ? true : false,
+            'group_id'=> $request->group_id
+        ];
 
         if(!is_null($request->password))
         {
             if($request->password !== $request->confirm_password) return redirect()->back()->with("error","Password and confirm password doesn't matches");
-            $user->update([
-                'branch' => $request->branch,
-                'password' => \Hash::make($request->password),
-                'is_enabled' => $request->has('status') ? true : false
-            ]);
-        }   
-        else
-        {
-            $user->update([
-                'branch' => $request->branch,
-                'is_enabled' => $request->has('status') ? true : false
-            ]);
-        }
-        return redirect()->route('customer')->with('success','Customer updated');
+            
+            $data['password'] = \Hash::make($request->password);
+        } 
+
+        $user->update($data);
+
+        return redirect()->route('user')->with('success','User updated');
     }
 }

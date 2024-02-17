@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('branches', function (Blueprint $table) {
+        Schema::create('group_has_roles', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->boolean('is_enabled');
-            $table->boolean('main_branch');
+            $table->unsignedBigInteger('group_id');
+            $table->unsignedBigInteger('role_id');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('branches');
+        Schema::dropIfExists('group_has_roles');
     }
 };

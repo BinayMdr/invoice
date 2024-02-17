@@ -22,7 +22,7 @@
             <div class="col-6">
               <div class="card card-plain h-100">
                 <div class="card-header pb-0 p-3">
-                  <h6 class="mb-0">@if(!is_null($user)) Update {{$user->name}} @else Add User @endif </h6>
+                  <h6 class="mb-0">@if(!is_null($user)) Update User @else Add User @endif </h6>
                 </div>
                 <div class="card-body">
                   @if(\Session::has('error'))
@@ -46,21 +46,19 @@
                     @if(!is_null($user))
                       @method('PUT')
                     @endif
-                    @if(is_null($user))
-                      <div class="input-group input-group-outline my-3 @if(!is_null($user)) is-filled @endif">
-                        <label class="form-label">Name</label>
-                        <input type="text" class="form-control" name="name" required value="{{ $user->name ?? ""}}" autocomplete="off" @if(!is_null($user)) readonly @endif>
-                      </div>
-                      <div class="input-group input-group-outline my-3 @if(!is_null($user)) is-filled @endif">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-control" name="email" required value="{{ $user->email ?? ""}}" autocomplete="off" @if(!is_null($user)) readonly @endif>
-                      </div>   
-                    @endif
-                    <div class="input-group input-group-outline my-3 is-filled" aria-autocomplete="off">
-                      <label class="form-label">Branch</label>
-                      <select class="form-select form-control" aria-label="Default select example" name="branch">
-                        @foreach(\App\Models\Branch::where('is_enabled','1')->get() as $branch)
-                          <option value="{{$branch->id}}" @if( !is_null($user) && $user->branch == $branch->id ) selected @endif>{{$branch?->name}}</option>
+                    <div class="input-group input-group-outline my-3 @if(!is_null($user)) is-filled @endif">
+                      <label class="form-label">Name</label>
+                      <input type="text" class="form-control" name="name" required value="{{ $user->name ?? ""}}" autocomplete="off" @if(!is_null($user)) readonly @endif>
+                    </div>
+                    <div class="input-group input-group-outline my-3 @if(!is_null($user)) is-filled @endif">
+                      <label class="form-label">Email</label>
+                      <input type="email" class="form-control" name="email" required value="{{ $user->email ?? ""}}" autocomplete="off" @if(!is_null($user)) readonly @endif>
+                    </div>   
+                    <div class="input-group input-group-outline my-3 is-filled" aria-autocomplete="off" >
+                      <label class="form-label"  style="width:95%">Branch</label>
+                      <select class="form-select form-control" aria-label="Default select example" name="group_id">
+                        @foreach(\App\Models\Group::get() as $group)
+                          <option value="{{$group->id}}" @if( $group->id == $user?->group_id ) selected @endif>{{$group?->name}}</option>
                         @endforeach
                       </select>
                     </div>

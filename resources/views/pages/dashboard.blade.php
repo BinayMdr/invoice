@@ -39,8 +39,7 @@
               <div class="text-end pt-1">
                 <p class="text-sm mb-0 text-capitalize">@if($user->type == "admin") Total Sale @else Total <br>Discounted Amount @endif</p>
                 @php
-                  if($user->type == "admin") $totalSale = \App\Models\Invoice::get()->sum('total');
-                  else $totalSale = App\Models\Invoice::where('branch_id',$user->branch_id)->get()->sum('discount_amount')
+                  $totalSale = 0;
                 @endphp
                 <h4 class="mb-0">{{ "Rs. ". $totalSale }}</h4>
               </div>
@@ -55,8 +54,7 @@
               </div>
               <div class="text-end pt-1">
                 @php
-                  if($user->type == "admin") $todaySale = \App\Models\Invoice::whereDate('created_at',date('Y-m-d'))->get()->sum('total');
-                  else $todaySale = \App\Models\Invoice::whereDate('created_at',date('Y-m-d'))->where('branch_id',$user->branch_id)->get()->sum('total')
+                  $todaySale = 0;
                 @endphp
                 <p class="text-sm mb-0 text-capitalize"><br>Today's Sale</p>
                 <h4 class="mb-0">{{ "Rs. ". $todaySale}}</h4>
@@ -72,7 +70,7 @@
               </div>
               <div class="text-end pt-1">
                 <p class="text-sm mb-0 text-capitalize"><br>Customers</p>
-                <h4 class="mb-0">{{ \App\Models\Customer::count('id')}}</h4>
+                <h4 class="mb-0">  10 </h4>
               </div>
             </div>
           </div>
@@ -84,8 +82,7 @@
                 <i class="material-icons opacity-10">pending</i>
               </div>
               @php
-              if($user->type == "admin") $pendingAmount = \App\Models\Invoice::where('status','pending')->get()->sum('total');
-              else $pendingAmount = App\Models\Invoice::whereDate('created_at',date('Y-m-d'))->where('branch_id',$user->branch_id)->get()->sum('discount_amount')
+              $pendingAmount = 0;
               @endphp
               <div class="text-end pt-1">
                 <p class="text-sm mb-0 text-capitalize"> @if($user->type == "admin") Account Receivable @else Today's <br>Discounted Amount @endif</p>
@@ -143,47 +140,6 @@
     </div>
   </main>
  
-  @php
-      $favProducts = \App\Models\InvoiceHasProduct::groupBy('product_id')
-                          ->selectRaw('product_id, sum(quantity)')->limit(5)
-                          ->get();
-      $products = [];
-      $productCount = [];
-      foreach($favProducts as $count => $fav)
-      {
-        $products[$count] = \App\Models\Product::find($fav['product_id'])->name;
-        $productCount[$count] = $fav['sum(quantity)'];
-      }
-
-      $dates = [];
-      $dateSale = [];
-
-      $weekMap = [
-          0 => 'SU',
-          1 => 'MO',
-          2 => 'TU',
-          3 => 'WE',
-          4 => 'TH',
-          5 => 'FR',
-          6 => 'SA',
-      ];
-
-      for($i = 0 ; $i < 5; $i++)
-      {
-        $date = \Carbon\Carbon::now()->subDays(4-$i)->format('Y-m-d');
-        $dates[$i] = $weekMap[\Carbon\Carbon::now()->subDays(4-$i)->dayOfWeek];
-        $dateSale[$i] = \App\Models\Invoice::whereDate('created_at',$date)
-                              ->sum('total');
-      }
-
-      for($i = 0 ; $i < 3; $i++)
-      {
-        $year = \Carbon\Carbon::now()->format('Y') - (2-$i);
-        $years[$i] = \Carbon\Carbon::now()->format('Y') - (2-$i);
-        $yearSale[$i] = \App\Models\Invoice::whereYear('created_at',$year)
-                              ->sum('total');
-      }
-  @endphp
 
   @endsection
   @section('js')
@@ -192,242 +148,242 @@
   <script>
     var ctx = document.getElementById("chart-bars").getContext("2d");
 
-    new Chart(ctx, {
-      type: "bar",
-      data: {
-        labels: {!! json_encode($products) !!},
-        datasets: [{
-          label: "Sales",
-          tension: 0.4,
-          borderWidth: 0,
-          borderRadius: 4,
-          borderSkipped: false,
-          backgroundColor: "rgba(255, 255, 255, .8)",
-          data: {!! json_encode($productCount) !!},
-          maxBarThickness: 6
-        }, ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          }
-        },
-        interaction: {
-          intersect: false,
-          mode: 'index',
-        },
-        scales: {
-          y: {
-            grid: {
-              drawBorder: false,
-              display: true,
-              drawOnChartArea: true,
-              drawTicks: false,
-              borderDash: [5, 5],
-              color: 'rgba(255, 255, 255, .2)'
-            },
-            ticks: {
-              suggestedMin: 0,
-              suggestedMax: 500,
-              beginAtZero: true,
-              padding: 10,
-              font: {
-                size: 14,
-                weight: 300,
-                family: "Roboto",
-                style: 'normal',
-                lineHeight: 2
-              },
-              color: "#fff"
-            },
-          },
-          x: {
-            grid: {
-              drawBorder: false,
-              display: true,
-              drawOnChartArea: true,
-              drawTicks: false,
-              borderDash: [5, 5],
-              color: 'rgba(255, 255, 255, .2)'
-            },
-            ticks: {
-              display: true,
-              color: '#f8f9fa',
-              padding: 10,
-              font: {
-                size: 14,
-                weight: 300,
-                family: "Roboto",
-                style: 'normal',
-                lineHeight: 2
-              },
-            }
-          },
-        },
-      },
-    });
+    // new Chart(ctx, {
+    //   type: "bar",
+    //   data: {
+    //     labels: ,
+    //     datasets: [{
+    //       label: "Sales",
+    //       tension: 0.4,
+    //       borderWidth: 0,
+    //       borderRadius: 4,
+    //       borderSkipped: false,
+    //       backgroundColor: "rgba(255, 255, 255, .8)",
+    //       data: ,
+    //       maxBarThickness: 6
+    //     }, ],
+    //   },
+    //   options: {
+    //     responsive: true,
+    //     maintainAspectRatio: false,
+    //     plugins: {
+    //       legend: {
+    //         display: false,
+    //       }
+    //     },
+    //     interaction: {
+    //       intersect: false,
+    //       mode: 'index',
+    //     },
+    //     scales: {
+    //       y: {
+    //         grid: {
+    //           drawBorder: false,
+    //           display: true,
+    //           drawOnChartArea: true,
+    //           drawTicks: false,
+    //           borderDash: [5, 5],
+    //           color: 'rgba(255, 255, 255, .2)'
+    //         },
+    //         ticks: {
+    //           suggestedMin: 0,
+    //           suggestedMax: 500,
+    //           beginAtZero: true,
+    //           padding: 10,
+    //           font: {
+    //             size: 14,
+    //             weight: 300,
+    //             family: "Roboto",
+    //             style: 'normal',
+    //             lineHeight: 2
+    //           },
+    //           color: "#fff"
+    //         },
+    //       },
+    //       x: {
+    //         grid: {
+    //           drawBorder: false,
+    //           display: true,
+    //           drawOnChartArea: true,
+    //           drawTicks: false,
+    //           borderDash: [5, 5],
+    //           color: 'rgba(255, 255, 255, .2)'
+    //         },
+    //         ticks: {
+    //           display: true,
+    //           color: '#f8f9fa',
+    //           padding: 10,
+    //           font: {
+    //             size: 14,
+    //             weight: 300,
+    //             family: "Roboto",
+    //             style: 'normal',
+    //             lineHeight: 2
+    //           },
+    //         }
+    //       },
+    //     },
+    //   },
+    // });
 
     var ctx2 = document.getElementById("chart-orders").getContext("2d");
 
-    new Chart(ctx2, {
-      type: "bar",
-      data: {
-        labels: {!! json_encode($dates) !!},
-        datasets: [{
-          label: "Sales",
-          tension: 0.4,
-          borderWidth: 0,
-          borderRadius: 4,
-          borderSkipped: false,
-          backgroundColor: "rgba(255, 255, 255, .8)",
-          data: {!! json_encode($dateSale) !!},
-          maxBarThickness: 6
-        }, ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          }
-        },
-        interaction: {
-          intersect: false,
-          mode: 'index',
-        },
-        scales: {
-          y: {
-            grid: {
-              drawBorder: false,
-              display: true,
-              drawOnChartArea: true,
-              drawTicks: false,
-              borderDash: [5, 5],
-              color: 'rgba(255, 255, 255, .2)'
-            },
-            ticks: {
-              suggestedMin: 0,
-              suggestedMax: 500,
-              beginAtZero: true,
-              padding: 10,
-              font: {
-                size: 14,
-                weight: 300,
-                family: "Roboto",
-                style: 'normal',
-                lineHeight: 2
-              },
-              color: "#fff"
-            },
-          },
-          x: {
-            grid: {
-              drawBorder: false,
-              display: true,
-              drawOnChartArea: true,
-              drawTicks: false,
-              borderDash: [5, 5],
-              color: 'rgba(255, 255, 255, .2)'
-            },
-            ticks: {
-              display: true,
-              color: '#f8f9fa',
-              padding: 10,
-              font: {
-                size: 14,
-                weight: 300,
-                family: "Roboto",
-                style: 'normal',
-                lineHeight: 2
-              },
-            }
-          },
-        },
-      },
-    });
+    // new Chart(ctx2, {
+    //   type: "bar",
+    //   data: {
+    //     labels: ,
+    //     datasets: [{
+    //       label: "Sales",
+    //       tension: 0.4,
+    //       borderWidth: 0,
+    //       borderRadius: 4,
+    //       borderSkipped: false,
+    //       backgroundColor: "rgba(255, 255, 255, .8)",
+    //       data: ,
+    //       maxBarThickness: 6
+    //     }, ],
+    //   },
+    //   options: {
+    //     responsive: true,
+    //     maintainAspectRatio: false,
+    //     plugins: {
+    //       legend: {
+    //         display: false,
+    //       }
+    //     },
+    //     interaction: {
+    //       intersect: false,
+    //       mode: 'index',
+    //     },
+    //     scales: {
+    //       y: {
+    //         grid: {
+    //           drawBorder: false,
+    //           display: true,
+    //           drawOnChartArea: true,
+    //           drawTicks: false,
+    //           borderDash: [5, 5],
+    //           color: 'rgba(255, 255, 255, .2)'
+    //         },
+    //         ticks: {
+    //           suggestedMin: 0,
+    //           suggestedMax: 500,
+    //           beginAtZero: true,
+    //           padding: 10,
+    //           font: {
+    //             size: 14,
+    //             weight: 300,
+    //             family: "Roboto",
+    //             style: 'normal',
+    //             lineHeight: 2
+    //           },
+    //           color: "#fff"
+    //         },
+    //       },
+    //       x: {
+    //         grid: {
+    //           drawBorder: false,
+    //           display: true,
+    //           drawOnChartArea: true,
+    //           drawTicks: false,
+    //           borderDash: [5, 5],
+    //           color: 'rgba(255, 255, 255, .2)'
+    //         },
+    //         ticks: {
+    //           display: true,
+    //           color: '#f8f9fa',
+    //           padding: 10,
+    //           font: {
+    //             size: 14,
+    //             weight: 300,
+    //             family: "Roboto",
+    //             style: 'normal',
+    //             lineHeight: 2
+    //           },
+    //         }
+    //       },
+    //     },
+    //   },
+    // });
 
     var ctx3 = document.getElementById("chart-year").getContext("2d");
 
-    new Chart(ctx3, {
-      type: "bar",
-      data: {
-        labels: {!! json_encode($years) !!},
-        datasets: [{
-          label: "Sales",
-          tension: 0.4,
-          borderWidth: 0,
-          borderRadius: 4,
-          borderSkipped: false,
-          backgroundColor: "rgba(255, 255, 255, .8)",
-          data: {!! json_encode($yearSale) !!},
-          maxBarThickness: 6
-        }, ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          }
-        },
-        interaction: {
-          intersect: false,
-          mode: 'index',
-        },
-        scales: {
-          y: {
-            grid: {
-              drawBorder: false,
-              display: true,
-              drawOnChartArea: true,
-              drawTicks: false,
-              borderDash: [5, 5],
-              color: 'rgba(255, 255, 255, .2)'
-            },
-            ticks: {
-              suggestedMin: 0,
-              suggestedMax: 500,
-              beginAtZero: true,
-              padding: 10,
-              font: {
-                size: 14,
-                weight: 300,
-                family: "Roboto",
-                style: 'normal',
-                lineHeight: 2
-              },
-              color: "#fff"
-            },
-          },
-          x: {
-            grid: {
-              drawBorder: false,
-              display: true,
-              drawOnChartArea: true,
-              drawTicks: false,
-              borderDash: [5, 5],
-              color: 'rgba(255, 255, 255, .2)'
-            },
-            ticks: {
-              display: true,
-              color: '#f8f9fa',
-              padding: 10,
-              font: {
-                size: 14,
-                weight: 300,
-                family: "Roboto",
-                style: 'normal',
-                lineHeight: 2
-              },
-            }
-          },
-        },
-      },
-    });
+    // new Chart(ctx3, {
+    //   type: "bar",
+    //   data: {
+    //     labels: ,
+    //     datasets: [{
+    //       label: "Sales",
+    //       tension: 0.4,
+    //       borderWidth: 0,
+    //       borderRadius: 4,
+    //       borderSkipped: false,
+    //       backgroundColor: "rgba(255, 255, 255, .8)",
+    //       data: ,
+    //       maxBarThickness: 6
+    //     }, ],
+    //   },
+    //   options: {
+    //     responsive: true,
+    //     maintainAspectRatio: false,
+    //     plugins: {
+    //       legend: {
+    //         display: false,
+    //       }
+    //     },
+    //     interaction: {
+    //       intersect: false,
+    //       mode: 'index',
+    //     },
+    //     scales: {
+    //       y: {
+    //         grid: {
+    //           drawBorder: false,
+    //           display: true,
+    //           drawOnChartArea: true,
+    //           drawTicks: false,
+    //           borderDash: [5, 5],
+    //           color: 'rgba(255, 255, 255, .2)'
+    //         },
+    //         ticks: {
+    //           suggestedMin: 0,
+    //           suggestedMax: 500,
+    //           beginAtZero: true,
+    //           padding: 10,
+    //           font: {
+    //             size: 14,
+    //             weight: 300,
+    //             family: "Roboto",
+    //             style: 'normal',
+    //             lineHeight: 2
+    //           },
+    //           color: "#fff"
+    //         },
+    //       },
+    //       x: {
+    //         grid: {
+    //           drawBorder: false,
+    //           display: true,
+    //           drawOnChartArea: true,
+    //           drawTicks: false,
+    //           borderDash: [5, 5],
+    //           color: 'rgba(255, 255, 255, .2)'
+    //         },
+    //         ticks: {
+    //           display: true,
+    //           color: '#f8f9fa',
+    //           padding: 10,
+    //           font: {
+    //             size: 14,
+    //             weight: 300,
+    //             family: "Roboto",
+    //             style: 'normal',
+    //             lineHeight: 2
+    //           },
+    //         }
+    //       },
+    //     },
+    //   },
+    // });
   </script>
 @endsection

@@ -2,7 +2,7 @@
     <div class="row">
       <div class="col-12">
         <div class="input-group d-flex  justify-content-end">
-          <a type="button" class="btn btn-info mx-2" href="{{route('create.product')}}">
+          <a type="button" class="btn btn-info mx-2" href="{{route('create.user')}}">
             <i class="material-icons opacity-10">add</i>
           </a>
           <div class="form-outline">
@@ -18,26 +18,22 @@
               <table class="table align-items-center mb-0">
                 <thead>
                   <tr>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Product Name</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Price</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Created At</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach($products as $product)
+                  @foreach($groups as $group)
                   <tr>
                     <td>
-                      <p class="text-xs font-weight-bold mb-0 px-3">{{$product->name}}</p>
+                      <p class="text-xs font-weight-bold mb-0 px-3">{{$group->name}}</p>
                     </td>
                     <td>
-                      <p class="text-xs font-weight-bold mb-0 px-3">{{$product->price}}</p>
-                    </td>
-                    <td>
-                      <p class="text-xs font-weight-bold mb-0">{{$product->is_enabled ? 'Active' : 'Inactive'}}</p>
+                      <p class="text-xs font-weight-bold mb-0">{{$group->created_at}}</p>
                     </td>
                     <td class="align-middle">
-                      <a href="{{route('edit.product',['product' => $product])}}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                      <a href="{{route('edit.group',['group' => $group])}}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                         Edit
                       </a>
                     </td>
@@ -59,7 +55,7 @@
         <option value="100" @if($limit == "100") selected @endif>100</option>
       </select>
     </div>
-    {{ $products->links('vendor.livewire.simple-bootstrap') }}
+    {{ $groups->links('vendor.livewire.simple-bootstrap') }}
   </div>
 
 @section('js')

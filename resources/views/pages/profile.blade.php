@@ -34,9 +34,7 @@
               <p class="mb-0 font-weight-normal text-sm">
                 {{$user->email}}
               </p>
-              <p class="mb-0 font-weight-normal text-sm">
-                {{ \App\Models\Branch::find($user->branch)?->name }}
-              </p>
+              
             </div>
           </div>
         </div>

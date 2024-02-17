@@ -1,19 +1,12 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BranchController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\GlobalSettingController;
-use App\Http\Controllers\InventoryController;
-use App\Http\Controllers\InventoryRequestController;
-use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserController;
-use App\Models\User;
+use App\Http\Controllers\GroupController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,26 +27,8 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('/update-password',[ProfileController::class,'update_password'])->name('update.password');
     Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
-    Route::get('/branch',[BranchController::class,'index'])->name('branch');
-    Route::get('/branch/create',[BranchController::class,'create'])->name('create.branch');
-    Route::post('/branch',[BranchController::class,'store'])->name('store.branch');
-    Route::get('/branch/edit/{branch}',[BranchController::class,'edit'])->name('edit.branch');
-    Route::put('/branch/update/{branch}',[BranchController::class,'update'])->name('update.branch');
-
-    Route::get('/product',[ProductController::class,'index'])->name('product');
-    Route::get('/product/create',[ProductController::class,'create'])->name('create.product');
-    Route::post('/product',[ProductController::class,'store'])->name('store.product');
-    Route::get('/product/edit/{product}',[ProductController::class,'edit'])->name('edit.product');
-    Route::put('/product/update/{product}',[ProductController::class,'update'])->name('update.product');
-
     Route::get('/setting',[SettingController::class,'index'])->name('setting');
     Route::put('/setting/update',[SettingController::class,'update'])->name('update.setting');
-
-    Route::get('/customer',[CustomerController::class,'index'])->name('customer');
-    Route::get('/customer/create',[CustomerController::class,'create'])->name('create.customer');
-    Route::post('/customer',[CustomerController::class,'store'])->name('store.customer');
-    Route::get('/customer/edit/{customer}',[CustomerController::class,'edit'])->name('edit.customer');
-    Route::put('/customer/update/{customer}',[CustomerController::class,'update'])->name('update.customer');
 
     Route::get('/user',[UserController::class,'index'])->name('user');
     Route::get('/user/create',[UserController::class,'create'])->name('create.user');
@@ -67,21 +42,9 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/payment-method/edit/{paymentMethod}',[PaymentController::class,'edit'])->name('edit.payment-method');
     Route::put('/payment-method/update/{paymentMethod}',[PaymentController::class,'update'])->name('update.payment-method');
 
-    Route::get('/invoice',[InvoiceController::class,'index'])->name('invoice');
-    Route::get('/invoice/create',[InvoiceController::class,'create'])->name('create.invoice');
-    Route::get('/invoice/edit/{invoice}',[InvoiceController::class,'edit'])->name('edit.invoice');
-    Route::get('print-invoice/{invoiceId}',[InvoiceController::class,'download'])->name('download.invoice');
-
-    Route::get('/global-setting',[GlobalSettingController::class,'index'])->name('global-setting');
-    Route::put('/globa-setting/update',[GlobalSettingController::class,'update'])->name('update.global-setting');
-
-    Route::get('/inventory',[InventoryController::class,'index'])->name('inventory');
-    Route::get('/inventory/create',[InventoryController::class,'create'])->name('create.inventory');
-    Route::post('/inventory',[InventoryController::class,'store'])->name('store.inventory');
-    Route::get('/inventory/edit/{inventory}',[InventoryController::class,'edit'])->name('edit.inventory');
-    Route::put('/inventory/update/{inventory}',[InventoryController::class,'update'])->name('update.inventory');
-
-    Route::get('/inventory-request',[InventoryRequestController::class,'index'])->name('inventory-request');
-    Route::get('/inventory-request/create',[InventoryRequestController::class,'create'])->name('create.inventory-request');
-    Route::get('/inventory-request/edit/{inventoryRequest}',[InventoryRequestController::class,'edit'])->name('edit.inventory-request');
+    Route::get('/group',[GroupController::class,'index'])->name('group');
+    Route::get('/group/create',[GroupController::class,'create'])->name('create.group');
+    Route::post('/group',[GroupController::class,'store'])->name('store.group');
+    Route::get('/group/edit/{group}',[GroupController::class,'edit'])->name('edit.group');
+    Route::put('/group/update/{group}',[GroupController::class,'update'])->name('update.group');
 });
