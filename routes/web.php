@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\SaleProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,4 +53,8 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/banner',[BannerController::class,'index'])->name('banner');
     Route::get('/banner/create',[BannerController::class,'create'])->name('create.banner');
     Route::get('/banner/edit/{banner}',[BannerController::class,'edit'])->name('edit.banner');
+
+    Route::get('/sale-product',[SaleProductController::class,'index'])->name('sale-product');
+    Route::get('/sale-product/create',[SaleProductController::class,'create'])->name('create.sale-product');
+    Route::get('/sale-product/edit/{saleProduct}',[SaleProductController::class,'edit'])->name('edit.sale-product');
 });

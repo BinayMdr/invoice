@@ -66,20 +66,6 @@ class EditCreateBannerComponent extends Component
         $banner_image = 'bg-'.time().'.'.$this->image->extension(); 
         $banner_image_path = $this->image->storeAs('public/uploads/banner',$banner_image);
 
-        $data = [
-            'name' => $this->name,
-            'image' => str_replace("public/","",$banner_image_path),
-            'text' => $this->text,
-            'heading_1' => $this->heading1,
-            'heading_2' => $this->heading2,
-            'button_text' => $this->buttonText,
-            'button_link' => $this->buttonLink,
-            'search_key' => $this->searchKey,
-            'search_value' => $this->searchValue,
-            'banner_type' => $this->bannerType,
-            'is_enabled' => $this->isEnabled
-        ];
-
         Banner::create([
             'name' => $this->name,
             'image' => str_replace("public/","",$banner_image_path),
