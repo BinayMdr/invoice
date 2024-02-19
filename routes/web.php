@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
@@ -47,4 +48,8 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('/group',[GroupController::class,'store'])->name('store.group');
     Route::get('/group/edit/{group}',[GroupController::class,'edit'])->name('edit.group');
     Route::put('/group/update/{group}',[GroupController::class,'update'])->name('update.group');
+
+    Route::get('/banner',[BannerController::class,'index'])->name('banner');
+    Route::get('/banner/create',[BannerController::class,'create'])->name('create.banner');
+    Route::get('/banner/edit/{banner}',[BannerController::class,'edit'])->name('edit.banner');
 });

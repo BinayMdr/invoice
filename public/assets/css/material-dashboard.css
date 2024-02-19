@@ -3281,7 +3281,6 @@ textarea.form-control-lg {
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
-  width: 100%;
 }
 
 .input-group>.form-control,
@@ -22251,7 +22250,7 @@ body.dark-version {
 
 .input-group.input-group-outline.is-focused .form-label,
 .input-group.input-group-outline.is-filled .form-label {
-  width: 100%;
+  width: 94.2%;
   height: 100%;
   font-size: 0.6875rem !important;
   color: #e91e63;

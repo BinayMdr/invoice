@@ -17,8 +17,8 @@ class PaymentMethodComponent extends Component
     
     public function render()
     {
-        if($this->search != "") $paymentMethods = PaymentMethod::where('name','like','%'.$this->search.'%')->paginate($this->limit);
-        else $paymentMethods = PaymentMethod::paginate($this->limit);
+        if($this->search != "") $paymentMethods = PaymentMethod::where('name','like','%'.$this->search.'%')->orderBy('created_at','desc')->paginate($this->limit);
+        else $paymentMethods = PaymentMethod::orderBy('created_at','desc')->paginate($this->limit);
         return view('livewire.payment-method-component',[
             'paymentMethods' => $paymentMethods,
             'limit' => $this->limit

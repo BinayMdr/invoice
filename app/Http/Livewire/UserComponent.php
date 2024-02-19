@@ -30,7 +30,7 @@ class UserComponent extends Component
                     ->orWhere('email','like','%'.$keyword.'%');
             });
         }
-        $users = $users->paginate($this->limit);
+        $users = $users->orderBy('created_at','desc')->paginate($this->limit);
         
         return view('livewire.user-component',[
             'users' => $users,

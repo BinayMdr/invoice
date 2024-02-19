@@ -2,7 +2,7 @@
     <div class="row">
       <div class="col-12">
         <div class="input-group d-flex  justify-content-end">
-          <a type="button" class="btn btn-info mx-2" href="{{route('create.user')}}">
+          <a type="button" class="btn btn-info mx-2" href="{{route('create.banner')}}">
             <i class="material-icons opacity-10">add</i>
           </a>
           <div class="form-outline">
@@ -24,16 +24,16 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach($groups as $group)
+                  @foreach($banners as $banner)
                   <tr>
                     <td>
-                      <p class="text-xs font-weight-bold mb-0 px-3">{{$group->name}}</p>
+                      <p class="text-xs font-weight-bold mb-0 px-3">{{$banner->name}}</p>
                     </td>
                     <td>
-                      <p class="text-xs font-weight-bold mb-0">{{$group->created_at->format('Y-m-d')}}</p>
+                      <p class="text-xs font-weight-bold mb-0">{{$banner->created_at->format('Y-m-d')}}</p>
                     </td>
                     <td class="align-middle">
-                      <a href="{{route('edit.group',['group' => $group])}}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                      <a href="{{route('edit.banner',['banner' => $banner])}}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit banner">
                         Edit
                       </a>
                     </td>
@@ -55,7 +55,7 @@
         <option value="100" @if($limit == "100") selected @endif>100</option>
       </select>
     </div>
-    {{ $groups->links('vendor.livewire.simple-bootstrap') }}
+    {{ $banners->links('vendor.livewire.simple-bootstrap') }}
   </div>
 
 @section('js')

@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Group;
+use App\Models\Banner;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class GroupComponent extends Component
+class BannerComponent extends Component
 {
     use WithPagination;
 
@@ -17,23 +17,21 @@ class GroupComponent extends Component
     
     public function render()
     {   
-        $superGroup = Group::where('name','Super Admin')->first();
-
-        $groups = Group::whereNotIn('id',[$superGroup->id]); 
+        $banners = new Banner(); 
 
         if($this->search != "") 
         {
             $keyword  = $this->search;
 
-            $groups = $groups->where(function($q) use ($keyword){
+            $banners = $banners->where(function($q) use ($keyword){
                 $q->where('name','like','%'.$keyword.'%');
             });
         }
-        $groups = $groups->orderBy('created_at','desc')
+        $banners = $banners->orderBy('created_at','desc')
                             ->paginate($this->limit);
         
-        return view('livewire.group-component',[
-            'groups' => $groups,
+        return view('livewire.banner-component',[
+            'banners' => $banners,
             'limit' => $this->limit
         ]);
     }
