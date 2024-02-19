@@ -24,6 +24,8 @@ return new class extends Migration
             $table->longText('button_link')->nullable();
             $table->string('search_key')->nullable();
             $table->string('search_value')->nullable();
+            $table->string('banner_type');
+            $table->boolean('is_enabled');
             $table->timestamps();
         });
     }

@@ -19,6 +19,8 @@ class EditCreateBannerComponent extends Component
     public $searchKey;
     public $searchValue;
     public $image;
+    public $bannerType = "Main Banner";
+    public $isEnabled = false;
     public $error;
    
     public function updated($field)
@@ -37,6 +39,8 @@ class EditCreateBannerComponent extends Component
         $this->buttonLink = $banner?->button_link;
         $this->searchKey = $banner?->search_key;
         $this->searchValue = $banner?->search_value;
+        $this->bannerType = $banner?->banner_type;
+        $this->isEnabled = $banner?->is_enabled;
     }
 
     public function render()
@@ -62,6 +66,20 @@ class EditCreateBannerComponent extends Component
         $banner_image = 'bg-'.time().'.'.$this->image->extension(); 
         $banner_image_path = $this->image->storeAs('public/uploads/banner',$banner_image);
 
+        $data = [
+            'name' => $this->name,
+            'image' => str_replace("public/","",$banner_image_path),
+            'text' => $this->text,
+            'heading_1' => $this->heading1,
+            'heading_2' => $this->heading2,
+            'button_text' => $this->buttonText,
+            'button_link' => $this->buttonLink,
+            'search_key' => $this->searchKey,
+            'search_value' => $this->searchValue,
+            'banner_type' => $this->bannerType,
+            'is_enabled' => $this->isEnabled
+        ];
+
         Banner::create([
             'name' => $this->name,
             'image' => str_replace("public/","",$banner_image_path),
@@ -71,7 +89,9 @@ class EditCreateBannerComponent extends Component
             'button_text' => $this->buttonText,
             'button_link' => $this->buttonLink,
             'search_key' => $this->searchKey,
-            'search_value' => $this->searchValue
+            'search_value' => $this->searchValue,
+            'banner_type' => $this->bannerType,
+            'is_enabled' => $this->isEnabled
         ]);
 
         return redirect()->route('banner')->with('success','Banner created');
@@ -99,7 +119,9 @@ class EditCreateBannerComponent extends Component
             'button_text' => $this->buttonText,
             'button_link' => $this->buttonLink,
             'search_key' => $this->searchKey,
-            'search_value' => $this->searchValue
+            'search_value' => $this->searchValue,
+            'banner_type' => $this->bannerType,
+            'is_enabled' => $this->isEnabled
         ];
         if($this->image != null)
         {

@@ -19,6 +19,8 @@
                 <thead>
                   <tr>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Banner Type</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Created At</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Action</th>
                   </tr>
@@ -28,6 +30,12 @@
                   <tr>
                     <td>
                       <p class="text-xs font-weight-bold mb-0 px-3">{{$banner->name}}</p>
+                    </td>
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0 px-3">{{$banner->banner_type}}</p>
+                    </td>
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0 px-3">{{$banner->is_enabled ? "Active" : "Inactive"}}</p>
                     </td>
                     <td>
                       <p class="text-xs font-weight-bold mb-0">{{$banner->created_at->format('Y-m-d')}}</p>

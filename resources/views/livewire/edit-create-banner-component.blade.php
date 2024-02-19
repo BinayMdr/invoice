@@ -50,11 +50,14 @@
                   <div class="row">
                     <div class="input-group input-group-outline my-3 col-6 @if(!is_null($name)) is-filled @endif">
                       <label class="form-label">Name</label>
-                      <input type="text" class="form-control" name="name" wire:model.lazy="name" autocomplete="off" @if(!is_null($banner)) readonly @endif>
+                      <input type="text" class="form-control" name="name" wire:model.lazy="name" autocomplete="off">
                     </div>
-                    <div class="input-group input-group-outline my-3 col-6 @if(!is_null($text)) is-filled @endif">
-                      <label class="form-label">Text</label>
-                      <input type="text" class="form-control" name="text" wire:model.lazy="text" autocomplete="off">
+                    <div class="input-group input-group-outline my-3 is-filled col-6" aria-autocomplete="off" >
+                      <label class="form-label"  style="width:95%">Branch</label>
+                      <select class="form-select form-control" aria-label="Default select example" name="group_id" wire:model="bannerType">
+                        <option value="Main Banner" @if( $bannerType == "Main Banner" ) selected @endif>Main Banner</option>
+                        <option value="Mid Banner" @if( $bannerType == "Mid Banner" ) selected @endif>Mid Banner</option>
+                      </select>
                     </div>
                   </div>
 
@@ -89,6 +92,17 @@
                     <div class="input-group input-group-outline my-3 col-6 @if(!is_null($searchValue)) is-filled @endif">
                       <label class="form-label">Search Value</label>
                       <input type="text" class="form-control" name="search_value" wire:model.lazy="searchValue" autocomplete="off">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-group input-group-outline my-3 col-6 @if(!is_null($text)) is-filled @endif">
+                      <textarea type="text" class="form-control" name="text" wire:model.lazy="text" autocomplete="off">{{$text}}</textarea>
+                    </div>
+                    <div class="form-check form-switch d-flex align-items-center ps-6 col-6">
+                      <br>
+                      <input class="form-check-input" type="checkbox" id="status" name="status" @if($isEnabled) checked @endif wire:model="isEnabled">
+                      <label class="form-check-label mt-2" for="status">Status</label>
                     </div>
                   </div>
 
