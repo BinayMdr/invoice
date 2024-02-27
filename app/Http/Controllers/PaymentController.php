@@ -9,17 +9,20 @@ class PaymentController extends Controller
 {
     public function index()
     {
+        if(!\Auth::user()->hasRole('view-payment-methods')) return back();
         return view('pages.payment-method.index');
     }
 
     public function create()
     {
+        if(!\Auth::user()->hasRole('add-payment-methods')) return back();
         $paymentMethod = null;
         return view('pages.payment-method.edit-create',compact('paymentMethod'));
     }
 
     public function store(Request $request)
     {
+        if(!\Auth::user()->hasRole('add-payment-methods')) return back();
         $request->validate([
             'name' => 'required'
         ]);
@@ -36,11 +39,13 @@ class PaymentController extends Controller
 
     public function edit(PaymentMethod $paymentMethod)
     {
+        if(!\Auth::user()->hasRole('edit-payment-methods')) return back();
         return view('pages.payment-method.edit-create',compact('paymentMethod'));
     }
 
     public function update(Request $request,PaymentMethod $paymentMethod)
     {
+        if(!\Auth::user()->hasRole('edit-payment-methods')) return back();
         $request->validate([
             'name' => 'required'
         ]);

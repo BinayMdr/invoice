@@ -10,17 +10,20 @@ class GroupController extends Controller
 {
     public function index()
     {
+        if(!\Auth::user()->hasRole('view-groups')) return back();
         return view('pages.group.index');
     }
 
     public function create()
     {
+        if(!\Auth::user()->hasRole('add-groups')) return back();
         $group = null;
         return view('pages.group.edit-create',compact('group'));
     }
 
     public function store(Request $request)
     {   
+        if(!\Auth::user()->hasRole('add-groups')) return back();
         $request->validate([
             'name' => 'required',
             'roles' => 'required'
@@ -44,11 +47,13 @@ class GroupController extends Controller
 
     public function edit(Group $group)
     {
+        if(!\Auth::user()->hasRole('edit-groups')) return back();
         return view('pages.group.edit-create',compact('group'));
     }
 
     public function update(Request $request,Group $group)
     {   
+        if(!\Auth::user()->hasRole('edit-groups')) return back();
         $request->validate([
             'name' => 'required',
             'roles' => 'required'

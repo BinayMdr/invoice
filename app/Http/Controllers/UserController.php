@@ -9,17 +9,20 @@ class UserController extends Controller
 {
     public function index()
     {
+        if(!\Auth::user()->hasRole('view-users')) return back();
         return view('pages.user.index');
     }
 
     public function create()
     {
+        if(!\Auth::user()->hasRole('add-users')) return back();
         $user = null;
         return view('pages.user.edit-create',compact('user'));
     }
 
     public function store(Request $request)
     {
+        if(!\Auth::user()->hasRole('add-users')) return back();
         $request->validate([
             'name' => 'required',
             'email' => 'required',
@@ -43,11 +46,13 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
+        if(!\Auth::user()->hasRole('edit-users')) return back();
         return view('pages.user.edit-create',compact('user'));
     }
 
     public function update(Request $request,User $user)
     {
+        if(!\Auth::user()->hasRole('edit-users')) return back();
         $request->validate([
             'group_id' => 'required'
         ]);

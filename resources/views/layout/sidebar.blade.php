@@ -19,6 +19,7 @@
             <span class="nav-link-text ms-1">Dashboard</span>
           </a>
         </li>
+        @if(\Auth::user()->hasRole('view-users'))
           <li class="nav-item">
             <a class="nav-link text-white @if(str_contains(url()->current(),'user')) active @endif" href="{{route('user')}}">
               <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -27,6 +28,8 @@
               <span class="nav-link-text ms-1">User</span>
             </a>
           </li>
+        @endif
+        @if(\Auth::user()->hasRole('view-groups'))
           <li class="nav-item">
             <a class="nav-link text-white @if(str_contains(url()->current(),'group')) active @endif" href="{{route('group')}}">
               <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -35,6 +38,8 @@
               <span class="nav-link-text ms-1">Group</span>
             </a>
           </li>
+        @endif
+        @if(\Auth::user()->hasRole('view-banners'))
           <li class="nav-item">
             <a class="nav-link text-white @if(str_contains(url()->current(),'banner')) active @endif" href="{{route('banner')}}">
               <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -43,38 +48,47 @@
               <span class="nav-link-text ms-1">Banner</span>
             </a>
           </li>
-        <li class="nav-item">
-          <a class="nav-link text-white @if(str_contains(url()->current(),'payment')) active @endif" href="{{route('payment-method')}}">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">payments</i>
-            </div>
-            <span class="nav-link-text ms-1">Payment Method</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white @if(str_contains(url()->current(),'sale-product')) active @endif" href="{{route('sale-product')}}">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">inventory_2</i>
-            </div>
-            <span class="nav-link-text ms-1">Product on sale</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white @if(str_contains(url()->current(),'footer-menu')) active @endif" href="{{route('footer-menu')}}">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">menu</i>
-            </div>
-            <span class="nav-link-text ms-1">Footer Menu</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white @if(\Request::route()->getName() == "setting") active @endif" href="{{route('setting')}}">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">settings</i>
-            </div>
-            <span class="nav-link-text ms-1">Setting</span>
-          </a>
-        </li>
+        @endif
+        @if(\Auth::user()->hasRole('view-payment-methods'))
+          <li class="nav-item">
+            <a class="nav-link text-white @if(str_contains(url()->current(),'payment')) active @endif" href="{{route('payment-method')}}">
+              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="material-icons opacity-10">payments</i>
+              </div>
+              <span class="nav-link-text ms-1">Payment Method</span>
+            </a>
+          </li>
+        @endif
+        @if(\Auth::user()->hasRole('view-sale-products'))
+          <li class="nav-item">
+            <a class="nav-link text-white @if(str_contains(url()->current(),'sale-product')) active @endif" href="{{route('sale-product')}}">
+              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="material-icons opacity-10">inventory_2</i>
+              </div>
+              <span class="nav-link-text ms-1">Product on sale</span>
+            </a>
+          </li>
+        @endif
+        @if(\Auth::user()->hasRole('view-footer-menus'))
+          <li class="nav-item">
+            <a class="nav-link text-white @if(str_contains(url()->current(),'footer-menu')) active @endif" href="{{route('footer-menu')}}">
+              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="material-icons opacity-10">menu</i>
+              </div>
+              <span class="nav-link-text ms-1">Footer Menu</span>
+            </a>
+          </li>
+        @endif
+        @if(\Auth::user()->hasRole('view-settings'))
+          <li class="nav-item">
+            <a class="nav-link text-white @if(\Request::route()->getName() == "setting") active @endif" href="{{route('setting')}}">
+              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="material-icons opacity-10">settings</i>
+              </div>
+              <span class="nav-link-text ms-1">Setting</span>
+            </a>
+          </li>
+        @endif
        
         <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages</h6>

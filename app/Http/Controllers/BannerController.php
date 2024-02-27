@@ -9,17 +9,20 @@ class BannerController extends Controller
 {
     public function index()
     {
+        if(!\Auth::user()->hasRole('view-banners')) return back();
         return view('pages.banner.index');
     }
 
     public function create()
     {
+        if(!\Auth::user()->hasRole('add-banners')) return back();
         $banner = null;
         return view('pages.banner.edit-create',compact('banner'));
     }
 
     public function edit(Banner $banner)
     {
+        if(!\Auth::user()->hasRole('edit-banners')) return back();
         return view('pages.banner.edit-create',compact('banner'));
     }
 

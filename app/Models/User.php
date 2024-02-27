@@ -37,4 +37,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function hasRole($roleName)
+    {
+        $group = Group::find($this->group_id);
+        $role = Role::where('name',$roleName)->first();
+        return GroupHasRole::where('group_id',$group->id)
+                            ->where('role_id',$role->id)->first();
+    }
 }
