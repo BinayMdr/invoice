@@ -46,7 +46,7 @@
                     @method('PUT')
                   @endif
                   
-                  <div class="row">
+                  <div class="row mb-4">
                     <div class="input-group input-group-outline my-3 col-6 @if(!is_null($group)) is-filled @endif">
                       <label class="form-label">Name</label>
                       <input type="text" class="form-control" name="name" required value="{{ $group->name ?? ""}}" autocomplete="off">
@@ -64,7 +64,7 @@
                       @endphp
                         @foreach ($roles as $role)
                         <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value={{$role->id}} id="flexCheckDefault" name="roles[]" @if(!is_null($group->hasRole($role->id))) checked @endif>
+                          <input class="form-check-input" type="checkbox" value={{$role->id}} id="flexCheckDefault" name="roles[]" @if(!is_null($group?->hasRole($role->id))) checked @endif>
                           <label class="form-check-label" for="flexCheckDefault">
                             {{$role->name}}
                           </label>

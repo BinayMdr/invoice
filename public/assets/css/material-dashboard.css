@@ -3281,6 +3281,7 @@ textarea.form-control-lg {
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
+  height: 20px;
 }
 
 .input-group>.form-control,
@@ -5205,8 +5206,12 @@ fieldset:disabled .btn {
   background-clip: border-box;
   border: var(--bs-card-border-width) solid var(--bs-card-border-color);
   border-radius: var(--bs-card-border-radius);
+  /* margin-top:45px; */
 }
 
+.card.index{
+  margin-top:45px;
+}
 .card>hr {
   margin-right: 0;
   margin-left: 0;

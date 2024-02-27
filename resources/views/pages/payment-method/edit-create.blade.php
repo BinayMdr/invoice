@@ -18,8 +18,6 @@
     <div class="container-fluid px-2 px-md-4">
       <div class="card card-body mx-3">
         <div class="row">
-          <div class="row">
-            <div class="col-6">
               <div class="card card-plain h-100">
                 <div class="card-header pb-0 p-3">
                   <h6 class="mb-0">@if(!is_null($paymentMethod)) Update @else Add @endif Payment Method</h6>
@@ -46,22 +44,26 @@
                     @if(!is_null($paymentMethod))
                       @method('PUT')
                     @endif
-                    <div class="input-group input-group-outline my-3 @if(!is_null($paymentMethod)) is-filled @endif">
-                      <label class="form-label">Name</label>
-                      <input type="text" class="form-control" name="name" required value="{{ $paymentMethod->name ?? ""}}" autocomplete="off">
-                    </div>
-                    <label class="form-check-label m-0" for="status">Status</label>
-                    <div class="form-check form-switch d-flex align-items-center mb-3">
-                      <br>
-                      <input class="form-check-input" type="checkbox" id="status" name="status" @if(!is_null($paymentMethod) && $paymentMethod->is_enabled) checked @endif>
+                    <div class="row mb-4">
+                      <div class="col-6">
+                        <label class="form-label">Name</label>
+                        <div class="input-group input-group-outline">
+                          <input type="text" class="form-control" name="name" required value="{{ $paymentMethod->name ?? ""}}" autocomplete="off">
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-check form-switch d-flex align-items-center mt-4">
+                          <br>
+                          <input class="form-check-input" type="checkbox" id="status" name="status" @if(!is_null($paymentMethod) && $paymentMethod->is_enabled) checked @endif>
+                          <label class="form-check-label m-0" for="status">Status</label>
+                        </div>
+                      </div>
                     </div>
                     <div class="text-center">
                       <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">@if(!is_null($paymentMethod)) Update @else Add @endif Payment Method</button>
                     </div>
                   </form>
                 </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

@@ -2,7 +2,7 @@
     <div class="row">
       <div class="col-12">
         <div class="input-group d-flex  justify-content-end">
-          <a type="button" class="btn btn-info mx-2" href="{{route('create.sale-product')}}">
+          <a type="button" class="btn btn-info mx-2" href="{{route('create.footer-menu')}}">
             <i class="material-icons opacity-10">add</i>
           </a>
           <div class="form-outline">
@@ -19,29 +19,21 @@
                 <thead>
                   <tr>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Last Offer Date</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Created At</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach($saleProducts as $saleProduct)
+                  @foreach($footerMenus as $footerMenu)
                   <tr>
                     <td>
-                      <p class="text-xs font-weight-bold mb-0 px-3">{{$saleProduct->name}}</p>
+                      <p class="text-xs font-weight-bold mb-0 px-3">{{$footerMenu->name}}</p>
                     </td>
                     <td>
-                      <p class="text-xs font-weight-bold mb-0 px-3">{{$saleProduct->offer_till_date}}</p>
-                    </td>
-                    <td>
-                      <p class="text-xs font-weight-bold mb-0 px-3">{{$saleProduct->is_enabled ? "Active" : "Inactive"}}</p>
-                    </td>
-                    <td>
-                      <p class="text-xs font-weight-bold mb-0">{{$saleProduct->created_at->format('Y-m-d')}}</p>
+                      <p class="text-xs font-weight-bold mb-0">{{$footerMenu->created_at->format('Y-m-d')}}</p>
                     </td>
                     <td class="align-middle">
-                      <a href="{{route('edit.sale-product',['saleProduct' => $saleProduct])}}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit banner">
+                      <a href="{{route('edit.footer-menu',['footerMenu' => $footerMenu])}}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit banner">
                         Edit
                       </a>
                     </td>
@@ -63,7 +55,7 @@
         <option value="100" @if($limit == "100") selected @endif>100</option>
       </select>
     </div>
-    {{ $saleProducts->links('vendor.livewire.simple-bootstrap') }}
+    {{ $footerMenus->links('vendor.livewire.simple-bootstrap') }}
   </div>
 
 @section('js')

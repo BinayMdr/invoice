@@ -45,40 +45,55 @@
                     @if(!is_null($user))
                       @method('PUT')
                     @endif
-                    <div class="row">
-                      <div class="input-group input-group-outline my-3 col-6 @if(!is_null($user)) is-filled @endif">
+                    <div class="row mb-4">
+                      <div class="col-6">
                         <label class="form-label">Name</label>
-                        <input type="text" class="form-control" name="name" required value="{{ $user->name ?? ""}}" autocomplete="off" @if(!is_null($user)) readonly @endif>
+                        <div class="input-group input-group-outline @if(!is_null($user)) is-filled @endif">
+                          <input type="text" class="form-control" name="name" required value="{{ $user->name ?? ""}}" autocomplete="off" @if(!is_null($user)) readonly @endif>
+                        </div>
                       </div>
-                      <div class="input-group input-group-outline my-3 col-6 @if(!is_null($user)) is-filled @endif">
+                      <div class="col-6">
                         <label class="form-label">Email</label>
-                        <input type="email" class="form-control" name="email" required value="{{ $user->email ?? ""}}" autocomplete="off" @if(!is_null($user)) readonly @endif>
-                      </div>   
-                    </div>
-                    <div class="row"> 
-                      <div class="input-group input-group-outline my-3 is-filled col-6" aria-autocomplete="off" >
-                        <label class="form-label"  style="width:95%">Branch</label>
-                        <select class="form-select form-control" aria-label="Default select example" name="group_id">
-                          @foreach(\App\Models\Group::get() as $group)
-                            <option value="{{$group->id}}" @if( $group->id == $user?->group_id ) selected @endif>{{$group?->name}}</option>
-                          @endforeach
-                        </select>
-                      </div>
-                      <div class="form-check form-switch d-flex align-items-center ps-6 col-6">
-                        <br>
-                        <input class="form-check-input" type="checkbox" id="status" name="status" @if(!is_null($user) && $user->is_enabled) checked @endif>
-                        <label class="form-check-label mt-2" for="status">Status</label>
+                        <div class="input-group input-group-outline @if(!is_null($user)) is-filled @endif">
+                          <input type="email" class="form-control" name="email" required value="{{ $user->email ?? ""}}" autocomplete="off" @if(!is_null($user)) readonly @endif>
+                        </div>   
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="input-group input-group-outline my-3 col-6 @if(!is_null($user)) is-filled @endif">
+
+                    <div class="row my-4"> 
+                      <div class="col-6">
+                        <label class="form-label">Branch</label>
+                        <div class="input-group input-group-outline " aria-autocomplete="off" >
+                          <select class="form-select form-control" aria-label="Default select example" name="group_id">
+                            @foreach(\App\Models\Group::get() as $group)
+                              <option value="{{$group->id}}" @if( $group->id == $user?->group_id ) selected @endif>{{$group?->name}}</option>
+                            @endforeach
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-check form-switch d-flex align-items-center ps-6 mt-4">
+                          <br>
+                          <input class="form-check-input" type="checkbox" id="status" name="status" @if(!is_null($user) && $user->is_enabled) checked @endif>
+                          <label class="form-check-label mt-2" for="status">Status</label>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="row my-4">
+                      <div class="col-6">
                         <label class="form-label">Password</label>
-                        <input type="password" class="form-control" name="password" @if(is_null($user)) required @endif autocomplete="off">
-                      </div>   
-                      <div class="input-group input-group-outline my-3 col-6 @if(!is_null($user)) is-filled @endif">
+                        <div class="input-group input-group-outline">
+                          <input type="password" class="form-control" name="password" @if(is_null($user)) required @endif autocomplete="off">
+                        </div>   
+                      </div>
+                      <div class="col-6">
                         <label class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control" name="confirm_password" @if(is_null($user)) required @endif autocomplete="off">
-                      </div>   
+                        <div class="input-group input-group-outline">
+                          <input type="password" class="form-control" name="confirm_password" @if(is_null($user)) required @endif autocomplete="off">
+                        </div>   
+                      </div>
                     </div>
                     <div class="text-center">
                       <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">@if(!is_null($user)) Update @else Add @endif User</button>

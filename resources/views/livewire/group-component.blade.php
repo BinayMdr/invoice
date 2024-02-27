@@ -2,7 +2,7 @@
     <div class="row">
       <div class="col-12">
         <div class="input-group d-flex  justify-content-end">
-          <a type="button" class="btn btn-info mx-2" href="{{route('create.user')}}">
+          <a type="button" class="btn btn-info mx-2" href="{{route('create.group')}}">
             <i class="material-icons opacity-10">add</i>
           </a>
           <div class="form-outline">
@@ -12,7 +12,7 @@
             <i class="fas fa-search"></i>
           </button>
         </div>
-        <div class="card">
+        <div class="card index">
           <div class="card-body px-0 pb-2">
             <div class="table-responsive p-0">
               <table class="table align-items-center mb-0">

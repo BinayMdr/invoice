@@ -37,75 +37,96 @@
                       wire:submit.prevent="save" 
                   @endif>  
                   
-                  <div class="row">
-                    <div class="input-group input-group-outline my-3 col-6 @if(!is_null($name)) is-filled @endif">
+                  <div class="row mb-4">
+                    <div class="col-6">
                       <label class="form-label">Name</label>
-                      <input type="text" class="form-control" name="name" wire:model.lazy="name" autocomplete="off">
+                      <div class="input-group input-group-outline">
+                        <input type="text" class="form-control" name="name" wire:model.lazy="name" autocomplete="off">
+                      </div>
                     </div>
-                    <div class="input-group input-group-outline my-3 is-filled col-6" aria-autocomplete="off" >
-                      <label class="form-label"  style="width:95%">Branch</label>
-                      <select class="form-select form-control" aria-label="Default select example" name="group_id" wire:model="bannerType">
-                        <option value="Main Banner" @if( $bannerType == "Main Banner" ) selected @endif>Main Banner</option>
-                        <option value="Mid Banner" @if( $bannerType == "Mid Banner" ) selected @endif>Mid Banner</option>
-                      </select>
+                    <div class="col-6">
+                      <label class="form-label">Branch</label>
+                      <div class="input-group input-group-outline" aria-autocomplete="off" >
+                        <select class="form-select form-control" aria-label="Default select example" name="group_id" wire:model="bannerType">
+                          <option value="Main Banner" @if( $bannerType == "Main Banner" ) selected @endif>Main Banner</option>
+                          <option value="Mid Banner" @if( $bannerType == "Mid Banner" ) selected @endif>Mid Banner</option>
+                        </select>
+                      </div>
                     </div>
                   </div>
 
-                  <div class="row">
-                    <div class="input-group input-group-outline my-3 col-6 @if(!is_null($heading1)) is-filled @endif">
+                  <div class="row mb-4">
+                    <div class="col-6">
                       <label class="form-label">Heading One</label>
-                      <input type="text" class="form-control" name="heading_1" wire:model.lazy="heading1" autocomplete="off">
+                      <div class="input-group input-group-outline">
+                        <input type="text" class="form-control" name="heading_1" wire:model.lazy="heading1" autocomplete="off">
+                      </div>
                     </div>
-                    <div class="input-group input-group-outline my-3 col-6 @if(!is_null($heading2)) is-filled @endif">
+                    <div class="col-6">
                       <label class="form-label">Heading Two</label>
-                      <input type="text" class="form-control" name="heading_2" wire:model.lazy="heading2" autocomplete="off">
+                      <div class="input-group input-group-outline">
+                        <input type="text" class="form-control" name="heading_2" wire:model.lazy="heading2" autocomplete="off">
+                      </div>
                     </div>
                   </div>
 
-                  <div class="row">
-                   
-                    <div class="input-group input-group-outline my-3 col-6 @if(!is_null($buttonText)) is-filled @endif">
+                  <div class="row mb-4">
+                    <div class="col-6">
                       <label class="form-label">Button Text</label>
-                      <input type="text" class="form-control" name="button_text" wire:model.lazy="buttonText" autocomplete="off">
+                      <div class="input-group input-group-outline">
+                        <input type="text" class="form-control" name="button_text" wire:model.lazy="buttonText" autocomplete="off">
+                      </div>
                     </div>
-
-                    <div class="input-group input-group-outline my-3 col-6 @if(!is_null($buttonLink)) is-filled @endif">
+                    <div class="col-6">
                       <label class="form-label">Button Link</label>
-                      <input type="text" class="form-control" name="button_link" wire:model.lazy="buttonLink" autocomplete="off">
+                      <div class="input-group input-group-outline ">
+                        <input type="text" class="form-control" name="button_link" wire:model.lazy="buttonLink" autocomplete="off">
+                      </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="input-group input-group-outline my-3 col-6 @if(!is_null($searchKey)) is-filled @endif">
+                  <div class="row mb-4">
+                    <div class="col-6">
                       <label class="form-label">Search Key</label>
-                      <input type="text" class="form-control" name="search_key" wire:model.lazy="searchKey" autocomplete="off">
+                      <div class="input-group input-group-outline">
+                        <input type="text" class="form-control" name="search_key" wire:model.lazy="searchKey" autocomplete="off">
+                      </div>
                     </div>
-                    <div class="input-group input-group-outline my-3 col-6 @if(!is_null($searchValue)) is-filled @endif">
+                    <div class="col-6">
                       <label class="form-label">Search Value</label>
-                      <input type="text" class="form-control" name="search_value" wire:model.lazy="searchValue" autocomplete="off">
+                      <div class="input-group input-group-outline">
+                        <input type="text" class="form-control" name="search_value" wire:model.lazy="searchValue" autocomplete="off">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mb-4">
+                    <div class="col-6">
+                      <label class="form-label">Text</label>
+                      <div class="input-group input-group-outline">
+                        <textarea type="text" class="form-control" name="text" wire:model.lazy="text" autocomplete="off">{{$text}}</textarea>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-check form-switch d-flex align-items-center ps-6 mt-4">
+                        <br>
+                        <input class="form-check-input" type="checkbox" id="status" name="status" @if($isEnabled) checked @endif wire:model="isEnabled">
+                        <label class="form-check-label mt-2 ms-2" for="status">Status</label>
+                      </div>
                     </div>
                   </div>
 
                   <div class="row">
-                    <div class="input-group input-group-outline my-3 col-6 @if(!is_null($text)) is-filled @endif">
-                      <textarea type="text" class="form-control" name="text" wire:model.lazy="text" autocomplete="off">{{$text}}</textarea>
-                    </div>
-                    <div class="form-check form-switch d-flex align-items-center ps-6 col-6">
-                      <br>
-                      <input class="form-check-input" type="checkbox" id="status" name="status" @if($isEnabled) checked @endif wire:model="isEnabled">
-                      <label class="form-check-label mt-2" for="status">Status</label>
-                    </div>
-                  </div>
-
-                  <div class="input-group input-group-outline my-3 col-6">
-                    @if ($image)
-                      <img src="{{ $image->temporaryUrl() }}" width="150px" height="50px">
-                    @elseif(!is_null($banner))
-                        <img src="{{ env('APP_URL').'storage/'.$banner->image }}" width="150px" height="50px">
-                    @endif
-                  </div>      
-                  <div class="col-6">
-                    <input type="file" class="form-control" name="image" wire:model.lazy="image">
-                  </div>    
+                    <div class="input-group input-group-outline my-4">
+                      @if ($image)
+                        <img src="{{ $image->temporaryUrl() }}" width="150px" height="50px">
+                      @elseif(!is_null($banner))
+                          <img src="{{ env('APP_URL').'storage/'.$banner->image }}" width="150px" height="50px">
+                      @endif
+                    </div>      
+                    <div>
+                      <input type="file" class="form-control" name="image" wire:model.lazy="image">
+                    </div> 
+                  </div>   
                   <div class="text-center">
                     <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">@if(!is_null($banner)) Update @else Add @endif Banner</button>
                   </div>

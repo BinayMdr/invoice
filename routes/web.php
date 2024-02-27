@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\FooterMenuController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
@@ -57,4 +58,8 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/sale-product',[SaleProductController::class,'index'])->name('sale-product');
     Route::get('/sale-product/create',[SaleProductController::class,'create'])->name('create.sale-product');
     Route::get('/sale-product/edit/{saleProduct}',[SaleProductController::class,'edit'])->name('edit.sale-product');
+
+    Route::get('/footer-menu',[FooterMenuController::class,'index'])->name('footer-menu');
+    Route::get('/footer-menu/create',[FooterMenuController::class,'create'])->name('create.footer-menu');
+    Route::get('/footer-menu/edit/{footerMenu}',[FooterMenuController::class,'edit'])->name('edit.footer-menu');
 });
