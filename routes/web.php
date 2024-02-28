@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\ContactController;
@@ -64,6 +65,5 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/footer-menu/create',[FooterMenuController::class,'create'])->name('create.footer-menu');
     Route::get('/footer-menu/edit/{footerMenu}',[FooterMenuController::class,'edit'])->name('edit.footer-menu');
 
-    Route::get('/contacts',[ContactController::class,'index'])->name('contacts');
-    Route::put('/contact/update',[ContactController::class,'update'])->name('update.contacts');
+    Route::get('/about-us',[AboutUsController::class,'index'])->name('about-us');
 });

@@ -15,7 +15,7 @@ class SettingController extends Controller
 
     public function update(Request $request)
     {
-        if(\Auth::user()->hasRole('update-settings') || \Auth::user()->hasRole('add-settings'))
+        if(\Auth::user()->hasRole('edit-settings') || \Auth::user()->hasRole('add-settings'))
         { 
             if(is_null(Setting::where('branch_id',$request->branch_id)->first()))
             {

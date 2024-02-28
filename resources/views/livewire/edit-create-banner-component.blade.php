@@ -99,11 +99,11 @@
                     </div>
                   </div>
 
-                  <div class="row mb-4">
+                  <div class="row mb-6">
                     <div class="col-6">
                       <label class="form-label">Text</label>
                       <div class="input-group input-group-outline">
-                        <textarea type="text" class="form-control" name="text" wire:model.lazy="text" autocomplete="off">{{$text}}</textarea>
+                        <textarea type="text" class="form-control" rows="3" style="resize:none" name="text" wire:model.lazy="text" autocomplete="off">{{$text}}</textarea>
                       </div>
                     </div>
                     <div class="col-6">
