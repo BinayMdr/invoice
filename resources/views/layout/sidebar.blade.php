@@ -79,6 +79,16 @@
             </a>
           </li>
         @endif
+        @if(\Auth::user()->hasRole('view-contacts'))
+          <li class="nav-item">
+            <a class="nav-link text-white @if(str_contains(url()->current(),'contacts')) active @endif" href="{{route('footer-menu')}}">
+              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="material-icons opacity-10">contact_page</i>
+              </div>
+              <span class="nav-link-text ms-1">Contacts</span>
+            </a>
+          </li>
+        @endif
         @if(\Auth::user()->hasRole('view-settings'))
           <li class="nav-item">
             <a class="nav-link text-white @if(\Request::route()->getName() == "setting") active @endif" href="{{route('setting')}}">

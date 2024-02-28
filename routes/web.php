@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FooterMenuController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentController;
@@ -62,4 +63,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/footer-menu',[FooterMenuController::class,'index'])->name('footer-menu');
     Route::get('/footer-menu/create',[FooterMenuController::class,'create'])->name('create.footer-menu');
     Route::get('/footer-menu/edit/{footerMenu}',[FooterMenuController::class,'edit'])->name('edit.footer-menu');
+
+    Route::get('/contacts',[ContactController::class,'index'])->name('contacts');
+    Route::put('/contact/update',[ContactController::class,'update'])->name('update.contacts');
 });
