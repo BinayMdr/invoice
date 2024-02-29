@@ -11,6 +11,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\PopUpController;
 use App\Http\Controllers\SaleProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -66,4 +67,11 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/footer-menu/edit/{footerMenu}',[FooterMenuController::class,'edit'])->name('edit.footer-menu');
 
     Route::get('/about-us',[AboutUsController::class,'index'])->name('about-us');
+
+    Route::get('/contacts',[ContactController::class,'index'])->name('contacts');
+    Route::put('/contacts',[ContactController::class,'update'])->name('update.contacts');
+
+    Route::get('/pop-up',[PopUpController::class,'index'])->name('pop-up');
+    Route::get('/pop-up/create',[PopUpController::class,'create'])->name('create.pop-up');
+    Route::get('/pop-up/edit/{popUp}',[PopUpController::class,'edit'])->name('edit.pop-up');
 });

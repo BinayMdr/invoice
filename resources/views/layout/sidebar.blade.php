@@ -81,11 +81,31 @@
         @endif
         @if(\Auth::user()->hasRole('view-contacts'))
           <li class="nav-item">
-            <a class="nav-link text-white @if(str_contains(url()->current(),'contacts')) active @endif" href="{{route('footer-menu')}}">
+            <a class="nav-link text-white @if(str_contains(url()->current(),'contacts')) active @endif" href="{{route('contacts')}}">
               <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="material-icons opacity-10">contact_page</i>
               </div>
               <span class="nav-link-text ms-1">Contacts</span>
+            </a>
+          </li>
+        @endif
+        @if(\Auth::user()->hasRole('view-about-us'))
+          <li class="nav-item">
+            <a class="nav-link text-white @if(str_contains(url()->current(),'about-us')) active @endif" href="{{route('about-us')}}">
+              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="material-icons opacity-10">contacts</i>
+              </div>
+              <span class="nav-link-text ms-1">About Us</span>
+            </a>
+          </li>
+        @endif
+        @if(\Auth::user()->hasRole('view-pop-ups'))
+          <li class="nav-item">
+            <a class="nav-link text-white @if(str_contains(url()->current(),'pop-up')) active @endif" href="{{route('pop-up')}}">
+              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="material-icons opacity-10">photo_library</i>
+              </div>
+              <span class="nav-link-text ms-1">Pop Up</span>
             </a>
           </li>
         @endif

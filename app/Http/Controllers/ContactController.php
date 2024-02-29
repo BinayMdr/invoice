@@ -16,7 +16,7 @@ class ContactController extends Controller
 
     public function update(Request $request)
     {
-        if(\Auth::user()->hasRole('update-contacts') || \Auth::user()->hasRole('add-contacts'))
+        if(\Auth::user()->hasRole('edit-contacts') || \Auth::user()->hasRole('add-contacts'))
         { 
             $data = $request->validate([
                 'country' => 'required',
