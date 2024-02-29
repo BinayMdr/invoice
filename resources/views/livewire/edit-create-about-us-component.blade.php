@@ -5,7 +5,7 @@
           <div class="col-12">
             <div class="card card-plain h-100">
               <div class="card-header pb-0 p-3">
-                <h6 class="mb-0">@if(!is_null($aboutUs)) Update banner @else Add AboutUs @endif </h6>
+                <h6 class="mb-0">@if(!is_null($aboutUs)) Update AboutUs @else Add AboutUs @endif </h6>
               </div>
               <div class="card-body">
                 @error('heading1')

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FooterMenuController;
 use App\Http\Controllers\PageController;
@@ -74,4 +75,8 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/pop-up',[PopUpController::class,'index'])->name('pop-up');
     Route::get('/pop-up/create',[PopUpController::class,'create'])->name('create.pop-up');
     Route::get('/pop-up/edit/{popUp}',[PopUpController::class,'edit'])->name('edit.pop-up');
+
+
+
+    Route::get('/category',[CategoryController::class,'index'])->name('category');
 });
