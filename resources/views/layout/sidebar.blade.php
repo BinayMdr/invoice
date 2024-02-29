@@ -19,6 +19,11 @@
             <span class="nav-link-text ms-1">Dashboard</span>
           </a>
         </li>
+        @if(\Auth::user()->hasRole('view-groups') || \Auth::user()->hasRole('view-users'))
+          <li class="nav-item mt-3">
+            <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">User & Roles</h6>
+          </li>
+        @endif
         @if(\Auth::user()->hasRole('view-users'))
           <li class="nav-item">
             <a class="nav-link text-white @if(str_contains(url()->current(),'user')) active @endif" href="{{route('user')}}">
@@ -39,6 +44,37 @@
             </a>
           </li>
         @endif
+
+        @if(\Auth::user()->hasRole('view-contacts') || \Auth::user()->hasRole('view-about-us'))
+          <li class="nav-item mt-3">
+            <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Pages</h6>
+          </li>
+        @endif
+        @if(\Auth::user()->hasRole('view-contacts'))
+        <li class="nav-item">
+          <a class="nav-link text-white @if(str_contains(url()->current(),'contacts')) active @endif" href="{{route('contacts')}}">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">contact_page</i>
+            </div>
+            <span class="nav-link-text ms-1">Contacts</span>
+          </a>
+        </li>
+        @endif
+        @if(\Auth::user()->hasRole('view-about-us'))
+        <li class="nav-item">
+          <a class="nav-link text-white @if(str_contains(url()->current(),'about-us')) active @endif" href="{{route('about-us')}}">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">contacts</i>
+            </div>
+            <span class="nav-link-text ms-1">About Us</span>
+          </a>
+        </li>
+        @endif
+
+        <li class="nav-item mt-3">
+          <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Others</h6>
+        </li>
+
         @if(\Auth::user()->hasRole('view-banners'))
           <li class="nav-item">
             <a class="nav-link text-white @if(str_contains(url()->current(),'banner')) active @endif" href="{{route('banner')}}">
@@ -79,26 +115,6 @@
             </a>
           </li>
         @endif
-        @if(\Auth::user()->hasRole('view-contacts'))
-          <li class="nav-item">
-            <a class="nav-link text-white @if(str_contains(url()->current(),'contacts')) active @endif" href="{{route('contacts')}}">
-              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">contact_page</i>
-              </div>
-              <span class="nav-link-text ms-1">Contacts</span>
-            </a>
-          </li>
-        @endif
-        @if(\Auth::user()->hasRole('view-about-us'))
-          <li class="nav-item">
-            <a class="nav-link text-white @if(str_contains(url()->current(),'about-us')) active @endif" href="{{route('about-us')}}">
-              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">contacts</i>
-              </div>
-              <span class="nav-link-text ms-1">About Us</span>
-            </a>
-          </li>
-        @endif
         @if(\Auth::user()->hasRole('view-pop-ups'))
           <li class="nav-item">
             <a class="nav-link text-white @if(str_contains(url()->current(),'pop-up')) active @endif" href="{{route('pop-up')}}">
@@ -110,6 +126,9 @@
           </li>
         @endif
         @if(\Auth::user()->hasRole('view-settings'))
+          <li class="nav-item mt-3">
+            <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Settings</h6>
+          </li>
           <li class="nav-item">
             <a class="nav-link text-white @if(\Request::route()->getName() == "setting") active @endif" href="{{route('setting')}}">
               <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
