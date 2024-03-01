@@ -16,6 +16,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\PopUpController;
 use App\Http\Controllers\SaleProductController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -83,4 +84,5 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/category',[CategoryController::class,'index'])->name('category');
     Route::get('/brand',[BrandController::class,'index'])->name('brand');
     Route::get('/color',[ColorController::class,'index'])->name('color');
+    Route::get('/tag',[TagController::class,'index'])->name('tag');
 });
