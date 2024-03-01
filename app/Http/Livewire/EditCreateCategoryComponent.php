@@ -12,6 +12,8 @@ class EditCreateCategoryComponent extends Component
     public $categories = [];
     public $error;
     
+    protected $listeners = ['categoryOrderUpdated' => 'updateOrder'];
+
     public function updated($field)
     {
         $this->resetValidation();
@@ -26,16 +28,18 @@ class EditCreateCategoryComponent extends Component
             $this->categories[0]['id'] = null;
             $this->categories[0]['name'] = '';
             $this->categories[0]['is_enabled'] = false;
+            $this->categories[0]['order'] = 1;
         }
         else
         {
-            $data = Category::all();
+            $data = Category::orderBy('order','asc')->get();
 
             foreach($data as $count => $d)
             {
                 $this->categories[$count]['id'] =  $d->id;
                 $this->categories[$count]['name'] = $d->name;
                 $this->categories[$count]['is_enabled'] = $d->is_enabled;
+                $this->categories[$count]['order'] = $count + 1;
             }
         }
     }
@@ -76,13 +80,13 @@ class EditCreateCategoryComponent extends Component
                 {
                     if(($category['name']) == "") continue;
                     Category::create(['name' => $category['name'],
-                                    'is_enabled' => $category['is_enabled']]);
+                                    'is_enabled' => $category['is_enabled'],'order' => $count + 1]);
                 }
                 else
                 {   
                     $c = Category::find($category['id']);
                     $c->update(['name' => $category['name'],
-                    'is_enabled' => $category['is_enabled']]);
+                    'is_enabled' => $category['is_enabled'], 'order' => $count + 1]);
                 }
             }
 
@@ -92,5 +96,8 @@ class EditCreateCategoryComponent extends Component
         return back();
     }
 
-
+    public function updateOrder($newOrder)
+    {
+        $this->categories = $newOrder;
+    }
 }

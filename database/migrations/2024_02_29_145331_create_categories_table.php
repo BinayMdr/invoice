@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->boolean('is_enabled');
+            $table->integer('order');
             $table->timestamps();
         });
     }
