@@ -76,6 +76,7 @@
                     let id = el.dataset.id;
                     let name = el.querySelector('input[name^="name-"]').value;
                     let isEnabled = el.querySelector('input[name^="status-"]').checked;
+                    if(id == "") id = null;
                     return {
                         id: id,
                         name: name,
