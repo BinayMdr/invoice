@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FooterMenuController;
 use App\Http\Controllers\PageController;
@@ -81,4 +82,5 @@ Route::group(['middleware'=>'auth'],function(){
 
     Route::get('/category',[CategoryController::class,'index'])->name('category');
     Route::get('/brand',[BrandController::class,'index'])->name('brand');
+    Route::get('/color',[ColorController::class,'index'])->name('color');
 });
