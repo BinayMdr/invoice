@@ -10,20 +10,7 @@ class EditCreateCategoryComponent extends Component
 {
     use WithFileUploads;
     public $categories = [];
-    public $heading1;
-    public $heading2;
-    public $heading3;
-    public $text1;
-    public $text2;
-    public $text3;
-    public $topBanner;
-    public $showLowerBanner = false;
-    public $lowerBanner;
-    public $quote;
-    public $author;
-    public $designation;
     public $error;
-    public $lowerBannerCopy;
     
     public function updated($field)
     {
