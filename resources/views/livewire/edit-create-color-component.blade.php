@@ -30,24 +30,27 @@
                 @endif
                 <form class="text-start" wire:submit.prevent="save" >  
                 
-                @foreach($colors as $count => $color)
-                  <div class="row mb-6">
-                    <div class="col-6">
-                      <label class="form-label">Name</label>
-                      <div class="input-group input-group-outline">
-                        <input type="text" class="form-control" name="name-{{$count}}"  autocomplete="off" value="{{$color['name']}}" wire:change="updateData($event.target.value, {{$count}},'name')">
+                <div id="sortable-list">
+                  @foreach($colors as $count => $color)
+                    <div data-id="{{ $color['id'] }}" wire:key="color-{{ $color['id'] }}">
+                      <div class="row mb-6">
+                        <div class="col-6">
+                          <label class="form-label">Name</label>
+                          <div class="input-group input-group-outline">
+                            <input type="text" class="form-control" name="name-{{$count}}"  autocomplete="off" value="{{$color['name']}}" wire:change="updateData($event.target.value, {{$count}},'name')">
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <div class="form-check form-switch d-flex align-items-center ps-6 pt-2 mt-4">
+                            <br>
+                            <input class="form-check-input" type="checkbox" name="status-{{$count}}" @if($color['is_enabled']) checked @endif wire:change="updateData($event.target.value, {{$count}},'is_enabled')">
+                            <label class="form-check-label mt-2 ms-2" for="status">Status</label>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div class="col-6">
-                      <div class="form-check form-switch d-flex align-items-center ps-6 pt-2 mt-4">
-                        <br>
-                        <input class="form-check-input" type="checkbox" name="status-{{$count}}" @if($color['is_enabled']) checked @endif wire:change="updateData($event.target.value, {{$count}},'is_enabled')">
-                        <label class="form-check-label mt-2 ms-2" for="status">Status</label>
-                      </div>
-                    </div>
-                  </div>
-                @endforeach
-
+                  @endforeach 
+                </div>
                   <div class="text-center">
                     <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Update Color</button>
                   </div>
@@ -62,3 +65,27 @@
     
   </div>
 
+  @section('js')
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+  <script>
+    document.addEventListener('livewire:load', function () {
+        new Sortable(document.getElementById('sortable-list'), {
+            animation: 150,
+            onEnd: function (evt) {
+                let item = evt.item;
+                let rows = Array.from(item.parentElement.children).map((el, index) => {
+                    let id = el.dataset.id;
+                    let name = el.querySelector('input[name^="name-"]').value;
+                    let isEnabled = el.querySelector('input[name^="status-"]').checked;
+                    return {
+                        id: id,
+                        name: name,
+                        is_enabled: isEnabled
+                    };
+                });
+                Livewire.emit('colorOrderUpdated', rows);
+            }
+        });
+    });
+</script>
+  @endsection

@@ -12,6 +12,8 @@ class EditCreateColorComponent extends Component
     public $colors = [];
     public $error;
     
+    protected $listeners = ['colorOrderUpdated' => 'updateOrder'];
+
     public function updated($field)
     {
         $this->resetValidation();
@@ -29,7 +31,7 @@ class EditCreateColorComponent extends Component
         }
         else
         {
-            $data = Color::all();
+            $data = Color::orderBy('order','asc')->get();
 
             foreach($data as $count => $d)
             {
@@ -76,13 +78,13 @@ class EditCreateColorComponent extends Component
                 {
                     if(($color['name']) == "") continue;
                     Color::create(['name' => $color['name'],
-                                    'is_enabled' => $color['is_enabled']]);
+                                    'is_enabled' => $color['is_enabled'],'order' => $count + 1]);
                 }
                 else
                 {   
                     $c = Color::find($color['id']);
                     $c->update(['name' => $color['name'],
-                    'is_enabled' => $color['is_enabled']]);
+                    'is_enabled' => $color['is_enabled'],'order' => $count + 1]);
                 }
             }
 
@@ -92,4 +94,8 @@ class EditCreateColorComponent extends Component
         return back();
     }
 
+    public function updateOrder($newOrder)
+    {
+        $this->colors = $newOrder;
+    }
 }
