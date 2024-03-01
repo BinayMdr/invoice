@@ -12,6 +12,8 @@ class EditCreateTagComponent extends Component
     public $tags = [];
     public $error;
     
+    protected $listeners = ['tagOrderUpdated' => 'updateOrder'];
+
     public function updated($field)
     {
         $this->resetValidation();
@@ -29,7 +31,7 @@ class EditCreateTagComponent extends Component
         }
         else
         {
-            $data = Tag::all();
+            $data = Tag::orderBy('order','asc')->get();
 
             foreach($data as $count => $d)
             {
@@ -76,13 +78,13 @@ class EditCreateTagComponent extends Component
                 {
                     if(($tag['name']) == "") continue;
                     Tag::create(['name' => $tag['name'],
-                                    'is_enabled' => $tag['is_enabled']]);
+                                    'is_enabled' => $tag['is_enabled'],'order' => $count + 1]);
                 }
                 else
                 {   
                     $c = Tag::find($tag['id']);
                     $c->update(['name' => $tag['name'],
-                    'is_enabled' => $tag['is_enabled']]);
+                    'is_enabled' => $tag['is_enabled'],'order' => $count + 1]);
                 }
             }
 
@@ -92,4 +94,8 @@ class EditCreateTagComponent extends Component
         return back();
     }
 
+    public function updateOrder($newOrder)
+    {
+        $this->tags = $newOrder;
+    }
 }
