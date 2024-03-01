@@ -13,6 +13,8 @@ class EditCreateBrandComponent extends Component
     public $brands = [];
     public $error;
     
+    protected $listeners = ['brandOrderUpdated' => 'updateOrder'];
+
     public function updated($field)
     {
         $this->resetValidation();
@@ -30,7 +32,7 @@ class EditCreateBrandComponent extends Component
         }
         else
         {
-            $data = Brand::all();
+            $data = Brand::orderBy('order','asc')->get();
 
             foreach($data as $count => $d)
             {
@@ -77,13 +79,13 @@ class EditCreateBrandComponent extends Component
                 {
                     if(($brand['name']) == "") continue;
                     Brand::create(['name' => $brand['name'],
-                                    'is_enabled' => $brand['is_enabled']]);
+                                    'is_enabled' => $brand['is_enabled'],'order' => $count + 1]);
                 }
                 else
                 {   
                     $c = Brand::find($brand['id']);
                     $c->update(['name' => $brand['name'],
-                    'is_enabled' => $brand['is_enabled']]);
+                    'is_enabled' => $brand['is_enabled'],'order' => $count + 1]);
                 }
             }
 
@@ -93,4 +95,8 @@ class EditCreateBrandComponent extends Component
         return back();
     }
 
+    public function updateOrder($newOrder)
+    {
+        $this->brands = $newOrder;
+    }
 }
