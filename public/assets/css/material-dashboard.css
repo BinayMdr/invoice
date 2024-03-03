@@ -27710,3 +27710,8 @@ pre[class*="language-"] {
 }
 
 /*# sourceMappingURL=dashboard-free.css.map */
+div.tox-tinymce
+{
+  height: 300px!important;
+  width: 100%!important;
+}
