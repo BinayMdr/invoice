@@ -7,6 +7,8 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FilterProductController;
+use App\Http\Controllers\FilterTagController;
 use App\Http\Controllers\FooterMenuController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentController;
@@ -91,4 +93,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/product',[ProductController::class,'index'])->name('product');
     Route::get('/product/create',[ProductController::class,'create'])->name('create.product');
     Route::get('/product/edit/{product}',[ProductController::class,'edit'])->name('edit.product');
+
+    Route::get('/filter-tag',[FilterTagController::class,'index'])->name('filter-tag');
+    Route::get('/filter-product/{tag}',[FilterProductController::class,'index'])->name('filter-product');
 });

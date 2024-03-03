@@ -133,7 +133,7 @@
 
         @if(\Auth::user()->hasRole('view-categories') || \Auth::user()->hasRole('view-brands')
         || \Auth::user()->hasRole('view-colors') || \Auth::user()->hasRole('view-tags')
-        || \Auth::user()->hasRole('view-products'))
+        || \Auth::user()->hasRole('view-products') || \Auth::user()->hasRole('view-filter-tags') )
         <li class="nav-item">
           <a class="nav-link text-white @if(\Request::route()->getName() == "category") active @endif" href="{{route('category')}}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -181,6 +181,16 @@
               <i class="material-icons opacity-10">inventory_2</i>
             </div>
             <span class="nav-link-text ms-1">Product</span>
+          </a>
+        </li>
+        @endif
+        @if(\Auth::user()->hasRole('view-filter-tags'))
+        <li class="nav-item">
+          <a class="nav-link text-white @if(\Request::route()->getName() == "filter-tag") active @endif" href="{{route('filter-tag')}}">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">filter_alt</i>
+            </div>
+            <span class="nav-link-text ms-1">Filter Tag</span>
           </a>
         </li>
         @endif
