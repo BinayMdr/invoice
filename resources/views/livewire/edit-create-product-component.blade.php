@@ -45,13 +45,13 @@
                 
                 <div class="row mb-4">
                   <div class="col-6">
-                    <label class="form-label">Name*</label>
+                    <label class="form-label">Name</label>
                     <div class="input-group input-group-outline">
                       <input type="text" class="form-control" name="name" wire:model.lazy="name" autocomplete="off">
                     </div>
                   </div>
                   <div class="col-6">
-                    <label class="form-label">Slug*</label>
+                    <label class="form-label">Slug</label>
                     <div class="input-group input-group-outline">
                       <input type="text" class="form-control" name="slug" wire:model.lazy="slug" autocomplete="off" readonly>
                     </div>
@@ -60,7 +60,7 @@
 
                 <div class="row mb-4">
                   <div class="col-6">
-                    <label class="form-label">Category*</label>
+                    <label class="form-label">Category</label>
                       <div class="input-group input-group-outline" aria-autocomplete="off" >
                         <select class="form-select form-control" aria-label="Default select example" name="group_id" wire:model="categoryId">
 
@@ -117,7 +117,7 @@
 
                 <div class="row mb-4">
                   <div class="col-4">
-                    <label class="form-label">Price*</label>
+                    <label class="form-label">Price</label>
                     <div class="input-group input-group-outline">
                       <input type="number" class="form-control" name="price" wire:model.lazy="price" autocomplete="off">
                     </div>
@@ -192,7 +192,7 @@
                       @endif
                     </div>      
                     <div>
-                      <label class="form-label">Display Image*</label>
+                      <label class="form-label">Display Image</label>
                       <input type="file" class="form-control" name="image" wire:model.lazy="image">
                     </div> 
                   </div>
@@ -213,7 +213,7 @@
                       @endif
                     </div>      
                     <div>
-                      <label class="form-label">Images*</label>
+                      <label class="form-label">Images</label>
                       <input type="file" class="form-control" name="images" wire:model.lazy="images" multiple>
                     </div> 
                   </div>
