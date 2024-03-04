@@ -74,11 +74,11 @@
 
                   <div class="row mb-6">
                     <div class="col-6">
-                        <div class="input-group input-group-outline my-4">
+                        <div class="my-4" style="width: 100%; height: 150px; overflow: hidden;">
                             @if ($image)
-                              <img src="{{ $image->temporaryUrl() }}" width="150px" height="50px">
+                              <img src="{{ $image->temporaryUrl() }}" style="width: 50%; height: 100%;">
                             @elseif(!is_null($popUp))
-                                <img src="{{ env('APP_URL').'storage/'.$popUp->image }}" width="150px" height="50px">
+                                <img src="{{ env('APP_URL').'storage/'.$popUp->image }}" style="width: 50%; height: 100%;">
                             @endif
                         </div>      
                         <div>
