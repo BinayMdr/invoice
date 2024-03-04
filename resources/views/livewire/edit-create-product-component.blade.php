@@ -184,11 +184,11 @@
 
                 <div class="row pt-6">
                   <div class="col-12">
-                    <div class="input-group input-group-outline my-4">
+                    <div class="my-4" style="width: 50%; height: 150px; overflow: hidden;">
                       @if ($image)
-                        <img src="{{ $image->temporaryUrl() }}" width="150px" height="50px">
+                        <img src="{{ $image->temporaryUrl() }}" style="width: 30%; height: 100%;">
                       @elseif(!is_null($product))
-                          <img src="{{ env('APP_URL').'storage/'.$product->display_image }}" width="150px" height="50px">
+                          <img src="{{ env('APP_URL').'storage/'.$product->display_image }}" style="width: 30%; height: 100%;">
                       @endif
                     </div>      
                     <div>
@@ -199,16 +199,16 @@
 
                 </div>   
 
-                <div class="row pt-6">
+                <div class="row pt-2">
                   <div class="col-12">
-                    <div class="input-group input-group-outline my-4">
+                    <div class="my-4" style="width: 100%; height: 100px; overflow-x: auto; white-space: nowrap;">
                       @if ($images)
                         @foreach($images as $productImage)
-                          <img src="{{ $productImage->temporaryUrl() }}" width="150px" height="50px">
+                          <img src="{{ $productImage->temporaryUrl() }}" style="width: 20%; height: 100%;">
                         @endforeach
                       @elseif(!is_null($product))
                           @foreach(explode(",",$product->images) as $img)
-                            <img src="{{ env('APP_URL').'storage/'.$img }}" width="150px" height="50px">
+                            <img src="{{ env('APP_URL').'storage/'.$img }}" style="width: 20%; height: 100%;">
                           @endforeach
                       @endif
                     </div>      
