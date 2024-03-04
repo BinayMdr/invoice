@@ -91,11 +91,11 @@
 
                   <div class="row mb-4">
                     <div class="col-6">
-                      <div class="input-group input-group-outline my-4">
+                      <div class="my-4" style="width: 100%; height: 150px; overflow: hidden;">
                         @if ($topBanner)
-                          <img src="{{ $topBanner->temporaryUrl() }}" width="150px" height="50px">
+                          <img src="{{ $topBanner->temporaryUrl() }}" width="100%" height="100%">
                         @elseif(!is_null($aboutUs))
-                            <img src="{{ env('APP_URL').'storage/'.$aboutUs->top_banner }}" width="150px" height="50px">
+                            <img src="{{ env('APP_URL').'storage/'.$aboutUs->top_banner }}" width="100%" height="100%">
                         @endif
                       </div>      
                       <div>
@@ -133,23 +133,23 @@
                     <div class="col-6">
                       <label class="form-label">Quote</label>
                       <div class="input-group input-group-outline">
-                        <textarea type="text" class="form-control" style="resize:none" name="quote" wire:model.lazy="quote" autocomplete="off" rows="3">{{$quote}}</textarea>
+                        <textarea type="text" class="form-control" style="resize:none" name="quote" wire:model.lazy="quote" autocomplete="off" rows="8">{{$quote}}</textarea>
                       </div>
                     </div>
 
                     <div class="col-6">
-                      <div class="input-group input-group-outline my-4">
+                      <div class="my-4" style="width: 100%; height: 150px; overflow: hidden; position:relative">
                         
                         @if ($lowerBanner)
-                          <img src="{{ $lowerBanner->temporaryUrl() }}" width="150px" height="50px">
-                          <button type="button" wire:click="removeLowerBanner" style="position: relative; top: -17px; right: 20px; background: none; border: none; outline: none; cursor: pointer; font-weight: bold;">
+                          <img src="{{ $lowerBanner->temporaryUrl() }}" width="100%" height="100%">
+                          <button type="button" wire:click="removeLowerBanner" style="position: relative; top: -150px; right: 0px; background: none; border: none; outline: none; cursor: pointer; font-weight: bold;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
                               <path d="M10.354 4.354a.5.5 0 1 1 .708.708L8.707 8l2.354 2.354a.5.5 0 0 1-.708.708L8 8.707l-2.354 2.354a.5.5 0 1 1-.708-.708L7.293 8 4.939 5.646a.5.5 0 0 1 .708-.708L8 7.293l2.354-2.354a.5.5 0 0 1 .708 0z"/>
                             </svg>
                           </button>
                         @elseif(!is_null($aboutUs) && !is_null($aboutUs->lower_banner))
-                            <img src="{{ env('APP_URL').'storage/'.$aboutUs->lower_banner }}" width="150px" height="50px">
-                            <button type="button" wire:click="removeLowerBannerFromDB" style="position: relative; top: -17px; right: 20px; background: none; border: none; outline: none; cursor: pointer; font-weight: bold;">
+                            <img src="{{ env('APP_URL').'storage/'.$aboutUs->lower_banner }}" width="100%" height="100%">
+                            <button type="button" wire:click="removeLowerBannerFromDB" style="position: relative; top: -150px; right: 0px; background: none; border: none; outline: none; cursor: pointer; font-weight: bold;">
                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
                                 <path d="M10.354 4.354a.5.5 0 1 1 .708.708L8.707 8l2.354 2.354a.5.5 0 0 1-.708.708L8 8.707l-2.354 2.354a.5.5 0 1 1-.708-.708L7.293 8 4.939 5.646a.5.5 0 0 1 .708-.708L8 7.293l2.354-2.354a.5.5 0 0 1 .708 0z"/>
                               </svg>

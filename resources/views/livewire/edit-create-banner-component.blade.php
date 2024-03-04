@@ -116,11 +116,11 @@
                   </div>
 
                   <div class="row">
-                    <div class="input-group input-group-outline my-4">
+                    <div class="my-4" style="width: 100%; height: 150px; overflow: hidden;">
                       @if ($image)
-                        <img src="{{ $image->temporaryUrl() }}" width="150px" height="50px">
+                        <img src="{{ $image->temporaryUrl() }}" style="width: 30%; height: 100%;">
                       @elseif(!is_null($banner))
-                          <img src="{{ env('APP_URL').'storage/'.$banner->image }}" width="150px" height="50px">
+                          <img src="{{ env('APP_URL').'storage/'.$banner->image }}" style="width: 30%; height: 100%;">
                       @endif
                     </div>      
                     <div>
