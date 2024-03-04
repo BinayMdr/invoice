@@ -97,9 +97,10 @@ class EditCreateProductComponent extends Component
         $display_image_path = $this->image->storeAs('public/uploads/product',$display_image);
 
         $temImage = '';
+
         foreach($this->images as $count => $img)
-        {
-            $product_image = 'bg-'.time().'.'.$img->extension(); 
+        {   
+            $product_image = 'bg-'.time().'-'.$count.'.'.$img->extension(); 
             $product_image_path = $img->storeAs('public/uploads/product',$product_image);
 
             if($count == 0) $temImage = str_replace("public/","",$product_image_path);
@@ -162,7 +163,7 @@ class EditCreateProductComponent extends Component
             $temImage = '';
             foreach($this->images as $count => $img)
             {
-                $product_image = 'bg-'.time().'.'.$img->extension(); 
+                $product_image = 'bg-'.time().'-'.$count.'.'.$img->extension();
                 $product_image_path = $img->storeAs('public/uploads/product',$product_image);
 
                 if($count == 0) $temImage = str_replace("public/","",$product_image_path);
