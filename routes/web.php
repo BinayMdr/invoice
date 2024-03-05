@@ -41,7 +41,6 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
     Route::get('/setting',[SettingController::class,'index'])->name('setting');
-    Route::put('/setting/update',[SettingController::class,'update'])->name('update.setting');
 
     Route::get('/user',[UserController::class,'index'])->name('user');
     Route::get('/user/create',[UserController::class,'create'])->name('create.user');
