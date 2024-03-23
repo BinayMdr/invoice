@@ -62,17 +62,24 @@
                           </div>
                         </div>
                       </div>
-                      <div class="row my-5">
+                      <div class="row my-3">
                         <div class="col-4">
                           <label class="form-label">Search Key</label>
                           <div class="input-group input-group-outline">
                             <input type="text" class="form-control" name="searchKey"  autocomplete="off" wire:change="updateSubMenu($event.target.value, {{$count}},'searchKey')" value={{$subMenu['searchKey']}}> 
                           </div>
                         </div>
-                        <div class="col-5">
+                        <div class="col-3">
                           <label class="form-label">Seach Value</label>
                           <div class="input-group input-group-outline">
                             <input type="text" class="form-control" name="searchValue"  autocomplete="off" wire:change="updateSubMenu($event.target.value, {{$count}},'searchValue')" value={{$subMenu['searchValue']}}>
+                          </div>
+                        </div>
+                        <div class="col-3">
+                          <div class="form-check form-switch d-flex align-items-center ps-6 mt-4">
+                            <br>
+                            <input class="form-check-input" type="checkbox" id="showSearch" name="showSearch" @if($subMenu['showSearch'] == "1" || $subMenu['showSearch'] == true) checked @endif wire:change="updateSubMenu($event.target.value, {{$count}},'showSearch')">
+                            <label class="form-check-label mt-2 ms-2" for="showSearch">Show Search</label>
                           </div>
                         </div>
                         <div class="col-2">

@@ -33,6 +33,7 @@ class EditCreateFooterMenuComponent extends Component
                 $this->subMenus[$count]['link'] = $subFooterMenu['link'];
                 $this->subMenus[$count]['searchKey'] = $subFooterMenu['search_key'];
                 $this->subMenus[$count]['searchValue'] = $subFooterMenu['search_value'];
+                $this->subMenus[$count]['showSearch'] = $subFooterMenu['show_search'];
             }
         }
 
@@ -57,6 +58,7 @@ class EditCreateFooterMenuComponent extends Component
             $this->subMenus[0]['link'] = '';
             $this->subMenus[0]['searchKey'] = '';
             $this->subMenus[0]['searchValue'] = '';
+            $this->subMenus[0]['showSearch'] = false;
         }
         else
         {
@@ -71,12 +73,18 @@ class EditCreateFooterMenuComponent extends Component
             $this->subMenus[$count]['link'] = '';
             $this->subMenus[$count]['searchKey'] = '';
             $this->subMenus[$count]['searchValue'] = '';
+            $this->subMenus[$count]['showSearch'] = false;
         }
     }
 
     public function updateSubMenu($value,$count,$key)
     {
-        $this->subMenus[$count][$key] = $value;
+        if($key == "showSearch")
+        {
+            $this->subMenus[$count][$key] = !$this->subMenus[$count][$key];
+            
+        }
+        else $this->subMenus[$count][$key] = $value;
     }
 
     public function deleteSubMenu($count)
@@ -92,6 +100,7 @@ class EditCreateFooterMenuComponent extends Component
                 $this->subMenus[$c]['link'] = $d['link'];
                 $this->subMenus[$c]['searchKey'] = $d['searchKey'];
                 $this->subMenus[$c]['searchValue'] = $d['searchValue'];
+                $this->subMenus[$c]['showSearch'] = $d['showSearch'];
             }
         }
     }
@@ -117,7 +126,8 @@ class EditCreateFooterMenuComponent extends Component
                 'name' => $subMenu['name'],
                 'link' => $subMenu['link'],
                 'search_key' => $subMenu['searchKey'],
-                'search_value' => $subMenu['searchValue']
+                'search_value' => $subMenu['searchValue'],
+                'show_search' => $subMenu['showSearch']
             ]);
         }
 
@@ -151,7 +161,8 @@ class EditCreateFooterMenuComponent extends Component
                 'name' => $subMenu['name'],
                 'link' => $subMenu['link'],
                 'search_key' => $subMenu['searchKey'],
-                'search_value' => $subMenu['searchValue']
+                'search_value' => $subMenu['searchValue'],
+                'show_search' => $subMenu['showSearch']
             ]);
         }
 

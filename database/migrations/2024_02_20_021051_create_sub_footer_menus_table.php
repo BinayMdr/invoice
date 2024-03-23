@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('link');
             $table->string('search_key');
             $table->string('search_value');
+            $table->boolean('show_search');
             $table->timestamps();
         });
     }
