@@ -21,6 +21,7 @@ class EditCreateBannerComponent extends Component
     public $image;
     public $bannerType = "Main Banner";
     public $isEnabled = false;
+    public $showSearch = false;
     public $error;
    
     public function updated($field)
@@ -41,6 +42,7 @@ class EditCreateBannerComponent extends Component
         $this->searchValue = $banner?->search_value;
         $this->bannerType = $banner?->banner_type;
         $this->isEnabled = $banner?->is_enabled;
+        $this->showSearch = $banner?->show_search;
     }
 
     public function render()
@@ -77,7 +79,8 @@ class EditCreateBannerComponent extends Component
             'search_key' => $this->searchKey,
             'search_value' => $this->searchValue,
             'banner_type' => $this->bannerType,
-            'is_enabled' => $this->isEnabled
+            'is_enabled' => $this->isEnabled,
+            'show_search' => $this->showSearch
         ]);
 
         return redirect()->route('banner')->with('success','Banner created');
@@ -107,7 +110,8 @@ class EditCreateBannerComponent extends Component
             'search_key' => $this->searchKey,
             'search_value' => $this->searchValue,
             'banner_type' => $this->bannerType,
-            'is_enabled' => $this->isEnabled
+            'is_enabled' => $this->isEnabled,
+            'show_search' => $this->showSearch
         ];
         if($this->image != null)
         {

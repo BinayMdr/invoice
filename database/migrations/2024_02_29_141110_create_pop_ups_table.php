@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('search_key')->nullable();
             $table->string('search_value')->nullable();
             $table->boolean('is_enabled');
+            $table->boolean('show_search');
             $table->timestamps();
         });
     }

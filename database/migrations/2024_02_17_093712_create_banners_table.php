@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('search_value')->nullable();
             $table->string('banner_type');
             $table->boolean('is_enabled');
+            $table->boolean('show_search');
             $table->timestamps();
         });
     }

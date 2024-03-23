@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('offer_till_date');
             $table->string('sale_price');
             $table->boolean('is_enabled');
+            $table->boolean('show_search');
             $table->timestamps();
         });
     }

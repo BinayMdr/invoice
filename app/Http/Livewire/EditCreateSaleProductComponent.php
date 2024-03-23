@@ -23,6 +23,7 @@ class EditCreateSaleProductComponent extends Component
     public $offerTillDate;
     public $salePrice;
     public $isEnabled = false;
+    public $showSearch = false;
     public $error;
    
     public function updated($field)
@@ -45,6 +46,7 @@ class EditCreateSaleProductComponent extends Component
         $this->offerTillDate = $saleProduct?->offer_till_date;
         $this->salePrice = $saleProduct?->sale_price;
         $this->isEnabled = $saleProduct?->is_enabled;
+        $this->showSearch = $saleProduct->show_search;
     }
 
     public function render()
@@ -85,7 +87,8 @@ class EditCreateSaleProductComponent extends Component
             'search_value' => $this->searchValue,
             'offer_till_date' => $this->offerTillDate,
             'sale_price' => $this->salePrice,
-            'is_enabled' => $this->isEnabled
+            'is_enabled' => $this->isEnabled,
+            'show_search' => $this->showSearch
         ]);
 
         return redirect()->route('sale-product')->with('success','Sale Product created');
@@ -119,7 +122,8 @@ class EditCreateSaleProductComponent extends Component
             'search_value' => $this->searchValue,
             'offer_till_date' => $this->offerTillDate,
             'sale_price' => $this->salePrice,
-            'is_enabled' => $this->isEnabled
+            'is_enabled' => $this->isEnabled,
+            'show_search' => $this->showSearch
         ];
         if($this->image != null)
         {

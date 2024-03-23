@@ -85,11 +85,18 @@
                         <input type="file" class="form-control" name="image" wire:model.lazy="image">
                         </div> 
                     </div>
-                    <div class="col-6">
+                    <div class="col-3">
                       <div class="form-check form-switch d-flex align-items-center ps-6 mt-4">
                         <br>
                         <input class="form-check-input" type="checkbox" id="status" name="status" @if($isEnabled) checked @endif wire:model="isEnabled">
                         <label class="form-check-label mt-2 ms-2" for="status">Status</label>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <div class="form-check form-switch d-flex align-items-center ps-6 mt-4">
+                        <br>
+                        <input class="form-check-input" type="checkbox" id="showSearch" name="showSearch" @if($showSearch) checked @endif wire:model="showSearch">
+                        <label class="form-check-label mt-2 ms-2" for="showSearch">Show Search</label>
                       </div>
                     </div>
                   </div>

@@ -18,6 +18,7 @@ class EditCreatePopUpComponent extends Component
     public $searchValue;
     public $image;
     public $isEnabled = false;
+    public $showSearch = false;
     public $error;
    
     public function updated($field)
@@ -33,6 +34,7 @@ class EditCreatePopUpComponent extends Component
         $this->searchKey = $popUp?->search_key;
         $this->searchValue = $popUp?->search_value;
         $this->isEnabled = $popUp?->is_enabled;
+        $this->showSearch = $popUp?->show_search;
     }
 
     public function render()
@@ -66,7 +68,8 @@ class EditCreatePopUpComponent extends Component
             'link' => $this->link,
             'search_key' => $this->searchKey,
             'search_value' => $this->searchValue,
-            'is_enabled' => $this->isEnabled
+            'is_enabled' => $this->isEnabled,
+            'show_search' => $this->showSearch
         ]);
 
         return redirect()->route('pop-up')->with('success','Popup created');
@@ -92,7 +95,8 @@ class EditCreatePopUpComponent extends Component
             'link' => $this->link,
             'search_key' => $this->searchKey,
             'search_value' => $this->searchValue,
-            'is_enabled' => $this->isEnabled
+            'is_enabled' => $this->isEnabled,
+            'show_search' => $this->showSearch
         ];
         if($this->image != null)
         {
