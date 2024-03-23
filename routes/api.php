@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\Api\AboutUsController;
+use App\Http\Controllers\Api\BannerController;
+use App\Http\Controllers\Api\SettingController;
+use App\Http\Controllers\Api\ContactController;
+use App\Http\Controllers\Api\FooterMenuController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +22,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/settings',[SettingController::class,'index']);
+Route::get('/contact',[ContactController::class,'index']);
+Route::get('/about-us',[AboutUsController::class,'index']);
+Route::get('/footer-menu',[FooterMenuController::class,'index']);
+Route::get('/banner',[BannerController::class,'index']);
+Route::get('/mid-banners',[BannerController::class,'midBanners']);
