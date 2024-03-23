@@ -95,8 +95,7 @@ class EditCreateSaleProductComponent extends Component
     {
         $this->validate([
             'name' => 'required',
-            'image' => 'image',
-            'offerTillDate' => 'required|date|after:now',
+            'offerTillDate' => 'required|date',
             'salePrice' => 'required|numeric|min:1'
         ]);
 
@@ -110,9 +109,9 @@ class EditCreateSaleProductComponent extends Component
 
         $data = [
             'name' => $this->name,
-            'text1' => $this->text1,
-            'text2' => $this->text2,
-            'text3' => $this->text3,
+            'text_1' => $this->text1,
+            'text_2' => $this->text2,
+            'text_3' => $this->text3,
             'heading_1' => $this->heading1,
             'button_text' => $this->buttonText,
             'button_link' => $this->buttonLink,

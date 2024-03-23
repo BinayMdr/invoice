@@ -133,14 +133,14 @@
                     </div>
                   </div>
 
-                  <div class="input-group input-group-outline col-6">
+                  <div class="input-group input-group-outline col-6 mb-4 mt-2">
                     @if ($image)
-                      <img src="{{ $image->temporaryUrl() }}" width="150px" height="50px">
+                      <img src="{{ $image->temporaryUrl() }}" width="150px" height="100px" class="mb-4">
                     @elseif(!is_null($saleProduct))
-                        <img src="{{ env('APP_URL').'storage/'.$saleProduct->image }}" width="150px" height="50px">
+                        <img src="{{ env('APP_URL').'storage/'.$saleProduct->image }}" width="150px" height="100px">
                     @endif
                   </div>      
-                  <div class="col-6">
+                  <div class="col-6 pt-6">
                     <input type="file" class="form-control" name="image" wire:model.lazy="image">
                   </div>    
                   <div class="text-center">
