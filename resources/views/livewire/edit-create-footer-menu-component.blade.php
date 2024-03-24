@@ -52,13 +52,13 @@
                         <div class="col-6">
                           <label class="form-label">Name</label>
                           <div class="input-group input-group-outline">
-                            <input type="text" class="form-control" name="subMenu"  autocomplete="off" wire:change="updateSubMenu($event.target.value, {{$count}},'name')" value={{$subMenu['name']}}>
+                            <input type="text" class="form-control" name="subMenu"  autocomplete="off" wire:change="updateSubMenu($event.target.value, {{$count}},'name')" value="{{$subMenu['name']}}">
                           </div>
                         </div>
                         <div class="col-6">
                           <label class="form-label">Link</label>
                           <div class="input-group input-group-outline">
-                            <input type="text" class="form-control" name="subMenuLink"  autocomplete="off" wire:change="updateSubMenu($event.target.value, {{$count}},'link')" value={{$subMenu['link']}}>
+                            <input type="text" class="form-control" name="subMenuLink"  autocomplete="off" wire:change="updateSubMenu($event.target.value, {{$count}},'link')" value="{{$subMenu['link']}}">
                           </div>
                         </div>
                       </div>
@@ -66,13 +66,13 @@
                         <div class="col-4">
                           <label class="form-label">Search Key</label>
                           <div class="input-group input-group-outline">
-                            <input type="text" class="form-control" name="searchKey"  autocomplete="off" wire:change="updateSubMenu($event.target.value, {{$count}},'searchKey')" value={{$subMenu['searchKey']}}> 
+                            <input type="text" class="form-control" name="searchKey"  autocomplete="off" wire:change="updateSubMenu($event.target.value, {{$count}},'searchKey')" value="{{$subMenu['searchKey']}}"> 
                           </div>
                         </div>
                         <div class="col-3">
                           <label class="form-label">Seach Value</label>
                           <div class="input-group input-group-outline">
-                            <input type="text" class="form-control" name="searchValue"  autocomplete="off" wire:change="updateSubMenu($event.target.value, {{$count}},'searchValue')" value={{$subMenu['searchValue']}}>
+                            <input type="text" class="form-control" name="searchValue"  autocomplete="off" wire:change="updateSubMenu($event.target.value, {{$count}},'searchValue')" value="{{$subMenu['searchValue']}}">
                           </div>
                         </div>
                         <div class="col-3">
