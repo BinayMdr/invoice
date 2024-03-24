@@ -7,6 +7,7 @@ use App\Models\AboutUs;
 use App\Models\FilterProduct;
 use App\Models\FilterTag;
 use App\Models\Product;
+use App\Models\Setting;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,9 @@ class FilterTagController extends Controller
     {
         try
         {
-            $filterTags = FilterTag::orderBy('order')->limit(3)->get();
+            $setting = Setting::get()->pluck('value','key');
+
+            $filterTags = FilterTag::orderBy('order')->limit($setting['filter-tag'])->get();
 
             $data = [];
             foreach ($filterTags as $filterTag) {
@@ -24,7 +27,7 @@ class FilterTagController extends Controller
                 
                 $products = FilterProduct::where('tag_id', $filterTag->tag_id)
                                           ->orderBy('order')
-                                          ->limit(8)
+                                          ->limit($setting['filter-product'])
                                           ->get();
             
                 $productDetails = Product::whereIn('id', $products->pluck('product_id'))->where('is_enabled','1')->get()->keyBy('id');
@@ -47,7 +50,7 @@ class FilterTagController extends Controller
         {
             return response()->json([
                 'error' => true,
-                'message' => $ex
+                'message' =>  'An error occurred while fetching filter tag.'
             ], 500);
         }
 
