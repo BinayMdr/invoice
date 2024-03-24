@@ -9,7 +9,6 @@ use App\Http\Controllers\Api\FooterMenuController;
 use App\Http\Controllers\Api\PopUpController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\SaleProductController;
-use App\Models\PopUp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -39,3 +38,8 @@ Route::get('/filter-tag',[FilterTagController::class,'index']);
 Route::get('/pop-up',[PopUpController::class,'index']);
 Route::get('/product-detail/{slug}',[ProductController::class,'details']);
 Route::get('/related-products/{slug}',[ProductController::class,'related_products']);
+Route::get('/categories',[ProductController::class,'categories']);
+Route::get('/colors',[ProductController::class,'colors']);
+Route::get('/tags',[ProductController::class,'tags']);
+Route::get('/brands',[ProductController::class,'brands']);
+Route::get('/products',[ProductController::class,'products']);
