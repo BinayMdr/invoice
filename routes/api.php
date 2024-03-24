@@ -6,7 +6,9 @@ use App\Http\Controllers\Api\SettingController;
 use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\FilterTagController;
 use App\Http\Controllers\Api\FooterMenuController;
+use App\Http\Controllers\Api\PopUpController;
 use App\Http\Controllers\Api\SaleProductController;
+use App\Models\PopUp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,3 +35,4 @@ Route::get('/banner',[BannerController::class,'index']);
 Route::get('/mid-banners',[BannerController::class,'midBanners']);
 Route::get('/sale-product',[SaleProductController::class,'index']);
 Route::get('/filter-tag',[FilterTagController::class,'index']);
+Route::get('/pop-up',[PopUpController::class,'index']);
