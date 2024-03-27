@@ -62,7 +62,7 @@
 
                     <div class="row my-4"> 
                       <div class="col-6">
-                        <label class="form-label">Branch</label>
+                        <label class="form-label">Group</label>
                         <div class="input-group input-group-outline " aria-autocomplete="off" >
                           <select class="form-select form-control" aria-label="Default select example" name="group_id">
                             @foreach(\App\Models\Group::get() as $group)
