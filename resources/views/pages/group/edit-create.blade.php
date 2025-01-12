@@ -24,6 +24,17 @@
                 <h6 class="mb-0">@if(!is_null($group)) Update Group @else Add Group @endif </h6>
               </div>
               <div class="card-body">
+
+
+                @error('roles')
+                  <div class="alert alert-danger alert-dismissible text-white" role="alert">
+                    <span class="text-sm">{{ $message }}</span>
+                    <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                @enderror
+
                 @if(\Session::has('error'))
                   <div class="alert alert-danger alert-dismissible text-white" role="alert">
                     <span class="text-sm">{{\Session::get('error')}}</span>
@@ -47,8 +58,8 @@
                   @endif
                   
                   <div class="row mb-4">
-                    <div class="input-group input-group-outline my-3 col-6 @if(!is_null($group)) is-filled @endif">
-                      <label class="form-label">Name</label>
+                    <label class="form-label">Name</label>
+                    <div class="input-group input-group-outline col-6 @if(!is_null($group)) is-filled @endif">
                       <input type="text" class="form-control" name="name" required value="{{ $group->name ?? ""}}" autocomplete="off">
                     </div> 
                   </div>

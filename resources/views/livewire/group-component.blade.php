@@ -9,7 +9,7 @@
             <input type="search" id="form1" class="form-control px-2" style="border: 1px solid #d2d6da" wire:model="search"/>
           </div>
           <button type="button" class="btn btn-primary">
-            <i class="fas fa-search"></i>
+            <i class="material-icons opacity-10">search</i>
           </button>
         </div>
         <div class="card index">
@@ -51,7 +51,7 @@
       <select class="form-select px-2" style="border: 1px solid #d2d6da;width:60px" aria-label="Default select example" wire:click="changeEvent($event.target.value)">
         <option value="10" @if($limit == "10") selected @endif>10</option>
         <option value="25" @if($limit == "25") selected @endif>25</option>
-        <option value="20" @if($limit == "50") selected @endif>50</option>
+        <option value="50" @if($limit == "50") selected @endif>50</option>
         <option value="100" @if($limit == "100") selected @endif>100</option>
       </select>
     </div>

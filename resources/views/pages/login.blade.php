@@ -30,12 +30,12 @@
                 @endif
                 <form role="form" class="text-start" method="POST" action="{{route('login')}}">
                   @csrf
-                  <div class="input-group input-group-outline my-3">
-                    <label class="form-label">Email</label>
+                  <label class="form-label">Email</label>
+                  <div class="input-group input-group-outline mb-4">
                     <input type="email" class="form-control" name="email"  autocomplete="off" required >
                   </div>
-                  <div class="input-group input-group-outline mb-3">
-                    <label class="form-label">Password</label>
+                  <label class="form-label">Password</label>
+                  <div class="input-group input-group-outline mb-4">
                     <input type="password" class="form-control" name="password" required>
                   </div>
                   <div class="form-check form-switch d-flex align-items-center mb-3">

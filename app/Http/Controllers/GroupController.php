@@ -24,9 +24,13 @@ class GroupController extends Controller
     public function store(Request $request)
     {   
         if(!\Auth::user()->hasRole('add-groups')) return back();
+
         $request->validate([
             'name' => 'required',
             'roles' => 'required'
+        ], [
+            'name.required' => 'The name field is required.',
+            'roles.required' => 'The roles field is required.'
         ]);
 
         if( Group::where('name',$request->name)->get()->count() > 0) return redirect()->back()->with('error','Name already exist');

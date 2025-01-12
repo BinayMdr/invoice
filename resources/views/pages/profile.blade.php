@@ -64,16 +64,16 @@
                   @endif
                   <form role="form" class="text-start" method="POST" action="{{route('update.password')}}">
                     @csrf
-                    <div class="input-group input-group-outline my-3">
-                      <label class="form-label">Old Password</label>
+                    <label class="form-label">Old Password</label>
+                    <div class="input-group input-group-outline mb-4">
                       <input type="password" class="form-control" name="old_password"required >
                     </div>
-                    <div class="input-group input-group-outline mb-3">
-                      <label class="form-label">New Password</label>
+                    <label class="form-label">New Password</label>
+                    <div class="input-group input-group-outline mb-4">
                       <input type="password" class="form-control" name="new_password" required>
                     </div>
+                    <label class="form-label">Confirm Password</label>
                     <div class="input-group input-group-outline mb-3">
-                      <label class="form-label">Confirm Password</label>
                       <input type="password" class="form-control" name="confirm_password" required>
                     </div>
                     <div class="text-center">
