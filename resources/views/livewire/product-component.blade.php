@@ -9,7 +9,7 @@
             <input type="search" id="form1" class="form-control px-2" style="border: 1px solid #d2d6da" wire:model="search"/>
           </div>
           <button type="button" class="btn btn-primary">
-            <i class="fas fa-search"></i>
+            <i class="material-icons opacity-10">search</i>
           </button>
         </div>
         <div class="card index">

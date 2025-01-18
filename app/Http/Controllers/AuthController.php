@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
     public function login(Request $request)
-    {
+    {   
         if(Auth::check()) return redirect()->route('dashboard');
         if($request->isMethod("POST"))
         {

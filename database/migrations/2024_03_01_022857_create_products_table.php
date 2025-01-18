@@ -26,12 +26,7 @@ return new class extends Migration
             $table->longText('images');
 
             $table->longText('short_description')->nullable();
-            $table->longText('description')->nullable();
-            $table->longText('additional_information')->nullable();
-
-            $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('color_id')->nullable();
-            $table->unsignedBigInteger('brand_id')->nullable();
+          
 
             $table->boolean('is_new');
             $table->boolean('is_out_of_stock');

@@ -9,20 +9,17 @@ class ProductController extends Controller
 {
     public function index()
     {
-        if(!\Auth::user()->hasRole('view-products')) return back();
         return view('pages.product.index');
     }
 
     public function create()
     {
-        if(!\Auth::user()->hasRole('add-products')) return back();
         $product = null;
         return view('pages.product.edit-create',compact('product'));
     }
 
     public function edit(Product $product)
     {
-        if(!\Auth::user()->hasRole('edit-products')) return back();
         return view('pages.product.edit-create',compact('product'));
     }
 }

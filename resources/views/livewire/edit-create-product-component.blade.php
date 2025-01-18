@@ -58,62 +58,7 @@
                   </div>
                 </div>
 
-                <div class="row mb-4">
-                  <div class="col-6">
-                    <label class="form-label">Category</label>
-                      <div class="input-group input-group-outline" aria-autocomplete="off" >
-                        <select class="form-select form-control" aria-label="Default select example" name="group_id" wire:model="categoryId">
-
-                          <option value="" selected>Select One</option>
-                          @foreach(\App\Models\Category::orderBy('order')->get() as $category)
-                            <option value="{{$category->id}}" @if( $category->id == $categoryId ) selected @endif>{{$category->name}}</option>
-                          @endforeach
-                        </select>
-                      </div>
-                  </div>
-                  <div class="col-6">
-                    <label class="form-label">Color</label>
-                      <div class="input-group input-group-outline" aria-autocomplete="off" >
-                        <select class="form-select form-control" aria-label="Default select example" name="group_id" wire:model="colorId">
-                          <option value="" selected>Select One</option>
-                          @foreach(\App\Models\Color::orderBy('order')->get() as $color)
-                            <option value="{{$color->id}}" @if( $color->id == $colorId ) selected @endif>{{$color->name}}</option>
-                          @endforeach
-                        </select>
-                      </div>
-                  </div>
-                </div>
-
-                <div class="row mb-6">
-                  <div class="col-6">
-                    <label class="form-label">Brand</label>
-                      <div class="input-group input-group-outline" aria-autocomplete="off" >
-                        <select class="form-select form-control" aria-label="Default select example" name="group_id" wire:model="brandId">
-
-                          <option value="" selected>Select One</option>
-                          @foreach(\App\Models\Brand::orderBy('order')->get() as $brand)
-                            <option value="{{$brand->id}}" @if( $brand->id == $brandId ) selected @endif>{{$brand->name}}</option>
-                          @endforeach
-                        </select>
-                      </div>
-                  </div>
-                  <div class="col-6 mb-4">
-                    <label class="form-label">Tags</label>
-                      <div class="input-group input-group-outline" aria-autocomplete="off" >
-                        <select class="form-select form-control" aria-label="Default select example" name="group_id" wire:model="tags" multiple aria-label="multiple select example">
-                          @foreach(\App\Models\Tag::orderBy('order')->get() as $tag)
-                            @if(is_null($product))
-                              <option value="{{$tag->id}}">{{$tag->name}}</option>
-                            @elseif( $tempTag != $tags)
-                             <option value="{{$tag->id}}">{{$tag->name}}</option>
-                            @else
-                              <option value="{{$tag->id}}" @if( in_array($tag->id, $tags) ) selected @endif>{{$tag->name}}</option>
-                            @endif
-                          @endforeach
-                        </select>
-                      </div>
-                  </div>
-                </div>
+             
 
                 <div class="row mb-4">
                   <div class="col-4">
@@ -160,27 +105,14 @@
                   </div>
                 </div>
 
-                <div class="row mb-6">
-                  <div class="col-6">
+                <div class="row">
+                  <div>
                     <label class="form-label">Short Description</label>
                     <div class="input-group input-group-outline">
                       <textarea type="text" class="form-control" style="resize:none" name="shortDescription" wire:model.lazy="shortDescription" autocomplete="off" rows="3">{{$shortDescription}}</textarea>
                     </div>
                   </div>
-                  <div class="col-6">
-                    <label class="form-label">Additional Information</label>
-                    <div class="input-group input-group-outline">
-                      <textarea type="text" class="form-control" style="resize:none" name="additionalInformation" wire:model.lazy="additionalInformation" autocomplete="off" rows="3">{{$additionalInformation}}</textarea>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row mb-12">
-                    <label class="form-label">Description</label>
-                    <div class="input-group input-group-outline">
-                      <textarea type="text" class="form-control" style="resize:none" name="description" id="description" wire:model.lazy="description" autocomplete="off" row="5">{{$description}}</textarea>
-                    </div>
-                </div>
+                  
 
                 <div class="row pt-6">
                   <div class="col-12">
