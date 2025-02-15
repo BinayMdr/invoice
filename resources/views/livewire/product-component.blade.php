@@ -62,14 +62,17 @@
                   @foreach($products as $product)
                   <tr>
                     <td>{{$product->name}}</td>
-                    <td>Rs. {{$product->price}}</td>
+                    <td>
+                      @if($product->price == null || $product->price == "") -
+                      @else Rs. {{$product->price}}
+                      @endif
+                    </td>
                     <td><span class="badge" style="background: {{ $product->is_enabled ? 'green' : 'red' }};">
                       {{$product->is_enabled ? "Active" : "Inactive"}}
                     </span></td>
                     <td><span class="badge" style="background: {{ $product->is_out_of_stock ? 'red' : 'green' }};">
                       {{$product->is_out_of_stock ? "No" : "Yes"}}
                     </span></td>
-                    <td>{{$product->created_at->format('Y-m-d')}}</td>
                     <td>
                       <a href="{{route('edit.product',['product' => $product])}}" class="text-dark font-weight-bold text-xs" style="margin-right:0.5rem">
                           <i class="material-icons opacity-10">edit</i>

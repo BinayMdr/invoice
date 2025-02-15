@@ -14,25 +14,20 @@ class EditCreateProductComponent extends Component
     public $name;
     public $slug;
     public $price;
-    public $discountedPrice;
-    public $salePrice;
+    public $order;
+    public $series;
     public $displayImage;
-    public $productImages;
+    public $reference;
     public $image;
     public $images;
-    public $shortDescription;
     public $description;
-    public $additionalInformation;
-    public $categoryId;
-    public $colorId;
-    public $brandId;
-    public $tags;
-    public $isNew = false;
     public $isOutOfStock = false;
     public $isEnabled = false;
+    public $showInHomePage = false;
     public $error;
     public $tempTag = [];
-   
+    protected $listeners = ['updateDescription'];
+
     public function updated($field)
     {
         $this->resetValidation();
@@ -52,21 +47,13 @@ class EditCreateProductComponent extends Component
         $this->name = $product?->name;
         $this->slug = $product?->slug;
         $this->price = $product?->price;
-        $this->discountedPrice = $product?->discounted_price;
-        $this->salePrice = $product?->sale_price;
-        $this->displayImage = $product?->display_price;
-        $this->productImages = $product?->images;
-        $this->shortDescription = $product?->short_description;
+        $this->order = $product?->order;
+        $this->series = $product?->series;
+        $this->reference = $product?->reference;
         $this->description = $product?->description;
-        $this->additionalInformation = $product?->additional_information;
-        $this->categoryId = $product?->category_id;
-        $this->colorId = $product?->color_id;
-        $this->brandId = $product?->brand_id;
-        $this->isNew = $product?->is_new;
+        $this->showInHomePage = $product?->show_in_home_page;
         $this->isOutOfStock = $product?->is_out_of_stock;
         $this->isEnabled = $product?->is_enabled;
-        $this->tags = $product?->tags->pluck('tag_id')->toArray() ?? [];
-        $this->tempTag = $this->tags;
     }
 
     public function render()
@@ -81,9 +68,7 @@ class EditCreateProductComponent extends Component
         $this->validate([
             'name' => 'required',
             'slug' => 'required',
-            'categoryId' => 'required',
-            'image' => 'image',
-            'images.*' => 'image',
+            'image' => 'image'
 
         ]);
 
@@ -96,43 +81,27 @@ class EditCreateProductComponent extends Component
         $display_image = 'bg-'.time().'.'.$this->image->extension(); 
         $display_image_path = $this->image->storeAs('public/uploads/product',$display_image);
 
-        $temImage = '';
+        $maxOrder = Product::orderByDesc('order')->first();
 
-        foreach($this->images as $count => $img)
-        {   
-            $product_image = 'bg-'.time().'-'.$count.'.'.$img->extension(); 
-            $product_image_path = $img->storeAs('public/uploads/product',$product_image);
-
-            if($count == 0) $temImage = str_replace("public/","",$product_image_path);
-            else $temImage = $temImage .','. str_replace("public/","",$product_image_path);
+        if($this->order == null )
+        {
+            if($maxOrder != null) $this->order = $maxOrder->order + 1;
+            else $this->order = 1;
         }
 
         $productDetail = Product::create([
             'name' => $this->name,
             'slug' => $this->slug,
             'price' => $this->price,
-            'discounted_price' => $this->discountedPrice,
-            'sale_price' => $this->salePrice,
-            'display_image' => str_replace("public/","",$display_image_path),
-            'images' => $temImage,
+            'reference' => $this->reference,
+            'series' => $this->series,
+            'image' => str_replace("public/","",$display_image_path),
             'description' => $this->description,
-            'short_description' => $this->shortDescription,
-            'additional_information' => $this->additionalInformation,
-            'category_id' => $this->categoryId,
-            'color_id' => $this->colorId ?? false,
-            'brand_id' => $this->brandId ?? false,
-            'is_new' => $this->isNew ?? false,
+            'show_in_home_page' => $this->showInHomePage ?? false,
             'is_out_of_stock' => $this->isOutOfStock ?? false,
-            'is_enabled' => $this->isEnabled ?? false
+            'is_enabled' => $this->isEnabled ?? false,
+            'order' => $this?->order
         ]);
-
-        foreach($this->tags as $tag)
-        {
-            ProductHasTag::create([
-                'product_id' => $productDetail->id,
-                'tag_id' => $tag
-            ]);
-        }
 
         return redirect()->route('product')->with('success','Product created');
     }
@@ -141,9 +110,7 @@ class EditCreateProductComponent extends Component
     {   
         $this->validate([
             'name' => 'required',
-            'slug' => 'required',
-            'categoryId' => 'required',
-
+            'slug' => 'required'
         ]);
 
         if( Product::where('slug',$this->slug)->whereNotIn('id',[$this->product->id])->get()->count() > 0) 
@@ -158,47 +125,26 @@ class EditCreateProductComponent extends Component
             $display_image_path = $this->image->storeAs('public/uploads/product',$display_image);
         }
         
-        if($this->images != null)
-        {
-            $temImage = '';
-            foreach($this->images as $count => $img)
-            {
-                $product_image = 'bg-'.time().'-'.$count.'.'.$img->extension();
-                $product_image_path = $img->storeAs('public/uploads/product',$product_image);
-
-                if($count == 0) $temImage = str_replace("public/","",$product_image_path);
-                else $temImage = $temImage .','. str_replace("public/","",$product_image_path);
-            }
-        }
-
+        
         $this->product->update([
             'name' => $this->name,
             'slug' => $this->slug,
             'price' => $this->price,
-            'discounted_price' => $this->discountedPrice,
-            'sale_price' => $this->salePrice,
-            'display_image' => is_null($this->image) ? $this->product->display_image :str_replace("public/","",$display_image_path),
-            'images' => is_null($this->image) ? $this->product->images : $temImage,
+            'order' => $this->order,
+            'series' => $this->series,
+            'image' => is_null($this->image) ? $this->product->display_image :str_replace("public/","",$display_image_path),
             'description' => $this->description,
-            'short_description' => $this->shortDescription,
-            'additional_information' => $this->additionalInformation,
-            'category_id' => $this->categoryId,
-            'color_id' => $this->colorId ?? false,
-            'brand_id' => $this->brandId ?? false,
-            'is_new' => $this->isNew ?? false,
+            'reference' => $this->reference,
             'is_out_of_stock' => $this->isOutOfStock ?? false,
-            'is_enabled' => $this->isEnabled ?? false
+            'is_enabled' => $this->isEnabled ?? false,
+            'show_in_home_page' => $this->showInHomePage
         ]);
 
-        if(count($this->product->tags) > 0) $this->product->tags()->delete();
-        foreach($this->tags as $tag)
-        {
-            ProductHasTag::create([
-                'product_id' => $this->product->id,
-                'tag_id' => $tag
-            ]);
-        }
-
         return redirect()->route('product')->with('success','Product updated');
+    }
+
+    public function updateDescription($value)
+    {
+        $this->description = $value;
     }
 }

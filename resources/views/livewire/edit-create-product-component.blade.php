@@ -44,106 +44,50 @@
                 @endif>  
                 
                 <div class="row mb-4">
-                  <div class="col-6">
+                  <div class="col-4">
                     <label class="form-label">Name</label>
                     <div class="input-group input-group-outline">
                       <input type="text" class="form-control" name="name" wire:model.lazy="name" autocomplete="off">
                     </div>
                   </div>
-                  <div class="col-6">
+                  <div class="col-4">
                     <label class="form-label">Slug</label>
                     <div class="input-group input-group-outline">
                       <input type="text" class="form-control" name="slug" wire:model.lazy="slug" autocomplete="off" readonly>
                     </div>
                   </div>
-                </div>
-
-                <div class="row mb-4">
-                  <div class="col-6">
-                    <label class="form-label">Category</label>
-                      <div class="input-group input-group-outline" aria-autocomplete="off" >
-                        <select class="form-select form-control" aria-label="Default select example" name="group_id" wire:model="categoryId">
-
-                          <option value="" selected>Select One</option>
-                          @foreach(\App\Models\Category::orderBy('order')->get() as $category)
-                            <option value="{{$category->id}}" @if( $category->id == $categoryId ) selected @endif>{{$category->name}}</option>
-                          @endforeach
-                        </select>
-                      </div>
-                  </div>
-                  <div class="col-6">
-                    <label class="form-label">Color</label>
-                      <div class="input-group input-group-outline" aria-autocomplete="off" >
-                        <select class="form-select form-control" aria-label="Default select example" name="group_id" wire:model="colorId">
-                          <option value="" selected>Select One</option>
-                          @foreach(\App\Models\Color::orderBy('order')->get() as $color)
-                            <option value="{{$color->id}}" @if( $color->id == $colorId ) selected @endif>{{$color->name}}</option>
-                          @endforeach
-                        </select>
-                      </div>
+                  <div class="col-4">
+                    <label class="form-label">Order</label>
+                    <div class="input-group input-group-outline">
+                      <input type="text" class="form-control" name="order" wire:model.lazy="order" autocomplete="off">
+                    </div>
                   </div>
                 </div>
 
-                <div class="row mb-6">
-                  <div class="col-6">
-                    <label class="form-label">Brand</label>
-                      <div class="input-group input-group-outline" aria-autocomplete="off" >
-                        <select class="form-select form-control" aria-label="Default select example" name="group_id" wire:model="brandId">
-
-                          <option value="" selected>Select One</option>
-                          @foreach(\App\Models\Brand::orderBy('order')->get() as $brand)
-                            <option value="{{$brand->id}}" @if( $brand->id == $brandId ) selected @endif>{{$brand->name}}</option>
-                          @endforeach
-                        </select>
-                      </div>
-                  </div>
-                  <div class="col-6 mb-4">
-                    <label class="form-label">Tags</label>
-                      <div class="input-group input-group-outline" aria-autocomplete="off" >
-                        <select class="form-select form-control" aria-label="Default select example" name="group_id" wire:model="tags" multiple aria-label="multiple select example">
-                          @foreach(\App\Models\Tag::orderBy('order')->get() as $tag)
-                            @if(is_null($product))
-                              <option value="{{$tag->id}}">{{$tag->name}}</option>
-                            @elseif( $tempTag != $tags)
-                             <option value="{{$tag->id}}">{{$tag->name}}</option>
-                            @else
-                              <option value="{{$tag->id}}" @if( in_array($tag->id, $tags) ) selected @endif>{{$tag->name}}</option>
-                            @endif
-                          @endforeach
-                        </select>
-                      </div>
-                  </div>
-                </div>
+               
 
                 <div class="row mb-4">
                   <div class="col-4">
                     <label class="form-label">Price</label>
                     <div class="input-group input-group-outline">
-                      <input type="number" class="form-control" name="price" wire:model.lazy="price" autocomplete="off">
+                      <input type="number" class="form-control" name="price" min="1" wire:model.lazy="price" autocomplete="off">
                     </div>
                   </div>
                   <div class="col-4">
-                    <label class="form-label">Discounted Price</label>
+                    <label class="form-label">Series</label>
                     <div class="input-group input-group-outline">
-                      <input type="text" class="form-control" name="discountedPrice" wire:model.lazy="discountedPrice" autocomplete="off">
+                      <input type="text" class="form-control" name="series" wire:model.lazy="series" autocomplete="off">
                     </div>
                   </div>
                   <div class="col-4">
-                    <label class="form-label">Sale Price</label>
+                    <label class="form-label">Reference</label>
                     <div class="input-group input-group-outline">
-                      <input type="text" class="form-control" name="salePrice" wire:model.lazy="salePrice" autocomplete="off">
+                      <input type="text" class="form-control" name="reference" wire:model.lazy="reference" autocomplete="off">
                     </div>
                   </div>
                 </div>
 
                 <div class="row mb-6">
-                  <div class="col-4">
-                    <div class="form-check form-switch d-flex align-items-center ps-6 mt-6">
-                      <br>
-                      <input class="form-check-input" type="checkbox" id="new" name="new" @if($isNew) checked @endif wire:model="isNew">
-                      <label class="form-check-label mt-2 ms-2" for="new">New</label>
-                    </div>
-                  </div>
                   <div class="col-4">
                     <div class="form-check form-switch d-flex align-items-center ps-6 mt-6">
                       <br>
@@ -158,29 +102,24 @@
                       <label class="form-check-label mt-2 ms-2" for="status">Status</label>
                     </div>
                   </div>
+                  <div class="col-4">
+                    <div class="form-check form-switch d-flex align-items-center ps-6 mt-6">
+                      <br>
+                      <input class="form-check-input" type="checkbox" id="showInHomePage" name="showInHomePage" @if($showInHomePage) checked @endif wire:model="showInHomePage">
+                      <label class="form-check-label mt-2 ms-2" for="showInHomePage">Show in home page</label>
+                    </div>
+                  </div>
                 </div>
 
-                <div class="row mb-6">
-                  <div class="col-6">
-                    <label class="form-label">Short Description</label>
-                    <div class="input-group input-group-outline">
-                      <textarea type="text" class="form-control" style="resize:none" name="shortDescription" wire:model.lazy="shortDescription" autocomplete="off" rows="3">{{$shortDescription}}</textarea>
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <label class="form-label">Additional Information</label>
-                    <div class="input-group input-group-outline">
-                      <textarea type="text" class="form-control" style="resize:none" name="additionalInformation" wire:model.lazy="additionalInformation" autocomplete="off" rows="3">{{$additionalInformation}}</textarea>
-                    </div>
-                  </div>
-                </div>
+              
 
                 <div class="row mb-12">
                     <label class="form-label">Description</label>
-                    <div class="input-group input-group-outline">
-                      <textarea type="text" class="form-control" style="resize:none" name="description" id="description" wire:model.lazy="description" autocomplete="off" row="5">{{$description}}</textarea>
+                    <div class="input-group input-group-outline" wire:ignore>
+                      <textarea type="text" class="form-control" style="resize:none" name="description" id="description" wire:model.lazy="description" autocomplete="off" row="12">{{$description}}</textarea>
                     </div>
                 </div>
+
 
                 <div class="row pt-6">
                   <div class="col-12">
@@ -188,36 +127,16 @@
                       @if ($image)
                         <img src="{{ $image->temporaryUrl() }}" style="width: 30%; height: 100%;">
                       @elseif(!is_null($product))
-                          <img src="{{ env('APP_URL').'storage/'.$product->display_image }}" style="width: 30%; height: 100%;">
+                          <img src="{{ env('APP_URL').'storage/'.$product->image }}" style="width: 30%; height: 100%;">
                       @endif
                     </div>      
                     <div>
-                      <label class="form-label">Display Image</label>
+                      <label class="form-label">Image</label>
                       <input type="file" class="form-control" name="image" wire:model.lazy="image">
                     </div> 
                   </div>
 
                 </div>   
-
-                <div class="row pt-2">
-                  <div class="col-12">
-                    <div class="my-4" style="width: 100%; height: 100px; overflow-x: auto; white-space: nowrap;">
-                      @if ($images)
-                        @foreach($images as $productImage)
-                          <img src="{{ $productImage->temporaryUrl() }}" style="width: 20%; height: 100%;">
-                        @endforeach
-                      @elseif(!is_null($product))
-                          @foreach(explode(",",$product->images) as $img)
-                            <img src="{{ env('APP_URL').'storage/'.$img }}" style="width: 20%; height: 100%;">
-                          @endforeach
-                      @endif
-                    </div>      
-                    <div>
-                      <label class="form-label">Images</label>
-                      <input type="file" class="form-control" name="images" wire:model.lazy="images" multiple>
-                    </div> 
-                  </div>
-                </div>
                 <div class="text-center">
                   <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">@if(!is_null($product)) Update @else Add @endif Product</button>
                 </div>
@@ -237,36 +156,31 @@
 
 <script>
 
-  var app = {
-    init(){
-      tinymce.init({
-                selector: 'textarea#description',
-                setup: function (editor) {
-                    editor.on('change', function () {
-                        editor.save();
-                        var content = editor.getContent();
-                        @this.set('description', content);
-                    });
-                },
-                plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount linkchecker',
-                toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-                tinycomments_mode: 'embedded',
-                tinycomments_author: 'Author name',
-                mergetags_list: [
-                    { value: 'First.Name', title: 'First Name' },
-                    { value: 'Email', title: 'Email' },
-                ],
-                ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
-            });
-    }
-  }
-  $(function(){
-      app.init();
-    });
+document.addEventListener('livewire:load', function () {
+    initTinyMCE();
+});
 
-    window.livewire.on('render-list',id=> {
-        app.init();
-	  });
+document.addEventListener('livewire:update', function () {
+    if (!tinymce.get('description')) {
+        initTinyMCE();
+    }
+});
+
+function initTinyMCE() {
+    tinymce.init({
+        selector: 'textarea#description',
+        setup: function (editor) {
+            editor.on('change', function () {
+                editor.save();
+                var content = editor.getContent();
+                Livewire.emit('updateDescription', content);
+            });
+        },
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+        toolbar: 'undo redo | bold italic underline | link image media table | numlist bullist',
+    });
+}
+
 </script>
 @endsection
 

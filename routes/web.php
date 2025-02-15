@@ -34,7 +34,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::match(['get','post'],'/',[AuthController::class,'login'])->name('login');
+Route::match(['get','post'],'/admin',[AuthController::class,'login'])->name('login');
 
 Route::group(['middleware'=>'auth','prefix' =>'admin'],function(){
     Route::get('/dashboard',[PageController::class,'profile'])->name('dashboard');

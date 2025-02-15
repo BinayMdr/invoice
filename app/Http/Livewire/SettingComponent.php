@@ -131,15 +131,14 @@ class SettingComponent extends Component
                 );
             }
 
-            if($this->chatScript != null && $this->chatScript != "")
-            {
-                Setting::updateOrCreate([
-                    'key' => 'chat-script'],
-                    [
-                        'value' => $this->chatScript
-                    ]
-                );
-            }
+            
+            Setting::updateOrCreate([
+                'key' => 'chat-script'],
+                [
+                    'value' => $this->chatScript
+                ]
+            );
+            
 
             return redirect()->route('setting')->with('success','Settings updated');
         }
