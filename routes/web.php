@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CertificationController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerReviewController;
@@ -43,6 +44,7 @@ Route::group(['middleware'=>'auth','prefix' =>'admin'],function(){
     Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
     Route::get('/setting',[SettingController::class,'index'])->name('setting');
+    Route::get('/certification',[CertificationController::class,'index'])->name('certification');
 
     Route::get('/user',[UserController::class,'index'])->name('user');
     Route::get('/user/create',[UserController::class,'create'])->name('create.user');
