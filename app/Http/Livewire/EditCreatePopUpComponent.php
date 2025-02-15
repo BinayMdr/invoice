@@ -17,7 +17,7 @@ class EditCreatePopUpComponent extends Component
     public $searchKey;
     public $searchValue;
     public $image;
-    public $order;
+    public $order = null;
     public $isEnabled = false;
     public $showSearch = false;
     public $error;
@@ -63,12 +63,18 @@ class EditCreatePopUpComponent extends Component
 
         $maxOrder = PopUp::orderByDesc('order')->first();
         
+        if($this->order == null )
+        {
+            if($maxOrder != null) $this->order = $maxOrder->order + 1;
+            else $this->order = 1;
+        }
+
         PopUp::create([
             'name' => $this->name,
             'image' => str_replace("public/","",$pop_up_image_path),
             'link' => $this->link,
             'is_enabled' => $this->isEnabled ?? false,
-            'order' => $this->order ?? $maxOrder != null ? $maxOrder->order + 1 : 1 
+            'order' => $this->order 
         ]);
 
         return redirect()->route('pop-up')->with('success','Popup created');

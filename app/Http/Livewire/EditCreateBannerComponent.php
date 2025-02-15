@@ -11,7 +11,7 @@ class EditCreateBannerComponent extends Component
     use WithFileUploads;
     public $banner;
     public $name;
-    public $order;
+    public $order = null;
     public $heading;
     public $text;
     public $buttonText;
@@ -62,6 +62,12 @@ class EditCreateBannerComponent extends Component
 
         $maxOrder = Banner::orderByDesc('order')->first();
 
+        if($this->order == null )
+        {
+            if($maxOrder != null) $this->order = $maxOrder->order + 1;
+            else $this->order = 1;
+        }
+
         Banner::create([
             'name' => $this->name,
             'image' => str_replace("public/","",$banner_image_path),
@@ -70,7 +76,7 @@ class EditCreateBannerComponent extends Component
             'button_text' => $this->buttonText,
             'button_link' => $this->buttonLink,
             'is_enabled' => $this->isEnabled ?? false,
-            'order' => $this?->order ?? $maxOrder != null ? $maxOrder->order + 1 : 1
+            'order' => $this?->order
         ]);
 
         return redirect()->route('banner')->with('success','Banner created');
