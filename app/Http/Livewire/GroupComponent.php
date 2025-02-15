@@ -21,7 +21,7 @@ class GroupComponent extends Component
 
         $groups = Group::whereNotIn('id',[$superGroup->id]); 
 
-        $groups = new Group();
+        // $groups = new Group();
 
         if($this->search != "") 
         {

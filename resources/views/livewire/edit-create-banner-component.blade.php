@@ -39,7 +39,7 @@
                   
                   <div class="row mb-4">
                     <div class="col-8">
-                      <label class="form-label">Name</label>
+                      <label class="form-label">Name <span class="text-danger">*</span> </label>
                       <div class="input-group input-group-outline">
                         <input type="text" class="form-control" name="name" wire:model.lazy="name" autocomplete="off">
                       </div>
@@ -103,6 +103,7 @@
                     <div>
                       <input type="file" class="form-control" name="image" wire:model.lazy="image">
                     </div> 
+                    <label class="form-label">Image @if(!$banner)<span class="text-danger">*</span> @endif</label>
                   </div>   
                   <div class="text-center">
                     <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">@if(!is_null($banner)) Update @else Add @endif Banner</button>

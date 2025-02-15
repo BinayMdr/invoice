@@ -45,13 +45,13 @@
                 
                 <div class="row mb-4">
                   <div class="col-4">
-                    <label class="form-label">Name</label>
+                    <label class="form-label">Name <span class="text-danger">*</span> </label>
                     <div class="input-group input-group-outline">
                       <input type="text" class="form-control" name="name" wire:model.lazy="name" autocomplete="off">
                     </div>
                   </div>
                   <div class="col-4">
-                    <label class="form-label">Slug</label>
+                    <label class="form-label">Slug <span class="text-danger">*</span> </label>
                     <div class="input-group input-group-outline">
                       <input type="text" class="form-control" name="slug" wire:model.lazy="slug" autocomplete="off" readonly>
                     </div>
@@ -131,9 +131,9 @@
                       @endif
                     </div>      
                     <div>
-                      <label class="form-label">Image</label>
                       <input type="file" class="form-control" name="image" wire:model.lazy="image">
                     </div> 
+                    <label class="form-label">Image @if(!$product)<span class="text-danger">*</span> @endif</label>
                   </div>
 
                 </div>   

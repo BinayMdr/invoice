@@ -67,7 +67,7 @@
                   @endif
                   
                   <div class="row">
-                    <label class="form-label">Name</label>
+                    <label class="form-label">Name <span class="text-danger">*</span></label>
                     <div class="input-group input-group-outline col-6 @if(!is_null($group)) is-filled @endif">
                       <input type="text" class="form-control" name="name" value="{{ $group->name ?? ""}}" autocomplete="off">
                     </div> 

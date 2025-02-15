@@ -79,13 +79,13 @@
                     @endif
                     <div class="row mb-4">
                       <div class="col-6">
-                        <label class="form-label">Name</label>
+                        <label class="form-label">Name <span class="text-danger">*</span> </label>
                         <div class="input-group input-group-outline @if(!is_null($user)) is-filled @endif">
                           <input type="text" class="form-control" name="name"  value="{{ $user->name ?? ""}}" autocomplete="off" @if(!is_null($user)) readonly @endif>
                         </div>
                       </div>
                       <div class="col-6">
-                        <label class="form-label">Email</label>
+                        <label class="form-label">Email <span class="text-danger">*</span> </label>
                         <div class="input-group input-group-outline @if(!is_null($user)) is-filled @endif">
                           <input type="email" class="form-control" name="email"  value="{{ $user->email ?? ""}}" autocomplete="off" @if(!is_null($user)) readonly @endif>
                         </div>   
@@ -115,13 +115,13 @@
 
                     <div class="row my-4">
                       <div class="col-6">
-                        <label class="form-label">Password</label>
+                        <label class="form-label">Password @if(!$user) <span class="text-danger">*</span> @endif</label>
                         <div class="input-group input-group-outline">
                           <input type="password" class="form-control" name="password" @if(is_null($user))  @endif autocomplete="off">
                         </div>   
                       </div>
                       <div class="col-6">
-                        <label class="form-label">Confirm Password</label>
+                        <label class="form-label">Confirm Password @if(!$user) <span class="text-danger">*</span> @endif </label>
                         <div class="input-group input-group-outline">
                           <input type="password" class="form-control" name="confirm_password" @if(is_null($user)) @endif autocomplete="off">
                         </div>   

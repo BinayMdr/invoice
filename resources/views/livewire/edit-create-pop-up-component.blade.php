@@ -42,7 +42,7 @@
                   
                   <div class="row mb-4">
                     <div class="col-4">
-                      <label class="form-label">Name</label>
+                      <label class="form-label">Name <span class="text-danger">*</span></label>
                       <div class="input-group input-group-outline">
                         <input type="text" class="form-control" name="name" wire:model.lazy="name" autocomplete="off">
                       </div>
@@ -63,7 +63,7 @@
 
                   
 
-                  <div class="row mb-6">
+                  <div class="row mb-2">
                     <div class="col-6">
                         <div class="my-4" style="width: 100%; height: 150px; overflow: hidden;">
                             @if ($image)
@@ -75,6 +75,7 @@
                         <div>
                         <input type="file" class="form-control" name="image" wire:model.lazy="image">
                         </div> 
+                        <label class="form-label">Image @if(!$popUp)<span class="text-danger">*</span> @endif</label>
                     </div>
                     <div class="col-3">
                       <div class="form-check form-switch d-flex align-items-center ps-6 mt-4">

@@ -45,14 +45,14 @@
                   
                   <div class="row mb-4">
                     <div class="col-6">
-                      <label class="form-label">Name</label>
+                      <label class="form-label">Name <span class="text-danger">*</span> </label>
                       <div class="input-group input-group-outline">
                         <input type="text" class="form-control" name="name" wire:model.lazy="name" autocomplete="off">
                       </div>
                     </div>
                     
                     <div class="col-6">
-                      <label class="form-label">Designation</label>
+                      <label class="form-label">Designation <span class="text-danger">*</span> </label>
                       <div class="input-group input-group-outline">
                         <input type="text" class="form-control" name="designation" wire:model.lazy="designation" autocomplete="off">
                       </div>
@@ -93,9 +93,10 @@
                         <div>
                         <input type="file" class="form-control" name="image" wire:model.lazy="image">
                         </div> 
+                        <label class="form-label">Image <span class="text-danger">*</span> </label>
                     </div>
                     <div class="col-6">
-                        <label class="form-label">Review</label>
+                        <label class="form-label">Review <span class="text-danger">*</span> </label>
                         <div class="input-group input-group-outline">
                           <textarea type="text" class="form-control" rows="6" style="resize:none" name="text" wire:model.lazy="review" autocomplete="off">{{$review}}</textarea>
                         </div>
