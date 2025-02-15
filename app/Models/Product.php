@@ -10,8 +10,5 @@ class Product extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function tags()
-    {
-        return $this->hasMany(ProductHasTag::class,'product_id');
-    }
+ 
 }

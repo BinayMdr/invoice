@@ -11,14 +11,14 @@
         $currentRoute = \Route::currentRouteName();
       @endphp
       <ul class="navbar-nav">
-        <li class="nav-item">
+        {{-- <li class="nav-item">
           <a class="nav-link text-white @if($currentRoute == "dashboard") active @endif" href="{{route('dashboard')}}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">dashboard</i>
             </div>
             <span class="nav-link-text ms-1">Dashboard</span>
           </a>
-        </li>
+        </li> --}}
         @if(\Auth::user()->hasRole('view-groups') || \Auth::user()->hasRole('view-users'))
           <li class="nav-item mt-3">
             <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">User & Roles</h6>
@@ -123,7 +123,7 @@
 
         @if(\Auth::user()->hasRole('view-customer-reviews'))
         <li class="nav-item">
-          <a class="nav-link text-white @if(str_contains(url()->current(),'customer-reviews')) active @endif" href="{{route('team')}}">
+          <a class="nav-link text-white @if(str_contains(url()->current(),'customer-review')) active @endif" href="{{route('customer-review')}}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">reviews</i>
             </div>

@@ -37,7 +37,7 @@ use Illuminate\Support\Facades\Route;
 Route::match(['get','post'],'/',[AuthController::class,'login'])->name('login');
 
 Route::group(['middleware'=>'auth','prefix' =>'admin'],function(){
-    Route::get('/dashboard',[PageController::class,'dashboard'])->name('dashboard');
+    Route::get('/dashboard',[PageController::class,'profile'])->name('dashboard');
     Route::get('/profile',[PageController::class,'profile'])->name('profile');
     Route::post('/update-password',[ProfileController::class,'update_password'])->name('update.password');
     Route::get('/logout',[AuthController::class,'logout'])->name('logout');

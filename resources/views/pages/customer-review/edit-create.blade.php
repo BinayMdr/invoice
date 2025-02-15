@@ -7,14 +7,14 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Team</li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Customer Review</li>
           </ol>
-          <h6 class="font-weight-bolder mb-0">@if(!is_null($team)) Update @else Add @endif Team</h6>
+          <h6 class="font-weight-bolder mb-0">@if(!is_null($customerReview)) Update @else Add @endif Customer Review</h6>
         </nav>
       
       </div>
     </nav>
     <!-- End Navbar -->
-    @livewire('edit-create-team-component',['team' => $team])
+    @livewire('edit-create-customer-review-component',['customerReview' => $customerReview])
   </div>
 @endsection

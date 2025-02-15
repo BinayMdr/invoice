@@ -27,4 +27,14 @@ class CustomerReviewController extends Controller
         return view('pages.customer-review.edit-create',compact('customerReview'));
     }
 
+    public function destroy(CustomerReview $customerReview)
+    {
+        if(\Auth::user()->hasRole('delete-customer-reviews'))
+        {
+            $customerReview->delete();
+            return redirect()->route('customer-review')->with('success','Customer Review deleted');
+        }
+        return back();
+    }
+
 }
