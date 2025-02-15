@@ -17,6 +17,7 @@ class EditCreatePopUpComponent extends Component
     public $searchKey;
     public $searchValue;
     public $image;
+    public $order;
     public $isEnabled = false;
     public $showSearch = false;
     public $error;
@@ -31,10 +32,8 @@ class EditCreatePopUpComponent extends Component
         $this->popUp = $popUp;
         $this->name = $popUp?->name;
         $this->link = $popUp?->link;
-        $this->searchKey = $popUp?->search_key;
-        $this->searchValue = $popUp?->search_value;
         $this->isEnabled = $popUp?->is_enabled;
-        $this->showSearch = $popUp?->show_search;
+        $this->order = $popUp?->order;
     }
 
     public function render()
@@ -59,17 +58,17 @@ class EditCreatePopUpComponent extends Component
             return;
         }
 
-        $pop_up_image = 'bg-'.time().'.'.$this->image->extension(); 
+        $pop_up_image = 'popup-'.time().'.'.$this->image->extension(); 
         $pop_up_image_path = $this->image->storeAs('public/uploads/pop-up',$pop_up_image);
 
+        $maxOrder = PopUp::orderByDesc('order')->first();
+        
         PopUp::create([
             'name' => $this->name,
             'image' => str_replace("public/","",$pop_up_image_path),
             'link' => $this->link,
-            'search_key' => $this->searchKey,
-            'search_value' => $this->searchValue,
-            'is_enabled' => $this->isEnabled,
-            'show_search' => $this->showSearch
+            'is_enabled' => $this->isEnabled ?? false,
+            'order' => $this->order ?? $maxOrder != null ? $maxOrder->order + 1 : 1 
         ]);
 
         return redirect()->route('pop-up')->with('success','Popup created');
@@ -93,14 +92,12 @@ class EditCreatePopUpComponent extends Component
         $data = [
             'name' => $this->name,
             'link' => $this->link,
-            'search_key' => $this->searchKey,
-            'search_value' => $this->searchValue,
-            'is_enabled' => $this->isEnabled,
-            'show_search' => $this->showSearch
+            'is_enabled' => $this->isEnabled ?? false,
+            'order' => $this->order
         ];
         if($this->image != null)
         {
-            $pop_up_image = 'bg-'.time().'.'.$this->image->extension(); 
+            $pop_up_image = 'popup-'.time().'.'.$this->image->extension(); 
             $pop_up_image_path = $this->image->storeAs('public/uploads/pop-up',$pop_up_image);
             $data['image'] = str_replace("public/","",$pop_up_image_path);
         }

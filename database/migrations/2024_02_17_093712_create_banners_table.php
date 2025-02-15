@@ -17,16 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->longText('image');
-            $table->longText('heading_1')->nullable();
-            $table->longText('heading_2')->nullable();
+            $table->longText('heading')->nullable();
             $table->longText('text')->nullable();
             $table->longText('button_text')->nullable();
             $table->longText('button_link')->nullable();
-            $table->string('search_key')->nullable();
-            $table->string('search_value')->nullable();
-            $table->string('banner_type');
             $table->boolean('is_enabled');
-            $table->boolean('show_search');
+            $table->integer('order');
             $table->timestamps();
         });
     }

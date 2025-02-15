@@ -45,21 +45,12 @@
           </li>
         @endif
 
-        @if(\Auth::user()->hasRole('view-contacts') || \Auth::user()->hasRole('view-about-us'))
+        @if(\Auth::user()->hasRole('view-about-us'))
           <li class="nav-item mt-3">
             <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Pages</h6>
           </li>
         @endif
-        @if(\Auth::user()->hasRole('view-contacts'))
-        <li class="nav-item">
-          <a class="nav-link text-white @if(str_contains(url()->current(),'contacts')) active @endif" href="{{route('contacts')}}">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">contact_page</i>
-            </div>
-            <span class="nav-link-text ms-1">Contacts</span>
-          </a>
-        </li>
-        @endif
+       
         @if(\Auth::user()->hasRole('view-about-us'))
         <li class="nav-item">
           <a class="nav-link text-white @if(str_contains(url()->current(),'about-us')) active @endif" href="{{route('about-us')}}">
@@ -71,9 +62,12 @@
         </li>
         @endif
 
+        @if(\Auth::user()->hasRole('view-banners') || \Auth::user()->hasRole('view-pop-ups') 
+        || \Auth::user()->hasRole('view-products'))
         <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Others</h6>
+          <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Image Related</h6>
         </li>
+        @endif
 
         @if(\Auth::user()->hasRole('view-banners'))
           <li class="nav-item">
@@ -85,36 +79,9 @@
             </a>
           </li>
         @endif
-        @if(\Auth::user()->hasRole('view-payment-methods'))
-          <li class="nav-item">
-            <a class="nav-link text-white @if(str_contains(url()->current(),'payment')) active @endif" href="{{route('payment-method')}}">
-              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">payments</i>
-              </div>
-              <span class="nav-link-text ms-1">Payment Method</span>
-            </a>
-          </li>
-        @endif
-        @if(\Auth::user()->hasRole('view-sale-products'))
-          <li class="nav-item">
-            <a class="nav-link text-white @if(str_contains(url()->current(),'sale-product')) active @endif" href="{{route('sale-product')}}">
-              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">inventory_2</i>
-              </div>
-              <span class="nav-link-text ms-1">Product on sale</span>
-            </a>
-          </li>
-        @endif
-        @if(\Auth::user()->hasRole('view-footer-menus'))
-          <li class="nav-item">
-            <a class="nav-link text-white @if(str_contains(url()->current(),'footer-menu')) active @endif" href="{{route('footer-menu')}}">
-              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">menu</i>
-              </div>
-              <span class="nav-link-text ms-1">Footer Menu</span>
-            </a>
-          </li>
-        @endif
+       
+        
+        
         @if(\Auth::user()->hasRole('view-pop-ups'))
           <li class="nav-item">
             <a class="nav-link text-white @if(str_contains(url()->current(),'pop-up')) active @endif" href="{{route('pop-up')}}">
@@ -125,55 +92,12 @@
             </a>
           </li>
         @endif
-        @if(\Auth::user()->hasRole('view-categories'))
-          <li class="nav-item mt-3">
-            <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Products Related</h6>
-          </li>
-        @endif
+      
 
-        @if(\Auth::user()->hasRole('view-categories') || \Auth::user()->hasRole('view-brands')
-        || \Auth::user()->hasRole('view-colors') || \Auth::user()->hasRole('view-tags')
-        || \Auth::user()->hasRole('view-products') || \Auth::user()->hasRole('view-filter-tags') )
-        <li class="nav-item">
-          <a class="nav-link text-white @if(\Request::route()->getName() == "category") active @endif" href="{{route('category')}}">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">category</i>
-            </div>
-            <span class="nav-link-text ms-1">Category</span>
-          </a>
-        </li>
-        @endif
 
-        @if(\Auth::user()->hasRole('view-brands'))
-        <li class="nav-item">
-          <a class="nav-link text-white @if(\Request::route()->getName() == "brand") active @endif" href="{{route('brand')}}">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">branding_watermark</i>
-            </div>
-            <span class="nav-link-text ms-1">Brand</span>
-          </a>
-        </li>
-        @endif
-        @if(\Auth::user()->hasRole('view-colors'))
-        <li class="nav-item">
-          <a class="nav-link text-white @if(\Request::route()->getName() == "color") active @endif" href="{{route('color')}}">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">colorize</i>
-            </div>
-            <span class="nav-link-text ms-1">Color</span>
-          </a>
-        </li>
-        @endif
-        @if(\Auth::user()->hasRole('view-tags'))
-        <li class="nav-item">
-          <a class="nav-link text-white @if(\Request::route()->getName() == "tag") active @endif" href="{{route('tag')}}">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">style</i>
-            </div>
-            <span class="nav-link-text ms-1">Tags</span>
-          </a>
-        </li>
-        @endif
+      
+        
+        
         @if(\Auth::user()->hasRole('view-products'))
         <li class="nav-item">
           <a class="nav-link text-white @if(\Request::route()->getName() == "product") active @endif" href="{{route('product')}}">
@@ -184,16 +108,7 @@
           </a>
         </li>
         @endif
-        @if(\Auth::user()->hasRole('view-filter-tags'))
-        <li class="nav-item">
-          <a class="nav-link text-white @if(\Request::route()->getName() == "filter-tag") active @endif" href="{{route('filter-tag')}}">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">filter_alt</i>
-            </div>
-            <span class="nav-link-text ms-1">Filter Tag</span>
-          </a>
-        </li>
-        @endif
+       
         @if(\Auth::user()->hasRole('view-settings'))
           <li class="nav-item mt-3">
             <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Settings</h6>

@@ -30,14 +30,21 @@ class PopUpComponent extends Component
         $popUps = $popUps->orderBy('created_at','desc')
                             ->paginate($this->limit);
         
+        $start = ($popUps->currentPage() - 1) * $this->limit + 1;
+        $end = min($popUps->currentPage() * $this->limit, $popUps->total());
+
         return view('livewire.pop-up-component',[
             'popUps' => $popUps,
-            'limit' => $this->limit
+            'limit' => $this->limit,
+            'start' => $start,
+            'end' => $end,
+            'total' => $popUps->total()
         ]);
     }
 
     public function changeEvent($value)
     {
         $this->limit = $value;
+        $this->resetPage();
     }
 }

@@ -11,17 +11,13 @@ class EditCreateBannerComponent extends Component
     use WithFileUploads;
     public $banner;
     public $name;
+    public $order;
+    public $heading;
     public $text;
-    public $heading1;
-    public $heading2;
     public $buttonText;
     public $buttonLink;
-    public $searchKey;
-    public $searchValue;
     public $image;
-    public $bannerType = "Main Banner";
     public $isEnabled = false;
-    public $showSearch = false;
     public $error;
    
     public function updated($field)
@@ -33,16 +29,12 @@ class EditCreateBannerComponent extends Component
     {
         $this->banner = $banner;
         $this->name = $banner?->name;
+        $this->order = $banner?->order;
+        $this->heading = $banner?->heading;
         $this->text = $banner?->text;
-        $this->heading1 = $banner?->heading_1;
-        $this->heading2 = $banner?->heading_2;
         $this->buttonText = $banner?->button_text;
         $this->buttonLink = $banner?->button_link;
-        $this->searchKey = $banner?->search_key;
-        $this->searchValue = $banner?->search_value;
-        $this->bannerType = $banner?->banner_type;
         $this->isEnabled = $banner?->is_enabled;
-        $this->showSearch = $banner?->show_search;
     }
 
     public function render()
@@ -68,19 +60,17 @@ class EditCreateBannerComponent extends Component
         $banner_image = 'bg-'.time().'.'.$this->image->extension(); 
         $banner_image_path = $this->image->storeAs('public/uploads/banner',$banner_image);
 
+        $maxOrder = Banner::orderByDesc('order')->first();
+
         Banner::create([
             'name' => $this->name,
             'image' => str_replace("public/","",$banner_image_path),
             'text' => $this->text,
-            'heading_1' => $this->heading1,
-            'heading_2' => $this->heading2,
+            'heading' => $this->heading,
             'button_text' => $this->buttonText,
             'button_link' => $this->buttonLink,
-            'search_key' => $this->searchKey,
-            'search_value' => $this->searchValue,
-            'banner_type' => $this->bannerType,
-            'is_enabled' => $this->isEnabled,
-            'show_search' => $this->showSearch
+            'is_enabled' => $this->isEnabled ?? false,
+            'order' => $this?->order ?? $maxOrder != null ? $maxOrder->order + 1 : 1
         ]);
 
         return redirect()->route('banner')->with('success','Banner created');
@@ -103,15 +93,11 @@ class EditCreateBannerComponent extends Component
         $data = [
             'name' => $this->name,
             'text' => $this->text,
-            'heading_1' => $this->heading1,
-            'heading_2' => $this->heading2,
+            'heading' => $this->heading,
             'button_text' => $this->buttonText,
             'button_link' => $this->buttonLink,
-            'search_key' => $this->searchKey,
-            'search_value' => $this->searchValue,
-            'banner_type' => $this->bannerType,
             'is_enabled' => $this->isEnabled,
-            'show_search' => $this->showSearch
+            'order' => $this->order
         ];
         if($this->image != null)
         {

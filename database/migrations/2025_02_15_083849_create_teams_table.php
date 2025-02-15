@@ -13,9 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('footer_menus', function (Blueprint $table) {
+        Schema::create('teams', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('designation');
+            $table->string('image');
+            $table->boolean('is_enabled');
+            $table->integer('order');
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('footer_menus');
+        Schema::dropIfExists('teams');
     }
 };

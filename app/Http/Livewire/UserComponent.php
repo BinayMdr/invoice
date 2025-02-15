@@ -32,14 +32,21 @@ class UserComponent extends Component
         }
         $users = $users->orderBy('created_at','desc')->paginate($this->limit);
         
+        $start = ($users->currentPage() - 1) * $this->limit + 1;
+        $end = min($users->currentPage() * $this->limit, $users->total());
+
         return view('livewire.user-component',[
             'users' => $users,
-            'limit' => $this->limit
+            'limit' => $this->limit,
+            'start' => $start,
+            'end' => $end,
+            'total' => $users->total()
         ]);
     }
 
     public function changeEvent($value)
     {
         $this->limit = $value;
+        $this->resetPage();
     }
 }

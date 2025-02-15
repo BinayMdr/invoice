@@ -41,36 +41,27 @@
                   @endif>  
                   
                   <div class="row mb-4">
-                    <div class="col-6">
+                    <div class="col-4">
                       <label class="form-label">Name</label>
                       <div class="input-group input-group-outline">
                         <input type="text" class="form-control" name="name" wire:model.lazy="name" autocomplete="off">
                       </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
                         <label class="form-label">Link</label>
                         <div class="input-group input-group-outline">
                           <input type="text" class="form-control" name="link" wire:model.lazy="link" autocomplete="off">
                         </div>
                     </div>
+                    <div class="col-4">
+                      <label class="form-label">Order</label>
+                      <div class="input-group input-group-outline">
+                        <input type="number" class="form-control" name="order" wire:model.lazy="order" autocomplete="off" min="1" >
+                      </div>
+                  </div>
                   </div>
 
-                  <div class="row mb-4">
-                    <div class="col-6">
-                      <label class="form-label">Search Key</label>
-                      <div class="input-group input-group-outline">
-                        <input type="text" class="form-control" name="searchKey" wire:model.lazy="searchKey" autocomplete="off">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <label class="form-label">Search Value</label>
-                      <div class="input-group input-group-outline">
-                        <input type="text" class="form-control" name="searchValue" wire:model.lazy="searchValue" autocomplete="off">
-                      </div>
-                    </div>
-                  </div>
-
-                 
+                  
 
                   <div class="row mb-6">
                     <div class="col-6">
@@ -92,13 +83,7 @@
                         <label class="form-check-label mt-2 ms-2" for="status">Status</label>
                       </div>
                     </div>
-                    <div class="col-3">
-                      <div class="form-check form-switch d-flex align-items-center ps-6 mt-4">
-                        <br>
-                        <input class="form-check-input" type="checkbox" id="showSearch" name="showSearch" @if($showSearch) checked @endif wire:model="showSearch">
-                        <label class="form-check-label mt-2 ms-2" for="showSearch">Show Search</label>
-                      </div>
-                    </div>
+                   
                   </div>
 
                    

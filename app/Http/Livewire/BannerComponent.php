@@ -30,14 +30,21 @@ class BannerComponent extends Component
         $banners = $banners->orderBy('created_at','desc')
                             ->paginate($this->limit);
         
+        $start = ($banners->currentPage() - 1) * $this->limit + 1;
+        $end = min($banners->currentPage() * $this->limit, $banners->total());
+
         return view('livewire.banner-component',[
             'banners' => $banners,
-            'limit' => $this->limit
+            'limit' => $this->limit,
+            'start' => $start,
+            'end' => $end,
+            'total' => $banners->total()
         ]);
     }
 
     public function changeEvent($value)
     {
         $this->limit = $value;
+        $this->resetPage();
     }
 }

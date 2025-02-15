@@ -18,10 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('image');
             $table->string('link')->nullable();
-            $table->string('search_key')->nullable();
-            $table->string('search_value')->nullable();
             $table->boolean('is_enabled');
-            $table->boolean('show_search');
+            $table->integer('order');
             $table->timestamps();
         });
     }

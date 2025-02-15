@@ -38,72 +38,47 @@
                   @endif>  
                   
                   <div class="row mb-4">
-                    <div class="col-6">
+                    <div class="col-8">
                       <label class="form-label">Name</label>
                       <div class="input-group input-group-outline">
                         <input type="text" class="form-control" name="name" wire:model.lazy="name" autocomplete="off">
                       </div>
                     </div>
-                    <div class="col-6">
-                      <label class="form-label">Branch</label>
-                      <div class="input-group input-group-outline" aria-autocomplete="off" >
-                        <select class="form-select form-control" aria-label="Default select example" name="group_id" wire:model="bannerType">
-                          <option value="Main Banner" @if( $bannerType == "Main Banner" ) selected @endif>Main Banner</option>
-                          <option value="Mid Banner" @if( $bannerType == "Mid Banner" ) selected @endif>Mid Banner</option>
-                        </select>
+                    
+                    <div class="col-4">
+                      <label class="form-label">Order</label>
+                      <div class="input-group input-group-outline">
+                        <input type="number" class="form-control" name="order" min="1" wire:model.lazy="order" autocomplete="off">
                       </div>
                     </div>
                   </div>
 
                   <div class="row mb-4">
                     <div class="col-6">
-                      <label class="form-label">Heading One</label>
+                      <label class="form-label">Heading</label>
                       <div class="input-group input-group-outline">
-                        <input type="text" class="form-control" name="heading_1" wire:model.lazy="heading1" autocomplete="off">
+                        <input type="text" class="form-control" name="heading" wire:model.lazy="heading" autocomplete="off">
                       </div>
                     </div>
                     <div class="col-6">
-                      <label class="form-label">Heading Two</label>
+                      <label class="form-label">Text</label>
                       <div class="input-group input-group-outline">
-                        <input type="text" class="form-control" name="heading_2" wire:model.lazy="heading2" autocomplete="off">
+                        <textarea type="text" class="form-control" rows="3" style="resize:none" name="text" wire:model.lazy="text" autocomplete="off">{{$text}}</textarea>
                       </div>
                     </div>
                   </div>
 
-                  <div class="row mb-4">
-                    <div class="col-6">
+                  <div class="row mb-4 mt-6">
+                    <div class="col-4">
                       <label class="form-label">Button Text</label>
                       <div class="input-group input-group-outline">
                         <input type="text" class="form-control" name="button_text" wire:model.lazy="buttonText" autocomplete="off">
                       </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
                       <label class="form-label">Button Link</label>
                       <div class="input-group input-group-outline ">
                         <input type="text" class="form-control" name="button_link" wire:model.lazy="buttonLink" autocomplete="off">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row mb-4">
-                    <div class="col-6">
-                      <label class="form-label">Search Key</label>
-                      <div class="input-group input-group-outline">
-                        <input type="text" class="form-control" name="search_key" wire:model.lazy="searchKey" autocomplete="off">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <label class="form-label">Search Value</label>
-                      <div class="input-group input-group-outline">
-                        <input type="text" class="form-control" name="search_value" wire:model.lazy="searchValue" autocomplete="off">
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row mb-6">
-                    <div class="col-6">
-                      <label class="form-label">Text</label>
-                      <div class="input-group input-group-outline">
-                        <textarea type="text" class="form-control" rows="3" style="resize:none" name="text" wire:model.lazy="text" autocomplete="off">{{$text}}</textarea>
                       </div>
                     </div>
                     <div class="col-3">
@@ -113,14 +88,9 @@
                         <label class="form-check-label mt-2 ms-2" for="status">Status</label>
                       </div>
                     </div>
-                    <div class="col-3">
-                      <div class="form-check form-switch d-flex align-items-center ps-6 mt-4">
-                        <br>
-                        <input class="form-check-input" type="checkbox" id="showSearch" name="showSearch" @if($showSearch) checked @endif wire:model="showSearch">
-                        <label class="form-check-label mt-2 ms-2" for="showSearch">Show Search</label>
-                      </div>
-                    </div>
                   </div>
+
+                
 
                   <div class="row">
                     <div class="my-4" style="width: 100%; height: 150px; overflow: hidden;">

@@ -15,18 +15,24 @@ return new class extends Migration
     {
         Schema::create('about_us', function (Blueprint $table) {
             $table->id();
-            $table->string('heading_1');
-            $table->string('heading_2');
-            $table->string('heading_3');
-            $table->longText('text_1');
-            $table->longText('text_2');
-            $table->longText('text_3');
-            $table->longText('top_banner');
-            $table->boolean('show_lower_banner');
-            $table->longText('lower_banner')->nullable();
-            $table->longText('quote')->nullable();
-            $table->string('author')->nullable();
-            $table->string('designation')->nullable();
+            $table->string('heading');
+
+            $table->string('sub_heading_1')->nullable();
+            $table->longText('text_1')->nullable();
+            $table->string('image_1')->nullable();
+            $table->string('sub_heading_2')->nullable();
+            $table->string('image_2')->nullable();
+            $table->longText('text_2')->nullable();
+            $table->string('sub_heading_3')->nullable();
+            $table->string('image_3')->nullable();
+            $table->longText('text_3')->nullable();
+            $table->string('sub_heading_4')->nullable();
+            $table->string('image_4')->nullable();
+            $table->longText('text_4')->nullable();
+
+            $table->string('heading_1')->nullable();
+            $table->longText('sub_text')->nullable();
+
             $table->timestamps();
         });
     }

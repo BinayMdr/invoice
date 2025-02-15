@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('customer_reviews', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('designation');
+            $table->string('image');
+            $table->longText('review');
             $table->boolean('is_enabled');
             $table->integer('order');
             $table->timestamps();
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('customer_reviews');
     }
 };

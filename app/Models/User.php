@@ -43,6 +43,7 @@ class User extends Authenticatable
         $group = Group::find($this->group_id);
         $role = Role::where('name',$roleName)->first();
         return GroupHasRole::where('group_id',$group->id)
-                            ->where('role_id',$role->id)->first();
+                            ->where('role_id',$role?->id)->first();
     }
+
 }

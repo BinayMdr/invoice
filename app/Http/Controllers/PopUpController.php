@@ -25,4 +25,13 @@ class PopUpController extends Controller
         if(!\Auth::user()->hasRole('edit-pop-ups')) return back();
         return view('pages.pop-up.edit-create',compact('popUp'));
     }
+    public function destroy(PopUp $popUp)
+    {
+        if(\Auth::user()->hasRole('delete-pop-ups'))
+        {
+            $popUp->delete();
+            return redirect()->route('pop-up')->with('success','Popup deleted');
+        }
+        return back();
+    }
 }

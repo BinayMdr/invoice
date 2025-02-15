@@ -24,6 +24,38 @@
                   <h6 class="mb-0">@if(!is_null($user)) Update User @else Add User @endif </h6>
                 </div>
                 <div class="card-body">
+                  @error('name')
+                  <div class="alert alert-danger alert-dismissible text-white" role="alert">
+                    <span class="text-sm">{{ $message }}</span>
+                    <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  @enderror
+                  @error('email')
+                  <div class="alert alert-danger alert-dismissible text-white" role="alert">
+                    <span class="text-sm">{{ $message }}</span>
+                    <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  @enderror
+                  @error('password')
+                  <div class="alert alert-danger alert-dismissible text-white" role="alert">
+                    <span class="text-sm">{{ $message }}</span>
+                    <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                @enderror
+                @error('confirm_password')
+                  <div class="alert alert-danger alert-dismissible text-white" role="alert">
+                    <span class="text-sm">{{ $message }}</span>
+                    <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                @enderror
                   @if(\Session::has('error'))
                     <div class="alert alert-danger alert-dismissible text-white" role="alert">
                       <span class="text-sm">{{\Session::get('error')}}</span>
@@ -49,13 +81,13 @@
                       <div class="col-6">
                         <label class="form-label">Name</label>
                         <div class="input-group input-group-outline @if(!is_null($user)) is-filled @endif">
-                          <input type="text" class="form-control" name="name" required value="{{ $user->name ?? ""}}" autocomplete="off" @if(!is_null($user)) readonly @endif>
+                          <input type="text" class="form-control" name="name"  value="{{ $user->name ?? ""}}" autocomplete="off" @if(!is_null($user)) readonly @endif>
                         </div>
                       </div>
                       <div class="col-6">
                         <label class="form-label">Email</label>
                         <div class="input-group input-group-outline @if(!is_null($user)) is-filled @endif">
-                          <input type="email" class="form-control" name="email" required value="{{ $user->email ?? ""}}" autocomplete="off" @if(!is_null($user)) readonly @endif>
+                          <input type="email" class="form-control" name="email"  value="{{ $user->email ?? ""}}" autocomplete="off" @if(!is_null($user)) readonly @endif>
                         </div>   
                       </div>
                     </div>
@@ -85,13 +117,13 @@
                       <div class="col-6">
                         <label class="form-label">Password</label>
                         <div class="input-group input-group-outline">
-                          <input type="password" class="form-control" name="password" @if(is_null($user)) required @endif autocomplete="off">
+                          <input type="password" class="form-control" name="password" @if(is_null($user))  @endif autocomplete="off">
                         </div>   
                       </div>
                       <div class="col-6">
                         <label class="form-label">Confirm Password</label>
                         <div class="input-group input-group-outline">
-                          <input type="password" class="form-control" name="confirm_password" @if(is_null($user)) required @endif autocomplete="off">
+                          <input type="password" class="form-control" name="confirm_password" @if(is_null($user)) @endif autocomplete="off">
                         </div>   
                       </div>
                     </div>

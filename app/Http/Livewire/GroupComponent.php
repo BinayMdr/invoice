@@ -21,7 +21,7 @@ class GroupComponent extends Component
 
         $groups = Group::whereNotIn('id',[$superGroup->id]); 
 
-        // $groups = new Group();
+        $groups = new Group();
 
         if($this->search != "") 
         {
@@ -34,14 +34,21 @@ class GroupComponent extends Component
         $groups = $groups->orderBy('created_at','desc')
                             ->paginate($this->limit);
         
+        $start = ($groups->currentPage() - 1) * $this->limit + 1;
+        $end = min($groups->currentPage() * $this->limit, $groups->total());
+
         return view('livewire.group-component',[
             'groups' => $groups,
-            'limit' => $this->limit
+            'limit' => $this->limit,
+            'start' => $start,
+            'end' => $end,
+            'total' => $groups->total()
         ]);
     }
 
     public function changeEvent($value)
     {
         $this->limit = $value;
+        $this->resetPage();
     }
 }

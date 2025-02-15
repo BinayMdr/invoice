@@ -17,26 +17,16 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
-
-            $table->string('price');
-            $table->string('discounted_price')->nullable();
-            $table->string('sale_price')->nullable();
-
-            $table->string('display_image');
-            $table->longText('images');
-
-            $table->longText('short_description')->nullable();
+            $table->string('price')->nullable();
+            $table->string('series')->nullable();
+            $table->string('reference')->nullable();
+            $table->longText('image');
             $table->longText('description')->nullable();
-            $table->longText('additional_information')->nullable();
 
-            $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('color_id')->nullable();
-            $table->unsignedBigInteger('brand_id')->nullable();
-
-            $table->boolean('is_new');
-            $table->boolean('is_out_of_stock');
             $table->boolean('is_enabled');
-
+            $table->boolean('is_out_of_stock');
+            $table->boolean('show_in_home_page');
+            $table->integer('order');
             $table->timestamps();
         });
     }

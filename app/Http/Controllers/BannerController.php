@@ -26,4 +26,14 @@ class BannerController extends Controller
         return view('pages.banner.edit-create',compact('banner'));
     }
 
+    public function destroy(Banner $banner)
+    {
+        if(\Auth::user()->hasRole('delete-banners'))
+        {
+            $banner->delete();
+            return redirect()->route('banner')->with('success','Banner deleted');
+        }
+        return back();
+    }
 }
+

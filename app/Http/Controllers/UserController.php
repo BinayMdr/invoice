@@ -73,4 +73,14 @@ class UserController extends Controller
 
         return redirect()->route('user')->with('success','User updated');
     }
+
+    public function destroy(User $user)
+    {
+        if(\Auth::user()->hasRole('delete-users'))
+        {
+            $user->delete();
+            return redirect()->route('user')->with('success','User deleted');
+        }
+        return back();
+    }
 }

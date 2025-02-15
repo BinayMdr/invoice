@@ -1,5 +1,6 @@
 @extends('layout.master')
 @section('content')
+
   <div class="main-content position-relative max-height-vh-100 h-100">
     <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
@@ -25,6 +26,14 @@
               </div>
               <div class="card-body">
 
+                @error('name')
+                  <div class="alert alert-danger alert-dismissible text-white" role="alert">
+                    <span class="text-sm">{{ $message }}</span>
+                    <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                @enderror
 
                 @error('roles')
                   <div class="alert alert-danger alert-dismissible text-white" role="alert">
@@ -57,13 +66,14 @@
                     @method('PUT')
                   @endif
                   
-                  <div class="row mb-4">
+                  <div class="row">
                     <label class="form-label">Name</label>
                     <div class="input-group input-group-outline col-6 @if(!is_null($group)) is-filled @endif">
-                      <input type="text" class="form-control" name="name" required value="{{ $group->name ?? ""}}" autocomplete="off">
+                      <input type="text" class="form-control" name="name" value="{{ $group->name ?? ""}}" autocomplete="off">
                     </div> 
                   </div>
-                  <div>
+                  
+                  <div class="mt-4">
                     Roles:
                     @php
                       $parentRoles = \App\Models\Role::whereNull('parent_role_id')->orderBy('order')->get();
@@ -74,9 +84,11 @@
                         $roles = \App\Models\Role::where('parent_role_id',$parentRole->id)->orderBy('order')->get();
                       @endphp
                         @foreach ($roles as $role)
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value={{$role->id}} id="flexCheckDefault" name="roles[]" @if(!is_null($group?->hasRole($role->id))) checked @endif>
-                          <label class="form-check-label" for="flexCheckDefault">
+                        <div style="display: block;min-height: auto;padding-left: 1.73em;margin-bottom: 0.125rem;">
+                          <input class="form-check-input" type="checkbox" value={{$role->id}} id="flexCheckDefault" name="roles[]" @if(!is_null($group?->hasRole($role->id))) checked @endif
+                          style="border:1px solid #d1d7e1;margin-top:0.25rem">
+                          <label class="form-check-label" for="flexCheckDefault" style="font-size: 0.875rem;
+                              font-weight: 400;">
                             {{$role->name}}
                           </label>
                         </div>

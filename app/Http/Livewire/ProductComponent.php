@@ -31,14 +31,21 @@ class ProductComponent extends Component
         $products = $products->orderBy('created_at','desc')
                             ->paginate($this->limit);
         
+        $start = ($products->currentPage() - 1) * $this->limit + 1;
+        $end = min($products->currentPage() * $this->limit, $products->total());
+
         return view('livewire.product-component',[
             'products' => $products,
-            'limit' => $this->limit
+            'limit' => $this->limit,
+            'start' => $start,
+            'end' => $end,
+            'total' => $products->total()
         ]);
     }
 
     public function changeEvent($value)
     {
         $this->limit = $value;
+        $this->resetPage();
     }
 }

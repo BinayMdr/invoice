@@ -78,4 +78,15 @@ class GroupController extends Controller
 
         return redirect()->route('group')->with('success','Group updated');
     }
+
+    public function destroy(Group $group)
+    {
+        if(\Auth::user()->hasRole('delete-groups'))
+        {
+            if(\App\Models\User::where('group_id',$group->id)->get()->count() > 0) return redirect()->route('group')->with('error','Group is assigned to user');
+            $group->delete();
+            return redirect()->route('group')->with('success','Group deleted');
+        }
+        return back();
+    }
 }
