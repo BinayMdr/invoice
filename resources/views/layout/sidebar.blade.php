@@ -45,7 +45,7 @@
           </li>
         @endif
 
-        @if(\Auth::user()->hasRole('view-about-us'))
+        @if(\Auth::user()->hasRole('view-about-us') || \Auth::user()->hasRole('view-teams'))
           <li class="nav-item mt-3">
             <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Pages</h6>
           </li>
@@ -61,6 +61,16 @@
           </a>
         </li>
         @endif
+        @if(\Auth::user()->hasRole('view-teams'))
+        <li class="nav-item">
+          <a class="nav-link text-white @if(str_contains(url()->current(),'team')) active @endif" href="{{route('team')}}">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">people</i>
+            </div>
+            <span class="nav-link-text ms-1">Team</span>
+          </a>
+        </li>
+        @endif
 
         @if(\Auth::user()->hasRole('view-banners') || \Auth::user()->hasRole('view-pop-ups') 
         || \Auth::user()->hasRole('view-products'))
@@ -73,7 +83,7 @@
           <li class="nav-item">
             <a class="nav-link text-white @if(str_contains(url()->current(),'banner')) active @endif" href="{{route('banner')}}">
               <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">photo_library</i>
+                <i class="material-icons opacity-10">wallpaper</i>
               </div>
               <span class="nav-link-text ms-1">Banner</span>
             </a>
@@ -93,11 +103,6 @@
           </li>
         @endif
       
-
-
-      
-        
-        
         @if(\Auth::user()->hasRole('view-products'))
         <li class="nav-item">
           <a class="nav-link text-white @if(\Request::route()->getName() == "product") active @endif" href="{{route('product')}}">
@@ -108,7 +113,25 @@
           </a>
         </li>
         @endif
+        
+        @if(\Auth::user()->hasRole('view-customer-reviews'))
+          <li class="nav-item mt-3">
+            <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Other</h6>
+          </li>
+        @endif
        
+
+        @if(\Auth::user()->hasRole('view-customer-reviews'))
+        <li class="nav-item">
+          <a class="nav-link text-white @if(str_contains(url()->current(),'customer-reviews')) active @endif" href="{{route('team')}}">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">reviews</i>
+            </div>
+            <span class="nav-link-text ms-1">Customer Reviews</span>
+          </a>
+        </li>
+        @endif
+
         @if(\Auth::user()->hasRole('view-settings'))
           <li class="nav-item mt-3">
             <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Settings</h6>

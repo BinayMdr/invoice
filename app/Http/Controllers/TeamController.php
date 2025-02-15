@@ -26,4 +26,14 @@ class TeamController extends Controller
         return view('pages.team.edit-create',compact('team'));
     }
 
+    public function destroy(Team $team)
+    {
+        if(\Auth::user()->hasRole('delete-teams'))
+        {
+            $team->delete();
+            return redirect()->route('team')->with('success','Team deleted');
+        }
+        return back();
+    }
+
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CustomerReviewController;
 use App\Http\Controllers\FilterProductController;
 use App\Http\Controllers\FilterTagController;
 use App\Http\Controllers\FooterMenuController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\PopUpController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SaleProductController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,7 +36,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::match(['get','post'],'/',[AuthController::class,'login'])->name('login');
 
-Route::group(['middleware'=>'auth'],function(){
+Route::group(['middleware'=>'auth','prefix' =>'admin'],function(){
     Route::get('/dashboard',[PageController::class,'dashboard'])->name('dashboard');
     Route::get('/profile',[PageController::class,'profile'])->name('profile');
     Route::post('/update-password',[ProfileController::class,'update_password'])->name('update.password');
@@ -75,4 +77,13 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/product/create',[ProductController::class,'create'])->name('create.product');
     Route::get('/product/edit/{product}',[ProductController::class,'edit'])->name('edit.product');
 
+    Route::get('/team',[TeamController::class,'index'])->name('team');
+    Route::get('/team/create',[TeamController::class,'create'])->name('create.team');
+    Route::get('/team/delete/{team}',[TeamController::class,'destroy'])->name('delete.team');
+    Route::get('/team/edit/{team}',[TeamController::class,'edit'])->name('edit.team');
+
+    Route::get('/customer-review',[CustomerReviewController::class,'index'])->name('customer-review');
+    Route::get('/customer-review/create',[CustomerReviewController::class,'create'])->name('create.customer-review');
+    Route::get('/customer-review/delete/{customerReview}',[CustomerReviewController::class,'destroy'])->name('delete.customer-review');
+    Route::get('/customer-review/edit/{customerReview}',[CustomerReviewController::class,'edit'])->name('edit.customer-review');
 });
