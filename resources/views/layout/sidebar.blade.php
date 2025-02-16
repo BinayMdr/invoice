@@ -55,7 +55,7 @@
         <li class="nav-item">
           <a class="nav-link text-white @if(str_contains(url()->current(),'about-us')) active @endif" href="{{route('about-us')}}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">contacts</i>
+              <i class="material-icons opacity-10">info</i>
             </div>
             <span class="nav-link-text ms-1">About Us</span>
           </a>
@@ -73,7 +73,7 @@
         @endif
 
         @if(\Auth::user()->hasRole('view-banners') || \Auth::user()->hasRole('view-pop-ups') 
-        || \Auth::user()->hasRole('view-products'))
+        || \Auth::user()->hasRole('view-products') || \Auth::user()->hasRole('view-ceritifcations'))
         <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Image Related</h6>
         </li>
@@ -114,6 +114,17 @@
         </li>
         @endif
         
+        @if(\Auth::user()->hasRole('view-certifications'))
+        <li class="nav-item">
+          <a class="nav-link text-white @if(\Request::route()->getName() == "certification") active @endif" href="{{route('certification')}}">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">workspace_premium</i>
+            </div>
+            <span class="nav-link-text ms-1">Certification</span>
+          </a>
+        </li>
+        @endif
+
         @if(\Auth::user()->hasRole('view-customer-reviews'))
           <li class="nav-item mt-3">
             <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Other</h6>

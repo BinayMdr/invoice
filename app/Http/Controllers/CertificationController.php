@@ -8,7 +8,7 @@ class CertificationController extends Controller
 {
     public function index()
     {
-        // if(!\Auth::user()->hasRole('view-groups')) return back();
+        if(!\Auth::user()->hasRole('view-certifications')) return back();
         $certification = Certification::first();
         return view('pages.certification.index',compact('certification'));
     }

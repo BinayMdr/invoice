@@ -40,18 +40,22 @@
                     @foreach ($storedPhotos as $index => $storedPhoto)
                         <div style="position: relative;">
                             <img src="{{ asset('storage/' . $storedPhoto->image) }}" width="100" height="100" class="rounded">
+                            @if(\Auth::user()->hasRole('delete-certifications'))
                             <button type="button" class="btn btn-danger btn-sm"
                                     style="position: absolute; top: -5px; right: -5px;background:transparent;box-shadow:none"
                                      wire:click.debounce.500ms="removeStoredPhoto({{ $storedPhoto->id }})">
                                 &times;
                             </button>
+                            @endif
+
                         </div>
                     @endforeach
                 </div>
-
+                @if(\Auth::user()->hasRole('add-certifications') || \Auth::user()->hasRole('edit-certifications') )
                   <div class="text-center">
                     <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2"> @if($certification) Update @else Add @endif Certification</button>
                   </div>
+                @endif
                 </form>
               </div>
             </div>
