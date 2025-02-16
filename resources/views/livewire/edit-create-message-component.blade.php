@@ -1,5 +1,5 @@
 <div class="container-fluid px-2 px-md-4">
-    <div class="card card-body mx-3">
+    <div class="card card-body mx-3" style="padding-bottom:50px">
       <div class="row">
         <div class="row">
           <div class="col-12">
@@ -12,14 +12,14 @@
                 <form class="text-start">  
                   
                   <div class="row mb-4">
-                    <div class="col-8">
+                    <div class="col-6">
                       <label class="form-label">Name  </label>
                       <div class="input-group input-group-outline">
                         <input type="text" class="form-control" name="name" value={{$message->name}} autocomplete="off">
                       </div>
                     </div>
                     
-                    <div class="col-4">
+                    <div class="col-6">
                       <label class="form-label">Email</label>
                       <div class="input-group input-group-outline">
                         <input type="text" class="form-control" name="email" value={{$message->email}} autocomplete="off">

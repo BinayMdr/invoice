@@ -89,7 +89,7 @@
                     </div>  
                         
                     <div>
-                      <input type="file" class="form-control" name="image" wire:model.lazy="image">
+                      <input type="file" class="form-control" name="image" wire:model.lazy="image" accept="image/*">
                     </div> 
 
                     <label class="form-check-label mt-2 ms-2" for="image">Image @if(!$team) <span class="text-danger">*</span> @endif</label>

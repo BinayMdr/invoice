@@ -91,7 +91,7 @@
                         @endif
                         </div>      
                         <div>
-                        <input type="file" class="form-control" name="image" wire:model.lazy="image">
+                        <input type="file" class="form-control" name="image" wire:model.lazy="image" accept="image/*">
                         </div> 
                         <label class="form-label">Image @if(!$customerReview)<span class="text-danger">*</span> @endif </label>
                     </div>

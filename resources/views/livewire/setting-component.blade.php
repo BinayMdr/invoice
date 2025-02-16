@@ -115,7 +115,7 @@
                     </div>      
                     <div>
                       <label class="form-label">Default Banner Image(Except Home Page)</label>
-                      <input type="file" class="form-control" name="bannerImage" wire:model.lazy="tempBannerImage">
+                      <input type="file" class="form-control" name="bannerImage" wire:model.lazy="tempBannerImage" accept="image/*">
                     </div> 
                   </div>
 
