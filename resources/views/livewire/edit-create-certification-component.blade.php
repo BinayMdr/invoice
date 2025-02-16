@@ -42,7 +42,7 @@
                             <img src="{{ asset('storage/' . $storedPhoto->image) }}" width="100" height="100" class="rounded">
                             <button type="button" class="btn btn-danger btn-sm"
                                     style="position: absolute; top: -5px; right: -5px;background:transparent;box-shadow:none"
-                                    wire:click="removeStoredPhoto({{ $storedPhoto->id }})">
+                                     wire:click.debounce.500ms="removeStoredPhoto({{ $storedPhoto->id }})">
                                 &times;
                             </button>
                         </div>
@@ -62,3 +62,10 @@
     @include('layout.footer')
   </div>
 
+  @section('js')
+    <script>
+       Livewire.on('refreshComponent', () => {
+        window.location.reload(); // Hard refresh the page (last resort)
+    });
+    </script>
+  @endsection

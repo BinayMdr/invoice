@@ -68,6 +68,10 @@ class GroupController extends Controller
         
         $group->roles()->delete();
 
+        $group->update([
+            'name' => $request->name
+        ]);
+
         foreach($request->roles as $role)
         {
             GroupHasRole::create([

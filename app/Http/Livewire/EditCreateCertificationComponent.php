@@ -45,6 +45,8 @@ class EditCreateCertificationComponent extends Component
     
             $this->storedPhotos = Certification::where('id', '!=', $id)->get();
         }
+
+        $this->emit('refreshComponent');
     }
 
     public function update()
