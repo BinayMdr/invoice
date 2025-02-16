@@ -132,7 +132,7 @@ class EditCreateProductComponent extends Component
             'price' => $this->price,
             'order' => $this->order,
             'series' => $this->series,
-            'image' => is_null($this->image) ? $this->product->display_image :str_replace("public/","",$display_image_path),
+            'image' => is_null($this->image) ? $this->product->image :str_replace("public/","",$display_image_path),
             'description' => $this->description,
             'reference' => $this->reference,
             'is_out_of_stock' => $this->isOutOfStock ?? false,

@@ -77,7 +77,7 @@
                       <a href="{{route('edit.product',['product' => $product])}}" class="text-dark font-weight-bold text-xs" style="margin-right:0.5rem">
                           <i class="material-icons opacity-10">edit</i>
                       </a>
-                      <a href="{{route('edit.product',['product' => $product])}}" class="text-dark font-weight-bold text-xs">
+                      <a href="{{route('delete.product',['product' => $product])}}" class="text-dark font-weight-bold text-xs">
                           <i class="material-icons opacity-10">delete</i>
                       </a>
                     </td>

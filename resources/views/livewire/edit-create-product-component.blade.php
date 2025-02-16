@@ -1,4 +1,12 @@
 <div class="container-fluid px-2 px-md-4">
+  <style>
+    div.tox-dialog-wrap{
+      width: 70%!important;
+      margin-left:25%!important;
+      height: 80%!important;
+      margin-top:4%!important;
+    }
+  </style>
   <div class="card card-body mx-3">
     <div class="row">
       <div class="row">
@@ -116,7 +124,7 @@
                 <div class="row mb-12">
                     <label class="form-label">Description</label>
                     <div class="input-group input-group-outline" wire:ignore>
-                      <textarea type="text" class="form-control" style="resize:none" name="description" id="description" wire:model.lazy="description" autocomplete="off" row="12">{{$description}}</textarea>
+                      <textarea type="text" class="form-control"  name="description" id="description" wire:model.lazy="description" autocomplete="off" >{{$description}}</textarea>
                     </div>
                 </div>
 
@@ -176,8 +184,10 @@ function initTinyMCE() {
                 Livewire.emit('updateDescription', content);
             });
         },
-        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-        toolbar: 'undo redo | bold italic underline | link image media table | numlist bullist',
+        // plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+        // toolbar: 'undo redo | bold italic underline | link image media table | numlist bullist',
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount code fullscreen preview hr pagebreak insertdatetime nonbreaking help',
+    toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | link image media table | numlist bullist | forecolor backcolor | fontselect fontsizeselect | code  preview hr',
     });
 }
 

@@ -25,4 +25,14 @@ class ProductController extends Controller
         if(!\Auth::user()->hasRole('edit-products')) return back();
         return view('pages.product.edit-create',compact('product'));
     }
+
+    public function destroy(Product $product)
+    {
+        if(\Auth::user()->hasRole('delete-products'))
+        {
+            $product->delete();
+            return redirect()->route('product')->with('success','Product deleted');
+        }
+        return back();
+    }
 }

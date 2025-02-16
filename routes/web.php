@@ -3,17 +3,9 @@
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BannerController;
-use App\Http\Controllers\BrandController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CertificationController;
-use App\Http\Controllers\ColorController;
-use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerReviewController;
-use App\Http\Controllers\FilterProductController;
-use App\Http\Controllers\FilterTagController;
-use App\Http\Controllers\FooterMenuController;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserController;
@@ -21,8 +13,6 @@ use App\Http\Controllers\GroupController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PopUpController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\SaleProductController;
-use App\Http\Controllers\TagController;
 use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
 
@@ -78,6 +68,7 @@ Route::group(['middleware'=>'auth','prefix' =>'admin'],function(){
 
     Route::get('/product',[ProductController::class,'index'])->name('product');
     Route::get('/product/create',[ProductController::class,'create'])->name('create.product');
+    Route::get('/product/delete/{product}',[ProductController::class,'destroy'])->name('delete.product');
     Route::get('/product/edit/{product}',[ProductController::class,'edit'])->name('edit.product');
 
     Route::get('/team',[TeamController::class,'index'])->name('team');
