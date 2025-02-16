@@ -96,9 +96,11 @@
                 <option value="100" @if($limit == "100") selected @endif>100</option>
               </select>
             </div>
+            @if($total > 0)
             <div class="col-4"> 
               Showing {{$start}}-{{$end}} of {{$total}} <br>
             </div>
+            @endif
             <div class="col-4">
               {{ $groups->links('vendor.livewire.simple-bootstrap') }}
             </div>

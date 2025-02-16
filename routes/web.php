@@ -18,6 +18,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PopUpController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SaleProductController;
@@ -88,4 +89,7 @@ Route::group(['middleware'=>'auth','prefix' =>'admin'],function(){
     Route::get('/customer-review/create',[CustomerReviewController::class,'create'])->name('create.customer-review');
     Route::get('/customer-review/delete/{customerReview}',[CustomerReviewController::class,'destroy'])->name('delete.customer-review');
     Route::get('/customer-review/edit/{customerReview}',[CustomerReviewController::class,'edit'])->name('edit.customer-review');
+
+    Route::get('/message',[MessageController::class,'index'])->name('message');
+    Route::get('/message/{message}',[MessageController::class,'view'])->name('view.message');
 });
