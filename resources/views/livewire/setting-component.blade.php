@@ -128,10 +128,11 @@
 
 
                 </div>
-
+                @if(\Auth::user()->hasRole('add-settings') || \Auth::user()->hasRole('edit-settings') )
                 <div class="text-center">
                   <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Update Settings</button>
                 </div>
+                @endif
               </form>
             </div>
           </div>

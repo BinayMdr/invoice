@@ -164,10 +164,11 @@
                     </div>
 
                   </div>
-
+                  @if(\Auth::user()->hasRole('add-about-us') || \Auth::user()->hasRole('edit-about-us') )
                   <div class="text-center">
                     <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">@if(!is_null($aboutUs)) Update @else Add @endif About Us</button>
                   </div>
+                  @endif
                 </form>
               </div>
             </div>
