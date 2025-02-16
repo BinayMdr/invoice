@@ -49,7 +49,7 @@ class EditCreatePopUpComponent extends Component
         $this->validate([
             'name' => 'required',
             'image' => 'image',
-            'link' => 'required'
+            // 'link' => 'required'
         ]);
 
         if( PopUp::where('name',$this->name)->get()->count() > 0) 
@@ -72,7 +72,7 @@ class EditCreatePopUpComponent extends Component
         PopUp::create([
             'name' => $this->name,
             'image' => str_replace("public/","",$pop_up_image_path),
-            'link' => $this->link,
+            // 'link' => $this->link,
             'is_enabled' => $this->isEnabled ?? false,
             'order' => $this->order 
         ]);
