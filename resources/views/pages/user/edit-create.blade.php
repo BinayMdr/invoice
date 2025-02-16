@@ -97,7 +97,7 @@
                         <label class="form-label">Group</label>
                         <div class="input-group input-group-outline " aria-autocomplete="off" >
                           <select class="form-select form-control" aria-label="Default select example" name="group_id">
-                            @foreach(\App\Models\Group::get() as $group)
+                            @foreach(\App\Models\Group::whereNotIn('id',[$removeGroup->id])->get() as $group)
                               <option value="{{$group->id}}" @if( $group->id == $user?->group_id ) selected @endif>{{$group?->name}}</option>
                             @endforeach
                           </select>

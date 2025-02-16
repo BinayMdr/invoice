@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Group;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,8 @@ class UserController extends Controller
     {
         if(!\Auth::user()->hasRole('add-users')) return back();
         $user = null;
-        return view('pages.user.edit-create',compact('user'));
+        $removeGroup = Group::where('name','Super Admin')->first();
+        return view('pages.user.edit-create',compact('user','removeGroup'));
     }
 
     public function store(Request $request)
@@ -47,7 +49,8 @@ class UserController extends Controller
     public function edit(User $user)
     {
         if(!\Auth::user()->hasRole('edit-users')) return back();
-        return view('pages.user.edit-create',compact('user'));
+        $removeGroup = Group::where('name','Super Admin')->first();
+        return view('pages.user.edit-create',compact('user','removeGroup'));
     }
 
     public function update(Request $request,User $user)
